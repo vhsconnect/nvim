@@ -15,22 +15,24 @@
     flake = false;
   };
 
-  outputs =
-    { nixpkgs
-    , neovim-flake
-    , flake-utils
-    , ...
-    } @ inputs:
-    let
-      sys = {
-        x86_64-linux = "x86_64-linux";
-        aarch64-linux = "aarch64-linux";
-        aarch64-darwin = "aarch64-darwin";
-      };
-      systems = [ sys.aarch64-linux sys.aarch64-darwin sys.x86_64-linux ];
-    in
-    flake-utils.lib.eachSystem systems (system:
-    let
+  outputs = {
+    nixpkgs,
+    neovim-flake,
+    flake-utils,
+    ...
+  } @ inputs: let
+    sys = {
+      x86_64-linux = "x86_64-linux";
+      aarch64-linux = "aarch64-linux";
+      aarch64-darwin = "aarch64-darwin";
+    };
+    systems = [
+      sys.aarch64-linux
+      sys.aarch64-darwin
+      sys.x86_64-linux
+    ];
+  in
+    flake-utils.lib.eachSystem systems (system: let
       configModule = {
         build.viAlias = false;
         build.vimAlias = true;
@@ -106,7 +108,7 @@
 
       base = neovim-flake.lib.neovimConfiguration {
         inherit pkgs;
-        modules = [ configModule ];
+        modules = [configModule];
       };
 
       extended = base.extendConfiguration {
@@ -122,8 +124,7 @@
           }
         ];
       };
-    in
-    rec {
+    in rec {
       packages.neovim = extended;
       devShells.default = pkgs.mkShell {
         buildInputs = [
