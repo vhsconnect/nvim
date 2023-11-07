@@ -23,7 +23,7 @@ vim.keymap.set('n', '<leader><leader>', '<C-W>T',  { noremap = true })
 vim.keymap.set('n', 's', '<Plug>(leap-forward)',  { noremap = true })
 vim.keymap.set('n', 'S', '<Plug>(leap-backward)',  { noremap = true })
 
--- staging
+-- todo
 vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
 vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
 
@@ -96,3 +96,14 @@ require('leap').setup {
       case_insensitive = true,
     }
 
+------------------
+-- git gutter
+------------------
+
+vim.g["gitgtter_signs"] = 1
+vim.g["gitgutter_sign_added"] = ''
+vim.g["gitgutter_sign_modified"] = ''
+vim.g["gitgutter_sign_removed"] =  ''
+vim.g["gitgutter_sign_removed_first_line"] = ''
+vim.g["gitgutter_sign_removed_above_and_below"] = ''
+vim.g["gitgutter_sign_modified_removed"] = ''

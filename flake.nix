@@ -14,6 +14,10 @@
     url = "github:tomtom/tcomment_vim";
     flake = false;
   };
+  inputs.gitgutter = {
+    url = "github:airblade/vim-gitgutter";
+    flake = false;
+  };
 
   outputs = {
     nixpkgs,
@@ -34,31 +38,42 @@
   in
     flake-utils.lib.eachSystem systems (system: let
       configModule = {
-        build.viAlias = false;
+        build.viAlias = true;
         build.vimAlias = true;
         build.rawPlugins = {
-          leap-nvim = {
-            src = inputs.leap-nvim;
-          };
+          leap-nvim = {src = inputs.leap-nvim;};
           tcomment = {
             src = inputs.tcomment;
           };
           colorschemes = {
             src = inputs.colorschemes;
           };
+          gitgutter = {
+            src = inputs.gitgutter;
+          };
         };
         vim.visuals.enable = true;
+        vim.visuals.nvimWebDevicons.enable = true;
         vim.preventJunkFiles = true;
-        vim.git = {
+        vim.useSystemClipboard = true;
+        vim.showSignColumn = true;
+
+        vim.splitBelow = false;
+        vim.tabline.nvimBufferline = {
           enable = true;
+        };
+        vim.git = {
+          enable = false;
           gitsigns.enable = true;
           gitsigns.codeActions = true;
         };
         vim.languages = {
           enableLSP = true;
           enableFormat = true;
-          enableTreesitter = true;
+          enableTreesitter = false;
           nix.enable = true;
+          nix.format.enable = true;
+          nix.format.type = "alejandra";
           markdown.enable = true;
           html.enable = true;
           python.enable = true;
@@ -68,6 +83,8 @@
           };
           rust.enable = true;
           rust.lsp.enable = true;
+          # css.enable = true;
+          # css.lsp.enable = true;
         };
         vim.lsp = {
           formatOnSave = true;
@@ -79,13 +96,12 @@
         };
         vim.statusline.lualine = {
           enable = true;
-          theme = "gruvbox";
           icons = true;
         };
         vim.theme = {
           enable = true;
-          name = "catppuccin";
-          style = "macchiato";
+          name = "tokyonight";
+          style = "moon";
         };
         vim.autopairs.enable = true;
         vim.autocomplete = {
@@ -118,6 +134,7 @@
               "leap-nvim"
               "colorschemes"
               "tcomment"
+              "gitgutter"
             ];
             vim.optPlugins = [
             ];
