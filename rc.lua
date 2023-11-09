@@ -79,6 +79,7 @@ vim.keymap.set('n', '<space>7', ':colorscheme lightning<CR>', {noremap = true})
 vim.keymap.set('n', '<space>8', ':colorscheme seoul256-light<CR>', {noremap = true})
 vim.keymap.set('n', '<space>9', ':colorscheme summerfruit256<CR>', {noremap = true})
 vim.keymap.set('n', '<space>0', ':colorscheme PaperColor<CR>', {noremap = true})
+-- atom theme
 
 ------------------
 -- navigation
@@ -91,10 +92,29 @@ vim.keymap.set('n', '<C-H>', '<C-W><C-H>', {noremap = true})
 ------------------
 -- leap
 ------------------
---
+
 require('leap').setup {
       case_insensitive = true,
     }
+
+------------------
+-- themed-tabs
+------------------
+
+require('themed-tabs').setup {
+      colorschemes = {
+          "tokyonight",
+          "atom", 
+          "OceanicNext",
+          "railscasts", 
+      };
+    }
+
+------------------
+-- nvim-surround
+------------------
+
+require('nvim-surround').setup()
 
 ------------------
 -- git gutter
