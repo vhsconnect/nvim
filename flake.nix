@@ -18,6 +18,14 @@
     url = "github:airblade/vim-gitgutter";
     flake = false;
   };
+  inputs.themed-tabs = {
+    url = "github:vhsconnect/themed-tabs.nvim";
+    flake = false;
+  };
+  inputs.nvim-surround = {
+    url = "github:kylechui/nvim-surround";
+    flake = false;
+  };
 
   outputs = {
     nixpkgs,
@@ -41,7 +49,9 @@
         build.viAlias = true;
         build.vimAlias = true;
         build.rawPlugins = {
-          leap-nvim = {src = inputs.leap-nvim;};
+          leap-nvim = {
+            src = inputs.leap-nvim;
+          };
           tcomment = {
             src = inputs.tcomment;
           };
@@ -50,6 +60,12 @@
           };
           gitgutter = {
             src = inputs.gitgutter;
+          };
+          themed-tabs = {
+            src = inputs.themed-tabs;
+          };
+          nvim-surround = {
+            src = inputs.nvim-surround;
           };
         };
         vim.visuals.enable = true;
@@ -135,6 +151,8 @@
               "colorschemes"
               "tcomment"
               "gitgutter"
+              "themed-tabs"
+              "nvim-surround"
             ];
             vim.optPlugins = [
             ];

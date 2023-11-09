@@ -292,6 +292,22 @@
         "type": "sourcehut"
       }
     },
+    "nvim-surround": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698017588,
+        "narHash": "sha256-kyir0UVywfTMfXITSsD8dj2dn4QfaszPDrbldForCJs=",
+        "owner": "kylechui",
+        "repo": "nvim-surround",
+        "rev": "4f0e1f470595af067eca9b872778d83c7f52f134",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kylechui",
+        "repo": "nvim-surround",
+        "type": "github"
+      }
+    },
     "plugin-bufdelete-nvim": {
       "flake": false,
       "locked": {
@@ -1255,7 +1271,9 @@
         "leap-nvim": "leap-nvim",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs_3",
-        "tcomment": "tcomment"
+        "nvim-surround": "nvim-surround",
+        "tcomment": "tcomment",
+        "themed-tabs": "themed-tabs"
       }
     },
     "rust-overlay": {
@@ -1345,6 +1363,22 @@
       "original": {
         "owner": "tomtom",
         "repo": "tcomment_vim",
+        "type": "github"
+      }
+    },
+    "themed-tabs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699535429,
+        "narHash": "sha256-MLydRSFarG1FBH0Z5XKYaqI8U6I3/xc17u9DDQRSd+k=",
+        "owner": "vhsconnect",
+        "repo": "themed-tabs.nvim",
+        "rev": "41a873ebd36e9800daf3dc61d5fd490e9b198158",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vhsconnect",
+        "repo": "themed-tabs.nvim",
         "type": "github"
       }
     },
