@@ -89,7 +89,7 @@
           enableTreesitter = false;
           nix.enable = true;
           nix.format.enable = true;
-          nix.format.type = "alejandra";
+          nix.format.type = "nixpkgs-fmt";
           markdown.enable = true;
           html.enable = true;
           python.enable = true;
