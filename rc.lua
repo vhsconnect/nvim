@@ -17,7 +17,7 @@ vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', { noremap = true })
 
 
 -- move split into own tab
-vim.keymap.set('n', '<leader><leader>', '<C-W>T',  { noremap = true })
+vim.keymap.set('n', '<BSlash><BSlash>', '<C-W>T',  { noremap = true })
 
 -- leap
 vim.keymap.set('n', 's', '<Plug>(leap-forward)',  { noremap = true })

@@ -1,6 +1,7 @@
 {
-  inputs.neovim-flake.url = "github:jordanisaacs/neovim-flake";
+  inputs.neovim-flake.url = "github:vhsconnect/neovim-flake";
   inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
   inputs.leap-nvim = {
     url = "github:ggandor/leap.nvim";
@@ -27,24 +28,26 @@
     flake = false;
   };
 
-  outputs = {
-    nixpkgs,
-    neovim-flake,
-    flake-utils,
-    ...
-  } @ inputs: let
-    sys = {
-      x86_64-linux = "x86_64-linux";
-      aarch64-linux = "aarch64-linux";
-      aarch64-darwin = "aarch64-darwin";
-    };
-    systems = [
-      sys.aarch64-linux
-      sys.aarch64-darwin
-      sys.x86_64-linux
-    ];
-  in
-    flake-utils.lib.eachSystem systems (system: let
+  outputs =
+    { nixpkgs
+    , neovim-flake
+    , flake-utils
+    , ...
+    } @ inputs:
+    let
+      sys = {
+        x86_64-linux = "x86_64-linux";
+        aarch64-linux = "aarch64-linux";
+        aarch64-darwin = "aarch64-darwin";
+      };
+      systems = [
+        sys.aarch64-linux
+        sys.aarch64-darwin
+        sys.x86_64-linux
+      ];
+    in
+    flake-utils.lib.eachSystem systems (system:
+    let
       configModule = {
         build.viAlias = true;
         build.vimAlias = true;
@@ -99,8 +102,10 @@
           };
           rust.enable = true;
           rust.lsp.enable = true;
-          # css.enable = true;
-          # css.lsp.enable = true;
+          css.enable = true;
+          css.lsp.enable = true;
+          tailwindcss.enable = true;
+          tailwindcss.lsp.enable = true;
         };
         vim.lsp = {
           formatOnSave = true;
@@ -111,8 +116,8 @@
           lspSignature.enable = true;
         };
         vim.statusline.lualine = {
-          enable = true;
-          icons = true;
+          enable = false;
+          icons = false;
         };
         vim.theme = {
           enable = true;
@@ -126,6 +131,7 @@
         };
         vim.filetree.nvimTreeLua.enable = true;
         vim.treesitter.context.enable = true;
+        vim.treesitter.enable = true;
         vim.keys = {
           enable = true;
           whichKey.enable = true;
@@ -140,7 +146,7 @@
 
       base = neovim-flake.lib.neovimConfiguration {
         inherit pkgs;
-        modules = [configModule];
+        modules = [ configModule ];
       };
 
       extended = base.extendConfiguration {
@@ -159,7 +165,8 @@
           }
         ];
       };
-    in rec {
+    in
+    rec {
       packages.neovim = extended;
       devShells.default = pkgs.mkShell {
         buildInputs = [
