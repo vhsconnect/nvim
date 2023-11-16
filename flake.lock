@@ -191,11 +191,11 @@
         "tidalcycles": "tidalcycles"
       },
       "locked": {
-        "lastModified": 1700151402,
-        "narHash": "sha256-U5wOSTr0Pgmae9GT28yOWc7Cvkmrx7rLuVPN6OnIcJ8=",
+        "lastModified": 1700155636,
+        "narHash": "sha256-SbQaGBXpU+78ZHXmPGQshST/y3s0VHutyXguexJWmk8=",
         "owner": "vhsconnect",
         "repo": "neovim-flake",
-        "rev": "0e5bd26f2e1c956558725c79bd3d13b325eee6da",
+        "rev": "00d3b1963474be3544563fea4f37411b05fd81a1",
         "type": "github"
       },
       "original": {
