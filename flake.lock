@@ -1,5 +1,37 @@
 {
   "nodes": {
+    "codeium": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699487587,
+        "narHash": "sha256-s4SsYiVp1vzxa8F9sylAXfv6oToUMls4DarHYFnewE4=",
+        "owner": "exafunction",
+        "repo": "codeium.vim",
+        "rev": "1efe2a2cdf516094bdb211aa8a1d45ef01836207",
+        "type": "github"
+      },
+      "original": {
+        "owner": "exafunction",
+        "repo": "codeium.vim",
+        "type": "github"
+      }
+    },
+    "codeium_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699487587,
+        "narHash": "sha256-s4SsYiVp1vzxa8F9sylAXfv6oToUMls4DarHYFnewE4=",
+        "owner": "exafunction",
+        "repo": "codeium.vim",
+        "rev": "1efe2a2cdf516094bdb211aa8a1d45ef01836207",
+        "type": "github"
+      },
+      "original": {
+        "owner": "exafunction",
+        "repo": "codeium.vim",
+        "type": "github"
+      }
+    },
     "colorschemes": {
       "flake": false,
       "locked": {
@@ -125,6 +157,7 @@
     },
     "neovim-flake": {
       "inputs": {
+        "codeium": "codeium_2",
         "flake-utils": "flake-utils_2",
         "nil": "nil",
         "nixpkgs": "nixpkgs",
@@ -191,17 +224,14 @@
         "tidalcycles": "tidalcycles"
       },
       "locked": {
-        "lastModified": 1700155636,
-        "narHash": "sha256-SbQaGBXpU+78ZHXmPGQshST/y3s0VHutyXguexJWmk8=",
-        "owner": "vhsconnect",
-        "repo": "neovim-flake",
-        "rev": "00d3b1963474be3544563fea4f37411b05fd81a1",
-        "type": "github"
+        "lastModified": 1700155596,
+        "narHash": "sha256-cDbJ4XkDqphKbudc03P98XIh9CumvNIWPHPTxxLwNFQ=",
+        "type": "git",
+        "url": "file:/home/vhs/Repos/neovim-flake/"
       },
       "original": {
-        "owner": "vhsconnect",
-        "repo": "neovim-flake",
-        "type": "github"
+        "type": "git",
+        "url": "file:/home/vhs/Repos/neovim-flake/"
       }
     },
     "nil": {
@@ -1267,6 +1297,7 @@
     },
     "root": {
       "inputs": {
+        "codeium": "codeium",
         "colorschemes": "colorschemes",
         "flake-utils": "flake-utils",
         "gitgutter": "gitgutter",

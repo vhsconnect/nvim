@@ -1,8 +1,13 @@
 {
-  inputs.neovim-flake.url = "github:vhsconnect/neovim-flake";
+  # inputs.neovim-flake.url = "github:vhsconnect/neovim-flake";
+  inputs.neovim-flake.url = "git+file:/home/vhs/Repos/neovim-flake/";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+  inputs.codeium = {
+    url = "github:exafunction/codeium.vim";
+    flake = false;
+  };
   inputs.leap-nvim = {
     url = "github:ggandor/leap.nvim";
     flake = false;
@@ -69,6 +74,9 @@
           };
           nvim-surround = {
             src = inputs.nvim-surround;
+          };
+          codeium = {
+            src = inputs.codeium;
           };
         };
         vim.visuals.enable = true;
@@ -161,6 +169,7 @@
               "nvim-surround"
             ];
             vim.optPlugins = [
+              "codeium"
             ];
           }
         ];
