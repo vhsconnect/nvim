@@ -26,6 +26,7 @@ vim.keymap.set('n', 'S', '<Plug>(leap-backward)',  { noremap = true })
 vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
 vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
 
+
 function interop(str)
    local outer_env = _ENV
    return (str:gsub("%b{}", function(block)
@@ -127,15 +128,6 @@ vim.g["gitgutter_sign_removed_first_line"] = ''
 vim.g["gitgutter_sign_removed_above_and_below"] = ''
 vim.g["gitgutter_sign_modified_removed"] = ''
 
-------------------
--- codeium
-------------------
--- disable default
--- let g:codeium_manual = v:true
-vim.keymap.set('i', '<C-a>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-vim.keymap.set('i', '<c-a><c-a>', function() return vim.fn['codeium#CycleCompletions'](3) end, { expr = true })
-vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-vim.keymap.set('i', '<c-q>', function() return vim.fn['codeium#Clear']() end, { expr = true })
 
 
 
