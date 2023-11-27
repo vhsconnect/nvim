@@ -3,6 +3,14 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+  inputs.tmux-nav = {
+    url = "github:christoomey/vim-tmux-navigator";
+    flake = false;
+  };
+  inputs.gen = {
+    url = "github:David-Kunz/gen.nvim";
+    flake = false;
+  };
   inputs.leap-nvim = {
     url = "github:ggandor/leap.nvim";
     flake = false;
@@ -52,6 +60,12 @@
         build.viAlias = true;
         build.vimAlias = true;
         build.rawPlugins = {
+          tmux-nav = {
+            src = inputs.tmux-nav;
+          };
+          gen = {
+            src = inputs.gen;
+          };
           leap-nvim = {
             src = inputs.leap-nvim;
           };
@@ -160,6 +174,8 @@
               "gitgutter"
               "themed-tabs"
               "nvim-surround"
+              "gen"
+              "tmux-nav"
             ];
             vim.optPlugins = [
               "codeium"

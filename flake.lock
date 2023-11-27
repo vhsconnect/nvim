@@ -69,6 +69,22 @@
         "type": "github"
       }
     },
+    "gen": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700504112,
+        "narHash": "sha256-Ws59ydgR5Ix8XfaC1MaUwV4+lzsbqwZ23WvRMRji/ug=",
+        "owner": "David-Kunz",
+        "repo": "gen.nvim",
+        "rev": "7aa38b8180f53fb4ac1ac02709179ab8c7b3a82f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "David-Kunz",
+        "repo": "gen.nvim",
+        "type": "github"
+      }
+    },
     "gitgutter": {
       "flake": false,
       "locked": {
@@ -1286,13 +1302,15 @@
       "inputs": {
         "colorschemes": "colorschemes",
         "flake-utils": "flake-utils",
+        "gen": "gen",
         "gitgutter": "gitgutter",
         "leap-nvim": "leap-nvim",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs_3",
         "nvim-surround": "nvim-surround",
         "tcomment": "tcomment",
-        "themed-tabs": "themed-tabs"
+        "themed-tabs": "themed-tabs",
+        "tmux-nav": "tmux-nav"
       }
     },
     "rust-overlay": {
@@ -1439,6 +1457,22 @@
       "original": {
         "owner": "mitchmindtree",
         "repo": "tidalcycles.nix",
+        "type": "github"
+      }
+    },
+    "tmux-nav": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694897700,
+        "narHash": "sha256-xCgiaJFS438FY4IAA1UynaCNwOU0s3tct2oqwC4NvxY=",
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
+        "rev": "7db70e08ea03b3e4d91f63713d76134512e28d7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
         "type": "github"
       }
     },

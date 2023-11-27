@@ -1,9 +1,10 @@
 vim.keymap.set('n', '<space>n', ':NvimTreeToggle<CR>', {noremap = true})
 vim.keymap.set('n', '<space><leader>', ':tabnext<CR>', {noremap = true})
 vim.keymap.set('n', '<leader><space>', ':tabprevious<cr>', {noremap = true})
-vim.keymap.set('n', '<space>s', ':set spell<cr>', {noremap = true})
-vim.keymap.set('n', '<space><space>s', ':set nospell<cr>', {noremap = true})
-vim.keymap.set('n', '<space>l', ':PrettierAsync<cr>', {noremap = true})
+vim.keymap.set('n', '<space>s', ':set spell<CR>', {noremap = true})
+vim.keymap.set('n', '<space><space>s', ':set nospell<CR>', {noremap = true})
+vim.keymap.set('n', '<space>l', ':PrettierAsync<CR>', {noremap = true})
+vim.keymap.set('n', '<space>g<space>', ':Gen<CR>', {noremap = true})
 
 vim.keymap.set('n', 'K', '5k', {noremap = true})
 vim.keymap.set('n', 'J', '5j', {noremap = true})
@@ -84,10 +85,14 @@ vim.keymap.set('n', '<space>0', ':colorscheme PaperColor<CR>', {noremap = true})
 ------------------
 -- navigation
 ------------------
-vim.keymap.set('n', '<C-J>', '<C-W><C-J>', {noremap = true})
-vim.keymap.set('n', '<C-K>', '<C-W><C-K>', {noremap = true})
-vim.keymap.set('n', '<C-L>', '<C-W><C-L>', {noremap = true})
-vim.keymap.set('n', '<C-H>', '<C-W><C-H>', {noremap = true})
+-- vim.keymap.set('n', '<C-J>', '<C-W><C-J>', {noremap = true})
+-- vim.keymap.set('n', '<C-K>', '<C-W><C-K>', {noremap = true})
+-- vim.keymap.set('n', '<C-L>', '<C-W><C-L>', {noremap = true})
+-- vim.keymap.set('n', '<C-H>', '<C-W><C-H>', {noremap = true})
+vim.keymap.set('n', '<C-J>', ':TmuxNavigateDown<CR>', {noremap = true})
+vim.keymap.set('n', '<C-K>', ':TmuxNavigateUp<CR>', {noremap = true})
+vim.keymap.set('n', '<C-L>', ':TmuxNavigateRight<CR>', {noremap = true})
+vim.keymap.set('n', '<C-H>', ':TmuxNavigateLeft<CR>', {noremap = true})
 
 ------------------
 -- leap
@@ -128,7 +133,7 @@ vim.g["gitgutter_sign_removed_first_line"] = ''
 vim.g["gitgutter_sign_removed_above_and_below"] = ''
 vim.g["gitgutter_sign_modified_removed"] = ''
 
-
-
+vim.keymap.set('n', '<space>gj', ':GitGutterNextHunk<CR>', {noremap = true})
+vim.keymap.set('n', '<space>gk', ':GitGutterPrevHunk<CR>', {noremap = true})
 
 
