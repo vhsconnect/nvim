@@ -208,11 +208,11 @@
         "tidalcycles": "tidalcycles"
       },
       "locked": {
-        "lastModified": 1700509166,
-        "narHash": "sha256-rBn5h8pejzBb+5/V2Z+PE7dUiolP1AICLApXdEo+SrU=",
+        "lastModified": 1701787308,
+        "narHash": "sha256-PisrQ8vgt4jHvvyV9bPAjfsemPDjDe2blR9quHj+mQc=",
         "owner": "vhsconnect",
         "repo": "neovim-flake",
-        "rev": "9d98671938c6f3c0473a46d7cd5d393ccf596555",
+        "rev": "077fabedeaa70aff9af054c895babead260bea73",
         "type": "github"
       },
       "original": {
@@ -490,11 +490,11 @@
     "plugin-codeium": {
       "flake": false,
       "locked": {
-        "lastModified": 1699487587,
-        "narHash": "sha256-s4SsYiVp1vzxa8F9sylAXfv6oToUMls4DarHYFnewE4=",
+        "lastModified": 1701717791,
+        "narHash": "sha256-r1wmMWwig1Y6hIWqvp4d7Ei47nG8mZ1XDRnnyYt5Bpo=",
         "owner": "exafunction",
         "repo": "codeium.vim",
-        "rev": "1efe2a2cdf516094bdb211aa8a1d45ef01836207",
+        "rev": "573333355648b13063e79e58d3cea16f27bb7636",
         "type": "github"
       },
       "original": {

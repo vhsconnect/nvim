@@ -121,6 +121,9 @@
           css.lsp.enable = true;
           tailwindcss.enable = true;
           tailwindcss.lsp.enable = true;
+          haskell.enable = true;
+          haskell.lsp.enable = true;
+          haskell.format.enable = true;
         };
         vim.lsp = {
           formatOnSave = true;
