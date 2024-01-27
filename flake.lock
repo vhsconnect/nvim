@@ -33,6 +33,22 @@
         "type": "github"
       }
     },
+    "emmet": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638632324,
+        "narHash": "sha256-VJa3AgbLW8Jow5Ka4NsN0cV3LLNLl0TLSHfMwhElaN0=",
+        "owner": "mattn",
+        "repo": "emmet-vim",
+        "rev": "def5d57a1ae5afb1b96ebe83c4652d1c03640f4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattn",
+        "repo": "emmet-vim",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -114,6 +130,22 @@
       "original": {
         "owner": "ggandor",
         "repo": "leap.nvim",
+        "type": "github"
+      }
+    },
+    "mustache": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638276177,
+        "narHash": "sha256-lmYt+GKuXhbOhu3HufqIFE2DvzUYlk5vGqU6tpJ2yjY=",
+        "owner": "mustache",
+        "repo": "vim-mustache-handlebars",
+        "rev": "0153fe03a919add2d6cf2d41b2d5b6e1188bc0e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mustache",
+        "repo": "vim-mustache-handlebars",
         "type": "github"
       }
     },
@@ -1301,10 +1333,12 @@
     "root": {
       "inputs": {
         "colorschemes": "colorschemes",
+        "emmet": "emmet",
         "flake-utils": "flake-utils",
         "gen": "gen",
         "gitgutter": "gitgutter",
         "leap-nvim": "leap-nvim",
+        "mustache": "mustache",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs_3",
         "nvim-surround": "nvim-surround",

@@ -3,6 +3,16 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+  inputs.emmet = {
+    url = "github:mattn/emmet-vim";
+    flake = false;
+  };
+
+  inputs.mustache = {
+    url = "github:mustache/vim-mustache-handlebars";
+    flake = false;
+  };
+
   inputs.tmux-nav = {
     url = "github:christoomey/vim-tmux-navigator";
     flake = false;
@@ -60,6 +70,12 @@
         build.viAlias = true;
         build.vimAlias = true;
         build.rawPlugins = {
+          emmet = {
+            src = inputs.emmet;
+          };
+          mustache = {
+            src = inputs.mustache;
+          };
           tmux-nav = {
             src = inputs.tmux-nav;
           };
@@ -140,7 +156,7 @@
         vim.theme = {
           enable = true;
           name = "tokyonight";
-          style = "moon";
+          style = "storm";
         };
         vim.autopairs.enable = true;
         vim.autocomplete = {
@@ -179,6 +195,8 @@
               "nvim-surround"
               "gen"
               "tmux-nav"
+              "mustache"
+              "emmet"
             ];
             vim.optPlugins = [
               "codeium"

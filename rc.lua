@@ -103,15 +103,14 @@ require('leap').setup {
 require('themed-tabs').setup {
       colorschemes = {
           "tokyonight",
-          "atom", 
-          "OceanicNext",
           "railscasts", 
-      };
-    }
-
-------------------
--- nvim-surround
-------------------
+          "OceanicNext",
+          "horseradish256",
+          "gruvbox",
+          "softblue",
+          "Tomorrow"
+          }
+      }
 
 require('nvim-surround').setup()
 
