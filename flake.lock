@@ -220,6 +220,7 @@
         "plugin-nvim-web-devicons": "plugin-nvim-web-devicons",
         "plugin-onedark": "plugin-onedark",
         "plugin-open-browser": "plugin-open-browser",
+        "plugin-oxocarbon": "plugin-oxocarbon",
         "plugin-plantuml-previewer": "plugin-plantuml-previewer",
         "plugin-plantuml-syntax": "plugin-plantuml-syntax",
         "plugin-plenary-nvim": "plugin-plenary-nvim",
@@ -240,17 +241,16 @@
         "tidalcycles": "tidalcycles"
       },
       "locked": {
+        "dirtyRev": "51975107537ffc75d79fd610fcd5b2b0a21bf0b2-dirty",
+        "dirtyShortRev": "5197510-dirty",
         "lastModified": 1702147843,
-        "narHash": "sha256-oWR7bcSdWGRIpgAHEbSbCZpb9dpnb8JgQKAYIWnwc+I=",
-        "owner": "vhsconnect",
-        "repo": "neovim-flake",
-        "rev": "51975107537ffc75d79fd610fcd5b2b0a21bf0b2",
-        "type": "github"
+        "narHash": "sha256-ghTkwdq1ySTDSx9NbsIFS0tGobgZEwut+Vd9DTCQOlU=",
+        "type": "git",
+        "url": "file:../neovim-flake"
       },
       "original": {
-        "owner": "vhsconnect",
-        "repo": "neovim-flake",
-        "type": "github"
+        "type": "git",
+        "url": "file:../neovim-flake"
       }
     },
     "nil": {
@@ -1045,6 +1045,22 @@
       "original": {
         "owner": "tyru",
         "repo": "open-browser.vim",
+        "type": "github"
+      }
+    },
+    "plugin-oxocarbon": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701119822,
+        "narHash": "sha256-++JALLPklok9VY2ChOddTYDvDNVadmCeB98jCAJYCZ0=",
+        "owner": "nyoom-engineering",
+        "repo": "oxocarbon.nvim",
+        "rev": "c5846d10cbe4131cc5e32c6d00beaf59cb60f6a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nyoom-engineering",
+        "repo": "oxocarbon.nvim",
         "type": "github"
       }
     },

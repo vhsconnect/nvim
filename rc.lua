@@ -96,13 +96,13 @@ require('leap').setup {
       case_insensitive = true,
     }
 
-------------------
+----------------
 -- themed-tabs
-------------------
+----------------
 
 require('themed-tabs').setup {
       colorschemes = {
-          "tokyonight",
+          "oxocarbon",
           "railscasts", 
           "OceanicNext",
           "horseradish256",
@@ -130,4 +130,9 @@ vim.g["gitgutter_sign_allow_clobber"] = 0
 vim.keymap.set('n', '<space>gj', ':GitGutterNextHunk<CR>', {noremap = true})
 vim.keymap.set('n', '<space>gk', ':GitGutterPrevHunk<CR>', {noremap = true})
 
+------------------
+-- global subs with confirm
+------------------
+
+vim.keymap.set('n', '<space>r',  [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], {noremap = true})
 

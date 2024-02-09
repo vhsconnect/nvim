@@ -155,8 +155,8 @@
         };
         vim.theme = {
           enable = true;
-          name = "tokyonight";
-          style = "storm";
+          name = "oxocarbon";
+          style = "dark";
         };
         vim.autopairs.enable = true;
         vim.autocomplete = {
