@@ -241,16 +241,17 @@
         "tidalcycles": "tidalcycles"
       },
       "locked": {
-        "dirtyRev": "51975107537ffc75d79fd610fcd5b2b0a21bf0b2-dirty",
-        "dirtyShortRev": "5197510-dirty",
-        "lastModified": 1702147843,
-        "narHash": "sha256-ghTkwdq1ySTDSx9NbsIFS0tGobgZEwut+Vd9DTCQOlU=",
-        "type": "git",
-        "url": "file:../neovim-flake"
+        "lastModified": 1707837078,
+        "narHash": "sha256-G9NrYCVyrF7FhzRdJMBFl/qJp5eGLTwzRIrllsDFlCs=",
+        "owner": "vhsconnect",
+        "repo": "neovim-flake",
+        "rev": "e87c4b51a0a5dd0d1148eca8365f40def0579f88",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:../neovim-flake"
+        "owner": "vhsconnect",
+        "repo": "neovim-flake",
+        "type": "github"
       }
     },
     "nil": {

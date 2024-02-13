@@ -126,6 +126,7 @@
           nix.format.type = "nixpkgs-fmt";
           markdown.enable = true;
           html.enable = true;
+          html.treesitter.enable = true;
           python.enable = true;
           ts = {
             enable = true;
@@ -140,6 +141,8 @@
           haskell.enable = true;
           haskell.lsp.enable = true;
           haskell.format.enable = true;
+          angular.enable = true;
+          angular.lsp.enable = true;
         };
         vim.lsp = {
           formatOnSave = true;
