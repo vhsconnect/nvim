@@ -126,7 +126,7 @@
           nix.format.type = "nixpkgs-fmt";
           markdown.enable = true;
           html.enable = true;
-          html.treesitter.enable = true;
+          #html.treesitter.enable = true;
           python.enable = true;
           ts = {
             enable = true;
