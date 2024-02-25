@@ -167,8 +167,8 @@
           type = "nvim-cmp";
         };
         vim.filetree.nvimTreeLua.enable = true;
-        vim.treesitter.context.enable = true;
-        vim.treesitter.enable = true;
+        vim.treesitter.context.enable = false;
+        vim.treesitter.enable = false;
         vim.keys = {
           enable = true;
           whichKey.enable = true;
