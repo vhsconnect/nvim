@@ -160,8 +160,7 @@
         };
         vim.theme = {
           enable = true;
-          name = "dracula";
-          # style = "dark";
+          name = "oxocarbon";
         };
         vim.autopairs.enable = true;
         vim.autocomplete = {
