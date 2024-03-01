@@ -143,6 +143,8 @@
           haskell.format.enable = true;
           angular.enable = true;
           angular.lsp.enable = true;
+          scala.enable = true;
+          scala.lsp.enable = true;
         };
         vim.lsp = {
           formatOnSave = true;
@@ -158,8 +160,8 @@
         };
         vim.theme = {
           enable = true;
-          name = "oxocarbon";
-          style = "dark";
+          name = "dracula";
+          # style = "dark";
         };
         vim.autopairs.enable = true;
         vim.autocomplete = {
