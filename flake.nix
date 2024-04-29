@@ -3,6 +3,11 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+  inputs.tshjkl = {
+    url = "github:gsuuon/tshjkl.nvim";
+    flake = false;
+  };
+
   inputs.emmet = {
     url = "github:mattn/emmet-vim";
     flake = false;
@@ -70,6 +75,9 @@
         build.viAlias = true;
         build.vimAlias = true;
         build.rawPlugins = {
+          tshjkl = {
+            src = inputs.tshjkl;
+          };
           emmet = {
             src = inputs.emmet;
           };
@@ -126,10 +134,11 @@
           nix.format.type = "nixpkgs-fmt";
           markdown.enable = true;
           html.enable = true;
-          #html.treesitter.enable = true;
+          html.treesitter.enable = true;
           python.enable = true;
           ts = {
             enable = true;
+            treesitter.enable = true;
             format.enable = true;
           };
           rust.enable = true;
@@ -169,7 +178,7 @@
         };
         vim.filetree.nvimTreeLua.enable = true;
         vim.treesitter.context.enable = false;
-        vim.treesitter.enable = false;
+        vim.treesitter.enable = true;
         vim.keys = {
           enable = true;
           whichKey.enable = true;
@@ -201,6 +210,7 @@
               "tmux-nav"
               "mustache"
               "emmet"
+              "tshjkl"
             ];
             vim.optPlugins = [
               "codeium"

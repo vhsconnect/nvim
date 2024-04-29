@@ -103,12 +103,11 @@ require('leap').setup {
 require('themed-tabs').setup {
       colorschemes = {
           "oxocarbon",
-          "railscasts", 
+          "gruvbox",
           "OceanicNext",
           "horseradish256",
-          "gruvbox",
+          "railscasts", 
           "softblue",
-          "Tomorrow"
           }
       }
 
@@ -135,4 +134,23 @@ vim.keymap.set('n', '<space>gk', ':GitGutterPrevHunk<CR>', {noremap = true})
 ------------------
 
 vim.keymap.set('n', '<space>r',  [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], {noremap = true})
+
+------------------
+-- tshjkl
+------------------
+
+require('tshjkl').setup {
+  keymaps = {
+    toggle = '<C-w>',
+    toggle_outer = '<S-C-w>',
+
+    parent = 'h',
+    next = 'j',
+    prev = 'k',
+    child = 'l',
+    toggle_named = '<S-M-n>', -- named mode skips unnamed nodes
+  }
+
+}
+
 
