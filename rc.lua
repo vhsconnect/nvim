@@ -54,7 +54,6 @@ function interop(str)
       end
    end))
 end
-local x = os.getenv("VIM_THEME")
 
 
 ------------------
@@ -102,7 +101,8 @@ require('leap').setup {
 
 require('themed-tabs').setup {
       colorschemes = {
-          "oxocarbon",
+          os.getenv("VIM_THEME"),
+          "PaperColor",
           "gruvbox",
           "OceanicNext",
           "horseradish256",
@@ -153,4 +153,8 @@ require('tshjkl').setup {
 
 }
 
+----------------
+-- Theme 
+---------------
+vim.cmd('colorscheme ' .. os.getenv("VIM_THEME"))
 

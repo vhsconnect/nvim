@@ -168,7 +168,7 @@
           icons = false;
         };
         vim.theme = {
-          enable = true;
+          enable = false;
           name = "oxocarbon";
         };
         vim.autopairs.enable = true;
