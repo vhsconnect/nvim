@@ -3,6 +3,11 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+  inputs.oxocarbon = {
+    url = "github:nyoom-engineering/oxocarbon.nvim";
+    flake = false;
+  };
+
   inputs.tshjkl = {
     url = "github:gsuuon/tshjkl.nvim";
     flake = false;
@@ -75,6 +80,9 @@
         build.viAlias = true;
         build.vimAlias = true;
         build.rawPlugins = {
+          oxocarbon = {
+            src = inputs.oxocarbon;
+          };
           tshjkl = {
             src = inputs.tshjkl;
           };
@@ -211,6 +219,7 @@
               "mustache"
               "emmet"
               "tshjkl"
+              "oxocarbon"
             ];
             vim.optPlugins = [
               "codeium"

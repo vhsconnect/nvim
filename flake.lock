@@ -181,7 +181,6 @@
         "plugin-nvim-web-devicons": "plugin-nvim-web-devicons",
         "plugin-onedark": "plugin-onedark",
         "plugin-open-browser": "plugin-open-browser",
-        "plugin-oxocarbon": "plugin-oxocarbon",
         "plugin-plantuml-previewer": "plugin-plantuml-previewer",
         "plugin-plantuml-syntax": "plugin-plantuml-syntax",
         "plugin-plenary-nvim": "plugin-plenary-nvim",
@@ -200,11 +199,11 @@
         "plugin-which-key": "plugin-which-key"
       },
       "locked": {
-        "lastModified": 1713032251,
-        "narHash": "sha256-J3GJVjb24MMxmAOav0yMDl80d12aa0eFyHiQc3JFhTg=",
+        "lastModified": 1715453201,
+        "narHash": "sha256-DH75SWsYbXkmtx/pgkgJOZoKHzDbZi0goiTayBZrvAg=",
         "owner": "vhsconnect",
         "repo": "neovim-flake",
-        "rev": "d33ceb805568cef80b846fa61eac1261a728fe0f",
+        "rev": "f3795a923dea8154d3fd14f084cec76136fe52d8",
         "type": "github"
       },
       "original": {
@@ -300,6 +299,22 @@
       "original": {
         "owner": "kylechui",
         "repo": "nvim-surround",
+        "type": "github"
+      }
+    },
+    "oxocarbon": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701119822,
+        "narHash": "sha256-++JALLPklok9VY2ChOddTYDvDNVadmCeB98jCAJYCZ0=",
+        "owner": "nyoom-engineering",
+        "repo": "oxocarbon.nvim",
+        "rev": "c5846d10cbe4131cc5e32c6d00beaf59cb60f6a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nyoom-engineering",
+        "repo": "oxocarbon.nvim",
         "type": "github"
       }
     },
@@ -992,22 +1007,6 @@
         "type": "github"
       }
     },
-    "plugin-oxocarbon": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1701119822,
-        "narHash": "sha256-++JALLPklok9VY2ChOddTYDvDNVadmCeB98jCAJYCZ0=",
-        "owner": "nyoom-engineering",
-        "repo": "oxocarbon.nvim",
-        "rev": "c5846d10cbe4131cc5e32c6d00beaf59cb60f6a2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nyoom-engineering",
-        "repo": "oxocarbon.nvim",
-        "type": "github"
-      }
-    },
     "plugin-plantuml-previewer": {
       "flake": false,
       "locked": {
@@ -1276,6 +1275,7 @@
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs_2",
         "nvim-surround": "nvim-surround",
+        "oxocarbon": "oxocarbon",
         "tcomment": "tcomment",
         "themed-tabs": "themed-tabs",
         "tmux-nav": "tmux-nav",

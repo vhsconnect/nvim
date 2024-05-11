@@ -102,6 +102,7 @@ require('leap').setup {
 require('themed-tabs').setup {
       colorschemes = {
           os.getenv("VIM_THEME"),
+          "oxocarbon",
           "PaperColor",
           "gruvbox",
           "OceanicNext",
