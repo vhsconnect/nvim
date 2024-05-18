@@ -199,11 +199,11 @@
         "plugin-which-key": "plugin-which-key"
       },
       "locked": {
-        "lastModified": 1715453201,
-        "narHash": "sha256-DH75SWsYbXkmtx/pgkgJOZoKHzDbZi0goiTayBZrvAg=",
+        "lastModified": 1716040715,
+        "narHash": "sha256-xcePlWpIzPaXeOz2apfuKuR2KibuxduoV4JJNuMtAq8=",
         "owner": "vhsconnect",
         "repo": "neovim-flake",
-        "rev": "f3795a923dea8154d3fd14f084cec76136fe52d8",
+        "rev": "8dc909e9377a30de2aeb3cbce4cf8fc6b45f7781",
         "type": "github"
       },
       "original": {

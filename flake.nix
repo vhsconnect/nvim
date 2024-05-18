@@ -192,6 +192,11 @@
           whichKey.enable = true;
         };
         vim.telescope.enable = true;
+        vim.debugger = {
+          enable = false;
+          ui.enable = true;
+          virtualText.enable = true;
+        };
         vim.luaConfigRC = {
           a = "${builtins.readFile ./rc.lua}";
         };
