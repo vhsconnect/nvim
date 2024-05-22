@@ -148,6 +148,7 @@
             enable = true;
             treesitter.enable = true;
             format.enable = true;
+            extraDiagnostics.enable = true;
           };
           rust.enable = true;
           rust.lsp.enable = true;
