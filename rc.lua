@@ -25,6 +25,9 @@ vim.keymap.set('n', 'S', '<Plug>(leap-backward)',  { noremap = true })
 vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
 vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
 
+-- close quickfix
+vim.keymap.set('n', '<space><space>q', ':cclose<CR>', {noremap = true})
+
 
 function interop(str)
    local outer_env = _ENV
