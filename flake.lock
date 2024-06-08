@@ -302,6 +302,22 @@
         "type": "github"
       }
     },
+    "oil": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717644824,
+        "narHash": "sha256-gIWpOCsfT6utohtxucWiQEBWGkZS//I6lseEcMXWF+k=",
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "rev": "e5312c3a801e7274fa14e6a56aa10a618fed80c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "oil.nvim",
+        "type": "github"
+      }
+    },
     "oxocarbon": {
       "flake": false,
       "locked": {
@@ -1275,6 +1291,7 @@
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs_2",
         "nvim-surround": "nvim-surround",
+        "oil": "oil",
         "oxocarbon": "oxocarbon",
         "tcomment": "tcomment",
         "themed-tabs": "themed-tabs",

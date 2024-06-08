@@ -158,6 +158,12 @@ require('tshjkl').setup {
 }
 
 ----------------
+-- Oil
+---------------
+require("oil").setup()
+
+
+----------------
 -- Theme 
 ---------------
 vim.cmd('colorscheme ' .. os.getenv("VIM_THEME"))
