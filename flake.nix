@@ -352,7 +352,7 @@
 
         vim.splitBelow = false;
         vim.tabline.nvimBufferline = {
-          enable = true;
+          enable = false;
         };
         vim.git = {
           enable = false;

@@ -10,7 +10,7 @@ with builtins; let
   defaultServer = "pyright";
   servers = {
     pyright = {
-      package = [ "nodePackages" "pyright" ];
+      package = [ "pyright" ];
       lspConfig = /* lua */ ''
         lspconfig.pyright.setup{
           capabilities = capabilities;
