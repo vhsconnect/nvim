@@ -1,69 +1,287 @@
 {
-  inputs.neovim-flake.url = "github:vhsconnect/neovim-flake";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs =
+    {
+      nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      flake-utils.url = "github:numtide/flake-utils";
 
-  inputs.oil = {
-    url = "github:stevearc/oil.nvim";
-    flake = false;
-  };
+      # For generating documentation website
+      nmd.url = "sourcehut:~rycee/nmd";
+      nmd.flake = false;
 
-  inputs.oxocarbon = {
-    url = "github:nyoom-engineering/oxocarbon.nvim";
-    flake = false;
-  };
+      nil.url = "github:oxalica/nil";
+      nil.inputs.nixpkgs.follows = "nixpkgs";
+      nil.inputs.flake-utils.follows = "flake-utils";
 
-  inputs.tshjkl = {
-    url = "github:gsuuon/tshjkl.nvim";
-    flake = false;
-  };
 
-  inputs.emmet = {
-    url = "github:mattn/emmet-vim";
-    flake = false;
-  };
+      ## Plugins (must begin with plugin-)
 
-  inputs.mustache = {
-    url = "github:mustache/vim-mustache-handlebars";
-    flake = false;
-  };
+      # 3rd party LLM Plugins
+      plugin-codeium = {
+        url = "github:exafunction/codeium.vim";
+        flake = false;
+      };
 
-  inputs.tmux-nav = {
-    url = "github:christoomey/vim-tmux-navigator";
-    flake = false;
-  };
-  inputs.gen = {
-    url = "github:David-Kunz/gen.nvim";
-    flake = false;
-  };
-  inputs.leap-nvim = {
-    url = "github:ggandor/leap.nvim";
-    flake = false;
-  };
-  inputs.colorschemes = {
-    url = "github:flazz/vim-colorschemes";
-    flake = false;
-  };
-  inputs.tcomment = {
-    url = "github:tomtom/tcomment_vim";
-    flake = false;
-  };
-  inputs.gitgutter = {
-    url = "github:airblade/vim-gitgutter";
-    flake = false;
-  };
-  inputs.themed-tabs = {
-    url = "github:vhsconnect/themed-tabs.nvim";
-    flake = false;
-  };
-  inputs.nvim-surround = {
-    url = "github:kylechui/nvim-surround";
-    flake = false;
-  };
+      # tresitter plugins
+      plugin-nvim-treesitter-context.url = "github:nvim-treesitter/nvim-treesitter-context";
+      plugin-nvim-treesitter-context.flake = false;
+
+      # LSP plugins
+      plugin-nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
+      plugin-nvim-lspconfig.flake = false;
+
+      plugin-lspsaga.url = "github:tami5/lspsaga.nvim";
+      plugin-lspsaga.flake = false;
+
+      plugin-lspkind.url = "github:onsails/lspkind-nvim";
+      plugin-lspkind.flake = false;
+
+      plugin-trouble.url = "github:folke/trouble.nvim";
+      plugin-trouble.flake = false;
+
+      plugin-nvim-lightbulb.url = "github:kosayoda/nvim-lightbulb";
+      plugin-nvim-lightbulb.flake = false;
+
+      plugin-fidget.url = "github:j-hui/fidget.nvim";
+      plugin-fidget.flake = false;
+
+      plugin-nvim-code-action-menu.url = "github:weilbith/nvim-code-action-menu";
+      plugin-nvim-code-action-menu.flake = false;
+
+      plugin-lsp-signature.url = "github:ray-x/lsp_signature.nvim";
+      plugin-lsp-signature.flake = false;
+
+      plugin-null-ls.url = "github:jose-elias-alvarez/null-ls.nvim";
+      plugin-null-ls.flake = false;
+
+      plugin-sqls-nvim.url = "github:nanotee/sqls.nvim";
+      plugin-sqls-nvim.flake = false;
+
+      plugin-rust-tools.url = "github:simrat39/rust-tools.nvim";
+      plugin-rust-tools.flake = false;
+
+      # Not primary repo, waiting on PR
+      plugin-ccls-nvim.url = "github:MCGHH/ccls.nvim";
+      plugin-ccls-nvim.flake = false;
+
+      # Debugger
+      plugin-nvim-dap.url = "github:mfussenegger/nvim-dap";
+      plugin-nvim-dap.flake = false;
+
+      plugin-nvim-dap-ui.url = "github:rcarriga/nvim-dap-ui";
+      plugin-nvim-dap-ui.flake = false;
+
+      plugin-nvim-dap-virtual-text.url = "github:theHamsta/nvim-dap-virtual-text";
+      plugin-nvim-dap-virtual-text.flake = false;
+
+      # Copying/Registers
+      plugin-registers.url = "github:tversteeg/registers.nvim";
+      plugin-registers.flake = false;
+
+      plugin-nvim-neoclip.url = "github:AckslD/nvim-neoclip.lua";
+      plugin-nvim-neoclip.flake = false;
+
+      # Telescope
+      plugin-telescope.url = "github:nvim-telescope/telescope.nvim";
+      plugin-telescope.flake = false;
+
+      plugin-telescope-file-browser.url = "github:nvim-telescope/telescope-file-browser.nvim";
+      plugin-telescope-file-browser.flake = false;
+
+      plugin-telescope-live-grep-args.url = "github:nvim-telescope/telescope-live-grep-args.nvim";
+      plugin-telescope-live-grep-args.flake = false;
+
+      # Filetrees
+      plugin-nvim-tree-lua.url = "github:kyazdani42/nvim-tree.lua";
+      plugin-nvim-tree-lua.flake = false;
+
+      # Tablines
+      plugin-nvim-bufferline-lua.url = "github:akinsho/nvim-bufferline.lua?ref=v4.3.0";
+      plugin-nvim-bufferline-lua.flake = false;
+
+      # Statuslines
+      plugin-lualine.url = "github:hoob3rt/lualine.nvim";
+      plugin-lualine.flake = false;
+
+      # Autocompletes
+      plugin-nvim-cmp.url = "github:hrsh7th/nvim-cmp";
+      plugin-nvim-cmp.flake = false;
+
+      plugin-cmp-buffer.url = "github:hrsh7th/cmp-buffer";
+      plugin-cmp-buffer.flake = false;
+
+      plugin-cmp-nvim-lsp.url = "github:hrsh7th/cmp-nvim-lsp";
+      plugin-cmp-nvim-lsp.flake = false;
+
+      plugin-cmp-vsnip.url = "github:hrsh7th/cmp-vsnip";
+      plugin-cmp-vsnip.flake = false;
+
+      plugin-cmp-path.url = "github:hrsh7th/cmp-path";
+      plugin-cmp-path.flake = false;
+
+      plugin-cmp-treesitter.url = "github:ray-x/cmp-treesitter";
+      plugin-cmp-treesitter.flake = false;
+
+      plugin-cmp-dap.url = "github:rcarriga/cmp-dap";
+      plugin-cmp-dap.flake = false;
+
+      # snippets
+      plugin-vim-vsnip.url = "github:hrsh7th/vim-vsnip";
+      plugin-vim-vsnip.flake = false;
+
+      # Autopairs
+      plugin-nvim-autopairs.url = "github:windwp/nvim-autopairs";
+      plugin-nvim-autopairs.flake = false;
+
+      plugin-nvim-ts-autotag.url = "github:windwp/nvim-ts-autotag";
+      plugin-nvim-ts-autotag.flake = false;
+
+      # ChatGPT.nvim
+      plugin-chatgpt-nvim.url = "github:jackMort/ChatGPT.nvim";
+      plugin-chatgpt-nvim.flake = false;
+
+      # Commenting
+      plugin-kommentary.url = "github:b3nj5m1n/kommentary";
+      plugin-kommentary.flake = false;
+
+      plugin-todo-comments.url = "github:folke/todo-comments.nvim";
+      plugin-todo-comments.flake = false;
+
+      # Buffer tools
+      plugin-bufdelete-nvim.url = "github:famiu/bufdelete.nvim";
+      plugin-bufdelete-nvim.flake = false;
+
+      # Themes
+      plugin-tokyonight.url = "github:folke/tokyonight.nvim";
+      plugin-tokyonight.flake = false;
+
+      plugin-onedark.url = "github:navarasu/onedark.nvim";
+      plugin-onedark.flake = false;
+
+      plugin-catppuccin.url = "github:catppuccin/nvim";
+      plugin-catppuccin.flake = false;
+
+      plugin-dracula-nvim.url = "github:Mofiqul/dracula.nvim";
+      plugin-dracula-nvim.flake = false;
+
+
+      plugin-dracula.url = "github:dracula/vim";
+      plugin-dracula.flake = false;
+
+      plugin-gruvbox.url = "github:ellisonleao/gruvbox.nvim";
+      plugin-gruvbox.flake = false;
+
+      # Rust crates
+      plugin-crates-nvim.url = "github:Saecki/crates.nvim";
+      plugin-crates-nvim.flake = false;
+
+      # Visuals
+      plugin-nvim-cursorline.url = "github:yamatsum/nvim-cursorline";
+      plugin-nvim-cursorline.flake = false;
+
+      plugin-indent-blankline.url = "github:lukas-reineke/indent-blankline.nvim";
+      plugin-indent-blankline.flake = false;
+
+      # nui - UI Component Library for Neovim - required by ChatGPT.nvim
+      plugin-nui-nvim.url = "github:MunifTanjim/nui.nvim";
+      plugin-nui-nvim.flake = false;
+
+      plugin-nvim-web-devicons.url = "github:kyazdani42/nvim-web-devicons";
+      plugin-nvim-web-devicons.flake = false;
+
+      plugin-gitsigns-nvim.url = "github:lewis6991/gitsigns.nvim";
+      plugin-gitsigns-nvim.flake = false;
+
+      # Key binding help
+      plugin-which-key.url = "github:folke/which-key.nvim";
+      plugin-which-key.flake = false;
+
+      # Markdown
+      plugin-glow-nvim.url = "github:ellisonleao/glow.nvim";
+      plugin-glow-nvim.flake = false;
+
+      # SCNvim
+      plugin-scnvim.url = "github:davidgranstrom/scnvim";
+      plugin-scnvim.flake = false;
+
+      # Plenary (required by crates-nvim)
+      plugin-plenary-nvim.url = "github:nvim-lua/plenary.nvim";
+      plugin-plenary-nvim.flake = false;
+
+      plugin-open-browser.url = "github:tyru/open-browser.vim";
+      plugin-open-browser.flake = false;
+
+      plugin-plantuml-syntax.url = "github:aklt/plantuml-syntax";
+      plugin-plantuml-syntax.flake = false;
+
+      plugin-plantuml-previewer.url = "github:weirongxu/plantuml-previewer.vim";
+      plugin-plantuml-previewer.flake = false;
+
+      # misc
+      plugin-vim-be-good.url = "github:ThePrimeagen/vim-be-good";
+      plugin-vim-be-good.flake = false;
+
+      oil = {
+        url = "github:stevearc/oil.nvim";
+        flake = false;
+      };
+
+      oxocarbon = {
+        url = "github:nyoom-engineering/oxocarbon.nvim";
+        flake = false;
+      };
+
+      tshjkl = {
+        url = "github:gsuuon/tshjkl.nvim";
+        flake = false;
+      };
+
+      emmet = {
+        url = "github:mattn/emmet-vim";
+        flake = false;
+      };
+
+      mustache = {
+        url = "github:mustache/vim-mustache-handlebars";
+        flake = false;
+      };
+
+      tmux-nav = {
+        url = "github:christoomey/vim-tmux-navigator";
+        flake = false;
+      };
+      gen = {
+        url = "github:David-Kunz/gen.nvim";
+        flake = false;
+      };
+      leap-nvim = {
+        url = "github:ggandor/leap.nvim";
+        flake = false;
+      };
+      colorschemes = {
+        url = "github:flazz/vim-colorschemes";
+        flake = false;
+      };
+      tcomment = {
+        url = "github:tomtom/tcomment_vim";
+        flake = false;
+      };
+      gitgutter = {
+        url = "github:airblade/vim-gitgutter";
+        flake = false;
+      };
+      themed-tabs = {
+        url = "github:vhsconnect/themed-tabs.nvim";
+        flake = false;
+      };
+      nvim-surround = {
+        url = "github:kylechui/nvim-surround";
+        flake = false;
+      };
+    };
+
 
   outputs =
     { nixpkgs
-    , neovim-flake
     , flake-utils
     , ...
     } @ inputs:
@@ -213,10 +431,15 @@
 
       pkgs = nixpkgs.legacyPackages.${system};
 
-      base = neovim-flake.lib.neovimConfiguration {
-        inherit pkgs;
-        modules = [ configModule ];
+      neovim = (import ./neovim.nix) {
+        inherit inputs;
       };
+
+      base =
+        neovim.lib.neovimConfiguration {
+          inherit pkgs;
+          modules = [ configModule ];
+        };
 
       extended = base.extendConfiguration {
         modules = [
