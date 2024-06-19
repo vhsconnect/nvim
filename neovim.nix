@@ -4,9 +4,11 @@ let
   nixpkgs = inputs.nixpkgs;
   rawPlugins = nvimLib.plugins.fromInputs inputs "plugin-";
 
-  neovimConfiguration = { modules ? [ ], ... } @ args:
-    import ./modules
-      (args // { modules = [{ config.build.rawPlugins = rawPlugins; }] ++ modules; });
+  neovimConfiguration = args:
+    let
+      modules = args.modules ++ [{ config.build.rawPlugins = rawPlugins; }];
+    in
+    import ./modules (args // { inherit modules; });
 
   nvimBin = pkg: "${pkg}/bin/nvim";
 
@@ -99,7 +101,6 @@ let
       };
     };
 
-  nixConfig = mainConfig;
 in
 {
   lib = {
@@ -109,8 +110,8 @@ in
 
   overlays.default = final: prev: {
     inherit neovimConfiguration;
-    neovim-nix = buildPkg prev [ nixConfig ];
-    neovim-maximal = buildPkg prev [ nixConfig ];
+    neovim-nix = buildPkg prev [ mainConfig ];
+    neovim-maximal = buildPkg prev [ mainConfig ];
   };
 }
   // (flake-utils.lib.eachDefaultSystem (system:
@@ -121,12 +122,8 @@ in
       ];
     };
 
-    docs = import ./docs {
-      inherit pkgs;
-      nmdSrc = inputs.nmd;
-    };
 
-    nixPkg = buildPkg pkgs [ nixConfig ];
+    nixPkg = buildPkg pkgs [ mainConfig ];
 
     devPkg = nixPkg.extendConfiguration {
       modules = [
@@ -150,14 +147,10 @@ in
       nativeBuildInputs = [ devPkg ];
     };
 
-    packages =
-      {
-        docs-html = docs.manual.html;
-        docs-manpages = docs.manPages;
-        docs-json = docs.options.json;
-        default = nixPkg;
-        nix = nixPkg;
-        develop = devPkg;
-      };
+    packages = {
+      default = nixPkg;
+      nix = nixPkg;
+      develop = devPkg;
+    };
   }
 ))

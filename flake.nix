@@ -3,11 +3,6 @@
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
       flake-utils.url = "github:numtide/flake-utils";
-
-      # For generating documentation website
-      nmd.url = "sourcehut:~rycee/nmd";
-      nmd.flake = false;
-
       nil.url = "github:oxalica/nil";
       nil.inputs.nixpkgs.follows = "nixpkgs";
       nil.inputs.flake-utils.follows = "flake-utils";
@@ -362,7 +357,7 @@
         vim.languages = {
           enableLSP = true;
           enableFormat = true;
-          enableTreesitter = false;
+          enableTreesitter = true;
           nix.enable = true;
           nix.format.enable = true;
           nix.format.type = "nixpkgs-fmt";

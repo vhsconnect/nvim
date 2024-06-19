@@ -177,7 +177,24 @@ in
 
           mappings =
             let
-              maps = [ nmap imap vmap xmap smap cmap omap tmap nnoremap inoremap vnoremap xnoremap snoremap cnoremap onoremap tnoremap ];
+              maps = [
+                nmap
+                imap
+                vmap
+                xmap
+                smap
+                cmap
+                omap
+                tmap
+                nnoremap
+                inoremap
+                vnoremap
+                xnoremap
+                snoremap
+                cnoremap
+                onoremap
+                tnoremap
+              ];
               mapConfig = concatStringsSep "\n" (map (v: concatStringsSep "\n" v) maps);
             in
             nvim.dag.entryAfter [ "globalsScript" ] mapConfig;
