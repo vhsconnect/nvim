@@ -365,11 +365,11 @@
     "plugin-codeium": {
       "flake": false,
       "locked": {
-        "lastModified": 1718414932,
-        "narHash": "sha256-7FSit8ymfO3Kad77uj0FXO2CP4GuHnwaFqF5uOuRaaA=",
+        "lastModified": 1720720646,
+        "narHash": "sha256-PoHTYmG1FCyG6w5Sk5ETRx+CiEi/8BmNnZccMQEyU+g=",
         "owner": "exafunction",
         "repo": "codeium.vim",
-        "rev": "35d4a8e598fb2955308d5bf69d9e9229e5483bd6",
+        "rev": "e0342fde9474fdd0a36ff9692fe0031b7611a19f",
         "type": "github"
       },
       "original": {

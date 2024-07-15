@@ -7,7 +7,6 @@
       nil.inputs.nixpkgs.follows = "nixpkgs";
       nil.inputs.flake-utils.follows = "flake-utils";
 
-
       ## Plugins (must begin with plugin-)
 
       # 3rd party LLM Plugins
