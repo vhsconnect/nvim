@@ -1067,22 +1067,6 @@
         "type": "github"
       }
     },
-    "plugin-tokyonight": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1718290541,
-        "narHash": "sha256-T8ERhTOBAoHJz2zAbmSRFbybwl6nl1uFI+rrs7/0Bi8=",
-        "owner": "folke",
-        "repo": "tokyonight.nvim",
-        "rev": "81c867c5f638597a82c82094dcb90ed42444dabc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "tokyonight.nvim",
-        "type": "github"
-      }
-    },
     "plugin-trouble": {
       "flake": false,
       "locked": {
@@ -1215,7 +1199,6 @@
         "plugin-telescope-file-browser": "plugin-telescope-file-browser",
         "plugin-telescope-live-grep-args": "plugin-telescope-live-grep-args",
         "plugin-todo-comments": "plugin-todo-comments",
-        "plugin-tokyonight": "plugin-tokyonight",
         "plugin-trouble": "plugin-trouble",
         "plugin-vim-be-good": "plugin-vim-be-good",
         "plugin-vim-vsnip": "plugin-vim-vsnip",
@@ -1223,6 +1206,7 @@
         "tcomment": "tcomment",
         "themed-tabs": "themed-tabs",
         "tmux-nav": "tmux-nav",
+        "tokyonight": "tokyonight",
         "tshjkl": "tshjkl"
       }
     },
@@ -1311,6 +1295,22 @@
       "original": {
         "owner": "christoomey",
         "repo": "vim-tmux-navigator",
+        "type": "github"
+      }
+    },
+    "tokyonight": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721292526,
+        "narHash": "sha256-NWbI9g1UoiN/h+8JPeFZLN+Uh261fjiZviDMHQWM2Ks=",
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
+        "rev": "1471dab694ad88351185758bb4275624d8b798ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "tokyonight.nvim",
         "type": "github"
       }
     },

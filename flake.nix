@@ -144,10 +144,6 @@
       plugin-bufdelete-nvim.url = "github:famiu/bufdelete.nvim";
       plugin-bufdelete-nvim.flake = false;
 
-      # Themes
-      plugin-tokyonight.url = "github:folke/tokyonight.nvim";
-      plugin-tokyonight.flake = false;
-
       plugin-onedark.url = "github:navarasu/onedark.nvim";
       plugin-onedark.flake = false;
 
@@ -271,6 +267,10 @@
         url = "github:kylechui/nvim-surround";
         flake = false;
       };
+      tokyonight = {
+        url = "github:folke/tokyonight.nvim";
+        flake = false;
+      };
     };
 
 
@@ -335,6 +335,9 @@
           };
           nvim-surround = {
             src = inputs.nvim-surround;
+          };
+          tokyonight = {
+            src = inputs.tokyonight;
           };
         };
         vim.visuals.enable = true;
@@ -452,6 +455,7 @@
               "tshjkl"
               "oxocarbon"
               "oil"
+              "tokyonight"
             ];
             vim.optPlugins = [
               "codeium"

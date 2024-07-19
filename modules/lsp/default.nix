@@ -12,7 +12,6 @@ in
   imports = [
     ./lspconfig.nix
     ./null-ls.nix
-
     ./lspkind.nix
     ./lspsaga.nix
     ./nvim-code-action-menu.nix
@@ -76,19 +75,19 @@ in
       local attach_keymaps = function(client, bufnr)
         local opts = { noremap=true, silent=true }
 
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader><leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader><leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader><leader>f', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader><leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader><leader>p', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ld', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lp', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '"', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
 
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader><leader>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader><leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         vim.api.nvim_create_autocmd("CursorHold", {
           buffer = bufnr,
           callback = function()

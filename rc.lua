@@ -1,8 +1,10 @@
 vim.keymap.set('n', '<space>n', ':NvimTreeToggle<CR>', {noremap = true})
-vim.keymap.set('n', '<space>s', ':set spell<CR>', {noremap = true})
-vim.keymap.set('n', '<space><space>s', ':set nospell<CR>', {noremap = true})
+vim.keymap.set('n', '<space>ss', ':set spell<CR>', {noremap = true})
+vim.keymap.set('n', '<space>sn', ':set nospell<CR>', {noremap = true})
 vim.keymap.set('n', '<space>l', ':PrettierAsync<CR>', {noremap = true})
 vim.keymap.set('n', '<space>g<space>', ':Gen<CR>', {noremap = true})
+vim.keymap.set('n', '<space>\'', ':b#<CR>', {noremap = true})
+
 
 vim.keymap.set('n', 'K', '5k', {noremap = true})
 vim.keymap.set('n', 'J', '5j', {noremap = true})
@@ -23,10 +25,10 @@ vim.keymap.set('n', 'S', '<Plug>(leap-backward)',  { noremap = true })
 
 -- todo
 vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
-vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
+-- vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
 
 -- close quickfix
-vim.keymap.set('n', '<space><space>q', ':cclose<CR>', {noremap = true})
+-- vim.keymap.set('n', '<space><space>q', ':cclose<CR>', {noremap = true})
 
 
 function interop(str)

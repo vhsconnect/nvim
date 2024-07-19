@@ -58,18 +58,6 @@ in
       defaultStyle = "dark";
     };
 
-    tokyonight = {
-      setup = ''
-        -- need to set style before colorscheme to apply
-        require("tokyonight").setup({
-          style = "${cfg.style}",
-        })
-        vim.cmd[[colorscheme tokyonight]]
-      '';
-      styles = [ "day" "night" "storm" "moon" ];
-      defaultStyle = "night";
-    };
-
     catppuccin = {
       setup = ''
         -- Catppuccin theme
