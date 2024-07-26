@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.zig;
 in
 {
@@ -47,19 +49,20 @@ in
 
     (mkIf cfg.lsp.enable {
       vim.lsp.lspconfig.enable = true;
-      vim.lsp.lspconfig.sources.zig-lsp = /* lua */ ''
-        lspconfig.zls.setup {
-          capabilities = capabilities,
-          on_attach=default_on_attach,
-          cmd = {"${cfg.lsp.package}/bin/zls"},
-          settings = {
-            ["zls"] = {
-              zig_exe_path = "${cfg.lsp.zigPackage}/bin/zig",
-              zig_lib_path = "${cfg.lsp.zigPackage}/lib/std",
+      vim.lsp.lspconfig.sources.zig-lsp = # lua
+        ''
+          lspconfig.zls.setup {
+            capabilities = capabilities,
+            on_attach=default_on_attach,
+            cmd = {"${cfg.lsp.package}/bin/zls"},
+            settings = {
+              ["zls"] = {
+                zig_exe_path = "${cfg.lsp.zigPackage}/bin/zig",
+                zig_lib_path = "${cfg.lsp.zigPackage}/lib/std",
+              }
             }
           }
-        }
-      '';
+        '';
     })
   ]);
 }

@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
 with builtins;
@@ -13,11 +14,12 @@ let
     tailwindcss-language-server = {
       package = [ "tailwindcss-language-server" ];
 
-      lspConfig = /*lua*/''
-        lspconfig.tailwindcss.setup{
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "tailwindcss-language-server"}", "--stdio"};
-        }
-      '';
+      lspConfig = # lua
+        ''
+          lspconfig.tailwindcss.setup{
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "tailwindcss-language-server"}", "--stdio"};
+          }
+        '';
     };
   };
 in

@@ -1,23 +1,29 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.bash;
 
   defaultServer = "bashls";
   servers = {
     bashls = {
-      package = [ "nodePackages" "bash-language-server" ];
-      lspConfig = /* lua */ ''
-        lspconfig.bashls.setup{
-          capabilities = capabilities;
-          on_attach = default_on_attach;
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "bash-language-server"}", "start"};
-        }
-      '';
+      package = [
+        "nodePackages"
+        "bash-language-server"
+      ];
+      lspConfig = # lua
+        ''
+          lspconfig.bashls.setup{
+            capabilities = capabilities;
+            on_attach = default_on_attach;
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "bash-language-server"}", "start"};
+          }
+        '';
     };
   };
 
@@ -25,14 +31,15 @@ with builtins; let
   formats = {
     shfmt = {
       package = [ "shfmt" ];
-      nullConfig = /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.formatting.shfmt.with({
-            command = "${nvim.languages.commandOptToCmd cfg.format.package "shfmt"}",
-          })
-        )
-      '';
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.shfmt.with({
+              command = "${nvim.languages.commandOptToCmd cfg.format.package "shfmt"}",
+            })
+          )
+        '';
     };
   };
 
@@ -40,14 +47,16 @@ with builtins; let
   diagnostics = {
     shellcheck = {
       package = pkgs.shellcheck;
-      nullConfig = pkg: /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.diagnostics.shellcheck.with({
-            command = "${pkg}/bin/shellcheck",
-          })
-        )
-      '';
+      nullConfig =
+        pkg: # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.diagnostics.shellcheck.with({
+              command = "${pkg}/bin/shellcheck",
+            })
+          )
+        '';
     };
   };
 in

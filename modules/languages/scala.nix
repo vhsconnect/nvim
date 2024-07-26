@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.scala;
 in
 {
@@ -47,17 +49,18 @@ in
 
     (mkIf cfg.lsp.enable {
       vim.lsp.lspconfig.enable = true;
-      vim.lsp.lspconfig.sources.scala-lsp = /* lua */ ''
-        vim.opt_global.shortmess:remove("F")
-         local cmd = {"${cfg.lsp.package}/bin/metals"}
-         require'lspconfig'.metals.setup {
-         cmd = cmd,
-         on_attach = default_on_attach
-         }
+      vim.lsp.lspconfig.sources.scala-lsp = # lua
+        ''
+          vim.opt_global.shortmess:remove("F")
+           local cmd = {"${cfg.lsp.package}/bin/metals"}
+           require'lspconfig'.metals.setup {
+           cmd = cmd,
+           on_attach = default_on_attach
+           }
 
 
 
-      '';
+        '';
     })
   ]);
 }

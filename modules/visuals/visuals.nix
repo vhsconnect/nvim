@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.visuals;
 in
 {
@@ -73,34 +75,36 @@ in
   config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.indentBlankline.enable {
       vim.startPlugins = [ "indent-blankline" ];
-      vim.luaConfigRC.indent-blankline = nvim.dag.entryAnywhere /* lua */ ''
-        vim.opt.list = true
+      vim.luaConfigRC.indent-blankline =
+        nvim.dag.entryAnywhere # lua
+          ''
+            vim.opt.list = true
 
-        ${optionalString (cfg.indentBlankline.eolChar != null) ''
-          vim.opt.listchars:append({ eol = "${cfg.indentBlankline.eolChar}" })
-        ''}
-        ${optionalString (cfg.indentBlankline.fillChar != null) ''
-          vim.opt.listchars:append({ space = "${cfg.indentBlankline.fillChar}" })
-        ''}
+            ${optionalString (cfg.indentBlankline.eolChar != null) ''
+              vim.opt.listchars:append({ eol = "${cfg.indentBlankline.eolChar}" })
+            ''}
+            ${optionalString (cfg.indentBlankline.fillChar != null) ''
+              vim.opt.listchars:append({ space = "${cfg.indentBlankline.fillChar}" })
+            ''}
 
-        require("indent_blankline").setup {
-          enabled = true,
-          char = "${cfg.indentBlankline.listChar}",
-          show_end_of_line = ${boolToString cfg.indentBlankline.showEndOfLine},
+            require("indent_blankline").setup {
+              enabled = true,
+              char = "${cfg.indentBlankline.listChar}",
+              show_end_of_line = ${boolToString cfg.indentBlankline.showEndOfLine},
 
-          use_treesitter = ${boolToString cfg.indentBlankline.useTreesitter},
-          show_current_context = ${boolToString cfg.indentBlankline.showCurrContext},
-        }
-      '';
+              use_treesitter = ${boolToString cfg.indentBlankline.useTreesitter},
+              show_current_context = ${boolToString cfg.indentBlankline.showCurrContext},
+            }
+          '';
     })
     (mkIf cfg.cursorWordline.enable {
       vim.startPlugins = [ "nvim-cursorline" ];
-      vim.luaConfigRC.cursorline = nvim.dag.entryAnywhere /* lua */ ''
-        vim.g.cursorline_timeout = ${toString cfg.cursorWordline.lineTimeout}
-      '';
+      vim.luaConfigRC.cursorline =
+        nvim.dag.entryAnywhere # lua
+          ''
+            vim.g.cursorline_timeout = ${toString cfg.cursorWordline.lineTimeout}
+          '';
     })
-    (mkIf cfg.nvimWebDevicons.enable {
-      vim.startPlugins = [ "nvim-web-devicons" ];
-    })
+    (mkIf cfg.nvimWebDevicons.enable { vim.startPlugins = [ "nvim-web-devicons" ]; })
   ]);
 }

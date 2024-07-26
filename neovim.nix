@@ -4,17 +4,16 @@ let
   nixpkgs = inputs.nixpkgs;
   rawPlugins = nvimLib.plugins.fromInputs inputs "plugin-";
 
-  neovimConfiguration = args:
+  neovimConfiguration =
+    args:
     let
-      modules = args.modules ++ [{ config.build.rawPlugins = rawPlugins; }];
+      modules = args.modules ++ [ { config.build.rawPlugins = rawPlugins; } ];
     in
     import ./modules (args // { inherit modules; });
 
   nvimBin = pkg: "${pkg}/bin/nvim";
 
-  buildPkg = pkgs: modules: (neovimConfiguration {
-    inherit pkgs modules;
-  });
+  buildPkg = pkgs: modules: (neovimConfiguration { inherit pkgs modules; });
 
   nvimLib = (import ./modules/lib/stdlib-extended.nix nixpkgs.lib).nvim;
 
@@ -48,7 +47,6 @@ let
           python.enable = overrideable false;
           plantuml.enable = overrideable false;
           bash.enable = overrideable false;
-
         };
         vim.lsp = {
           formatOnSave = overrideable true;
@@ -100,7 +98,6 @@ let
         };
       };
     };
-
 in
 {
   lib = {
@@ -114,14 +111,13 @@ in
     neovim-maximal = buildPkg prev [ mainConfig ];
   };
 }
-  // (flake-utils.lib.eachDefaultSystem (system:
+// (flake-utils.lib.eachDefaultSystem (
+  system:
   let
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [
-      ];
+      overlays = [ ];
     };
-
 
     nixPkg = buildPkg pkgs [ mainConfig ];
 
@@ -143,9 +139,7 @@ in
       program = nvimBin nixPkg;
     };
 
-    devShells.default = pkgs.mkShell {
-      nativeBuildInputs = [ devPkg ];
-    };
+    devShells.default = pkgs.mkShell { nativeBuildInputs = [ devPkg ]; };
 
     packages = {
       default = nixPkg;

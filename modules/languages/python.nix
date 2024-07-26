@@ -1,23 +1,26 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.python;
 
   defaultServer = "pyright";
   servers = {
     pyright = {
       package = [ "pyright" ];
-      lspConfig = /* lua */ ''
-        lspconfig.pyright.setup{
-          capabilities = capabilities;
-          on_attach = default_on_attach;
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "pyright-langserver"}", "--stdio"};
-        }
-      '';
+      lspConfig = # lua
+        ''
+          lspconfig.pyright.setup{
+            capabilities = capabilities;
+            on_attach = default_on_attach;
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "pyright-langserver"}", "--stdio"};
+          }
+        '';
     };
   };
 
@@ -25,14 +28,15 @@ with builtins; let
   formats = {
     black = {
       package = [ "black" ];
-      nullConfig = /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.formatting.black.with({
-            command = "${nvim.languages.commandOptToCmd cfg.format.package "black"}",
-          })
-        )
-      '';
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.black.with({
+              command = "${nvim.languages.commandOptToCmd cfg.format.package "black"}",
+            })
+          )
+        '';
     };
   };
 in

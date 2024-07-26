@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.html;
 in
 {
@@ -34,9 +36,12 @@ in
 
       vim.startPlugins = optional cfg.treesitter.autotagHtml "nvim-ts-autotag";
 
-      vim.luaConfigRC.html-autotag = mkIf cfg.treesitter.autotagHtml (nvim.dag.entryAnywhere /* lua */ ''
-        require('nvim-ts-autotag').setup()
-      '');
+      vim.luaConfigRC.html-autotag = mkIf cfg.treesitter.autotagHtml (
+        nvim.dag.entryAnywhere # lua
+          ''
+            require('nvim-ts-autotag').setup()
+          ''
+      );
     })
   ]);
 }

@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.haskell;
 
   defaultServer = "hls";
@@ -20,19 +22,21 @@ with builtins; let
   defaultFormat = "fourmolu";
   formats = {
     fourmolu = {
-      package = [ "haskellPackages" "fourmolu" ];
-      nullConfig = /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.formatting.fourmolu.with({
-             command = "${nvim.languages.commandOptToCmd cfg.format.package "fourmolu"}",
-          })
-        )
-      '';
+      package = [
+        "haskellPackages"
+        "fourmolu"
+      ];
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.fourmolu.with({
+               command = "${nvim.languages.commandOptToCmd cfg.format.package "fourmolu"}",
+            })
+          )
+        '';
     };
   };
-
-
 in
 {
   options.vim.languages.haskell = {

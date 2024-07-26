@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.snippets.vsnip;
 in
 {
@@ -12,7 +14,5 @@ in
     enable = mkEnableOption "Enable vim-vsnip";
   };
 
-  config = mkIf cfg.enable {
-    vim.startPlugins = [ "vim-vsnip" ];
-  };
+  config = mkIf cfg.enable { vim.startPlugins = [ "vim-vsnip" ]; };
 }

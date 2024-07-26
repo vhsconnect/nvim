@@ -1,6 +1,8 @@
 { lib, ... }:
-with lib; let
-  mkEnable = desc:
+with lib;
+let
+  mkEnable =
+    desc:
     mkOption {
       description = "Turn on ${desc} for enabled languages by default";
       type = types.bool;

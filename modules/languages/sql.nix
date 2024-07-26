@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.sql;
   sqlfluffDefault = "sqlfluff";
 
@@ -12,16 +14,17 @@ with builtins; let
   servers = {
     sqls = {
       package = [ "sqls" ];
-      lspConfig = /* lua */ ''
-        lspconfig.sqls.setup {
-          on_attach = function(client, bufnr)
-            client.server_capabilities.execute_command = true
-            on_attach_keymaps(client, bufnr)
-            require'sqls'.on_attach(client, bufnr)
-          end,
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "sqls"}", "-config", string.format("%s/config.yml", vim.fn.getcwd()) }
-        }
-      '';
+      lspConfig = # lua
+        ''
+          lspconfig.sqls.setup {
+            on_attach = function(client, bufnr)
+              client.server_capabilities.execute_command = true
+              on_attach_keymaps(client, bufnr)
+              require'sqls'.on_attach(client, bufnr)
+            end,
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "sqls"}", "-config", string.format("%s/config.yml", vim.fn.getcwd()) }
+          }
+        '';
     };
   };
 
@@ -29,15 +32,16 @@ with builtins; let
   formats = {
     sqlfluff = {
       package = [ sqlfluffDefault ];
-      nullConfig = /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.formatting.sqlfluff.with({
-            command = "${nvim.languages.commandOptToCmd cfg.format.package "sqlfluff"}",
-            extra_args = {"--dialect", "${cfg.dialect}"}
-          })
-        )
-      '';
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.sqlfluff.with({
+              command = "${nvim.languages.commandOptToCmd cfg.format.package "sqlfluff"}",
+              extra_args = {"--dialect", "${cfg.dialect}"}
+            })
+          )
+        '';
     };
   };
 
@@ -45,15 +49,17 @@ with builtins; let
   diagnostics = {
     sqlfluff = {
       package = pkgs.${sqlfluffDefault};
-      nullConfig = pkg: /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.diagnostics.sqlfluff.with({
-            command = "${pkg}/bin/sqlfluff",
-            extra_args = {"--dialect", "${cfg.dialect}"}
-          })
-        )
-      '';
+      nullConfig =
+        pkg: # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.diagnostics.sqlfluff.with({
+              command = "${pkg}/bin/sqlfluff",
+              extra_args = {"--dialect", "${cfg.dialect}"}
+            })
+          )
+        '';
     };
   };
 in

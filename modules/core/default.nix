@@ -1,10 +1,12 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim;
 
   wrapLuaConfig = luaConfig: ''
@@ -13,12 +15,15 @@ with builtins; let
     EOF
   '';
 
-  mkMappingOption = it:
-    mkOption ({
-      default = { };
-      type = with types; attrsOf (nullOr str);
-    }
-    // it);
+  mkMappingOption =
+    it:
+    mkOption (
+      {
+        default = { };
+        type = with types; attrsOf (nullOr str);
+      }
+      // it
+    );
 in
 {
   options.vim = {
@@ -52,90 +57,64 @@ in
       type = types.attrs;
     };
 
-    nnoremap =
-      mkMappingOption { description = "Defines 'Normal mode' mappings"; };
+    nnoremap = mkMappingOption { description = "Defines 'Normal mode' mappings"; };
 
-    inoremap = mkMappingOption {
-      description = "Defines 'Insert and Replace mode' mappings";
-    };
+    inoremap = mkMappingOption { description = "Defines 'Insert and Replace mode' mappings"; };
 
-    vnoremap = mkMappingOption {
-      description = "Defines 'Visual and Select mode' mappings";
-    };
+    vnoremap = mkMappingOption { description = "Defines 'Visual and Select mode' mappings"; };
 
-    xnoremap =
-      mkMappingOption { description = "Defines 'Visual mode' mappings"; };
+    xnoremap = mkMappingOption { description = "Defines 'Visual mode' mappings"; };
 
-    snoremap =
-      mkMappingOption { description = "Defines 'Select mode' mappings"; };
+    snoremap = mkMappingOption { description = "Defines 'Select mode' mappings"; };
 
-    cnoremap =
-      mkMappingOption { description = "Defines 'Command-line mode' mappings"; };
+    cnoremap = mkMappingOption { description = "Defines 'Command-line mode' mappings"; };
 
-    onoremap = mkMappingOption {
-      description = "Defines 'Operator pending mode' mappings";
-    };
+    onoremap = mkMappingOption { description = "Defines 'Operator pending mode' mappings"; };
 
-    tnoremap =
-      mkMappingOption { description = "Defines 'Terminal mode' mappings"; };
+    tnoremap = mkMappingOption { description = "Defines 'Terminal mode' mappings"; };
 
     nmap = mkMappingOption { description = "Defines 'Normal mode' mappings"; };
 
-    imap = mkMappingOption {
-      description = "Defines 'Insert and Replace mode' mappings";
-    };
+    imap = mkMappingOption { description = "Defines 'Insert and Replace mode' mappings"; };
 
-    vmap = mkMappingOption {
-      description = "Defines 'Visual and Select mode' mappings";
-    };
+    vmap = mkMappingOption { description = "Defines 'Visual and Select mode' mappings"; };
 
     xmap = mkMappingOption { description = "Defines 'Visual mode' mappings"; };
 
     smap = mkMappingOption { description = "Defines 'Select mode' mappings"; };
 
-    cmap =
-      mkMappingOption { description = "Defines 'Command-line mode' mappings"; };
+    cmap = mkMappingOption { description = "Defines 'Command-line mode' mappings"; };
 
-    omap = mkMappingOption {
-      description = "Defines 'Operator pending mode' mappings";
-    };
+    omap = mkMappingOption { description = "Defines 'Operator pending mode' mappings"; };
 
-    tmap =
-      mkMappingOption { description = "Defines 'Terminal mode' mappings"; };
+    tmap = mkMappingOption { description = "Defines 'Terminal mode' mappings"; };
   };
 
   config =
     let
-      mkVimBool = val:
-        if val
-        then "1"
-        else "0";
-      valToVim = val:
-        if (isInt val)
-        then (builtins.toString val)
+      mkVimBool = val: if val then "1" else "0";
+      valToVim =
+        val:
+        if (isInt val) then
+          (builtins.toString val)
         else
-          (
-            if (isBool val)
-            then (mkVimBool val)
-            else (toJSON val)
-          );
+          (if (isBool val) then (mkVimBool val) else (toJSON val));
 
       filterNonNull = mappings: filterAttrs (name: value: value != null) mappings;
-      globalsScript =
-        mapAttrsFlatten (name: value: "let g:${name}=${valToVim value}")
-          (filterNonNull cfg.globals);
+      globalsScript = mapAttrsFlatten (name: value: "let g:${name}=${valToVim value}") (
+        filterNonNull cfg.globals
+      );
 
       matchCtrl = it: match "Ctrl-(.)(.*)" it;
-      mapKeyBinding = it:
+      mapKeyBinding =
+        it:
         let
           groups = matchCtrl it;
         in
-        if groups == null
-        then it
-        else "<C-${toUpper (head groups)}>${head (tail groups)}";
-      mapVimBinding = prefix: mappings:
-        mapAttrsFlatten (name: value: "${prefix} ${mapKeyBinding name} ${value}")
-          (filterNonNull mappings);
+        if groups == null then it else "<C-${toUpper (head groups)}>${head (tail groups)}";
+      mapVimBinding =
+        prefix: mappings:
+        mapAttrsFlatten (name: value: "${prefix} ${mapKeyBinding name} ${value}") (filterNonNull mappings);
 
       nmap = mapVimBinding "nmap" config.vim.nmap;
       imap = mapVimBinding "imap" config.vim.imap;

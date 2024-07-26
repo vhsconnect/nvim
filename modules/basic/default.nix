@@ -1,10 +1,12 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim;
 in
 {
@@ -58,13 +60,28 @@ in
     };
 
     mouseSupport = mkOption {
-      type = with types; enum [ "a" "n" "v" "i" "c" ];
+      type =
+        with types;
+        enum [
+          "a"
+          "n"
+          "v"
+          "i"
+          "c"
+        ];
       default = "a";
       description = "Set modes for mouse support. a - all, n - normal, v - visual, i - insert, c - command";
     };
 
     lineNumberMode = mkOption {
-      type = with types; enum [ "relative" "number" "relNumber" "none" ];
+      type =
+        with types;
+        enum [
+          "relative"
+          "number"
+          "relNumber"
+          "none"
+        ];
       default = "relNumber";
       description = "How line numbers are displayed. none, relative, number, relNumber";
     };
@@ -106,7 +123,11 @@ in
     };
 
     bell = mkOption {
-      type = types.enum [ "none" "visual" "on" ];
+      type = types.enum [
+        "none"
+        "visual"
+        "on"
+      ];
       default = "none";
       description = "Set how bells are handled. Options: on, visual or none";
     };

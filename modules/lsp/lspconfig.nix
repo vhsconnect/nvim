@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.lsp;
 in
 {
@@ -24,9 +26,11 @@ in
 
       vim.startPlugins = [ "nvim-lspconfig" ];
 
-      vim.luaConfigRC.lspconfig = nvim.dag.entryAfter [ "lsp-setup" ] /* lua */ ''
-        local lspconfig = require('lspconfig')
-      '';
+      vim.luaConfigRC.lspconfig =
+        nvim.dag.entryAfter [ "lsp-setup" ] # lua
+          ''
+            local lspconfig = require('lspconfig')
+          '';
     }
     {
       vim.luaConfigRC = mapAttrs (_: v: (nvim.dag.entryAfter [ "lspconfig" ] v)) cfg.lspconfig.sources;

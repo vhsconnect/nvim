@@ -1,9 +1,9 @@
-{ pkgs
-, config
-, lib
-, ...
-}: {
-  imports = [
-    ./visuals.nix
-  ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
+  imports = [ ./visuals.nix ];
 }

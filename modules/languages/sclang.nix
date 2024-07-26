@@ -1,12 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 with lib;
 let
   cfg = config.vim.languages.sclang;
-in {
+in
+{
   options.vim.languages.sclang = {
     enable = mkEnableOption "SuperCollider language support and plugins";
     postwin = {
@@ -107,65 +104,65 @@ in {
   };
 
   config = mkIf (cfg.enable) {
-    vim.startPlugins = [
-      "scnvim"
-    ];
-    vim.luaConfigRC.scnvim = nvim.dag.entryAnywhere /* lua */ ''
-      local scnvim = require 'scnvim'
-      local map = scnvim.map
-      local map_expr = scnvim.map_expr
+    vim.startPlugins = [ "scnvim" ];
+    vim.luaConfigRC.scnvim =
+      nvim.dag.entryAnywhere # lua
+        ''
+          local scnvim = require 'scnvim'
+          local map = scnvim.map
+          local map_expr = scnvim.map_expr
 
-      scnvim.setup({
-        keymaps = {
-          ['<M-e>'] = map('editor.send_line', {'i', 'n'}),
-          ['<C-e>'] = {
-            map('editor.send_block', {'i', 'n'}),
-            map('editor.send_selection', 'x'),
-          },
-          ['<CR>'] = map('postwin.toggle'),
-          ['<M-CR>'] = map('postwin.toggle', 'i'),
-          ['<M-L>'] = map('postwin.clear', {'n', 'i'}),
-          ['<C-k>'] = map('signature.show', {'n', 'i'}),
-          ['<F12>'] = map('sclang.hard_stop', {'n', 'x', 'i'}),
-          ['<leader>st'] = map('sclang.start'),
-          ['<leader>sk'] = map('sclang.recompile'),
-          ['<F1>'] = map_expr('s.boot'),
-          ['<F2>'] = map_expr('s.meter'),
-        },
-
-        postwin = {
-          highlight = ${boolToString cfg.postwin.highlight},
-          auto_toggle_error = ${boolToString cfg.postwin.autoToggleError},
-          scrollback = ${toString cfg.postwin.scrollback},
-          horizontal = ${boolToString cfg.postwin.horizontal},
-          direction = '${cfg.postwin.direction}',
-          float = {
-            enabled = ${boolToString cfg.postwin.float.enable},
-          },
-        },
-
-        editor = {
-          force_ft_supercollider = ${boolToString cfg.editor.forceFtSupercollider},
-          highlight = {
-            type = '${cfg.editor.highlight.type}',
-            flash = {
-              duration = ${toString cfg.editor.highlight.flash.duration},
-              repeats = ${toString cfg.editor.highlight.flash.repeats},
+          scnvim.setup({
+            keymaps = {
+              ['<M-e>'] = map('editor.send_line', {'i', 'n'}),
+              ['<C-e>'] = {
+                map('editor.send_block', {'i', 'n'}),
+                map('editor.send_selection', 'x'),
+              },
+              ['<CR>'] = map('postwin.toggle'),
+              ['<M-CR>'] = map('postwin.toggle', 'i'),
+              ['<M-L>'] = map('postwin.clear', {'n', 'i'}),
+              ['<C-k>'] = map('signature.show', {'n', 'i'}),
+              ['<F12>'] = map('sclang.hard_stop', {'n', 'x', 'i'}),
+              ['<leader>st'] = map('sclang.start'),
+              ['<leader>sk'] = map('sclang.recompile'),
+              ['<F1>'] = map_expr('s.boot'),
+              ['<F2>'] = map_expr('s.meter'),
             },
-            fade = {
-              duration = ${toString cfg.editor.highlight.fade.duration},
-            },
-          },
-          signature = {
-            float = ${boolToString cfg.editor.signature.float},
-            auto = ${boolToString cfg.editor.signature.float},
-          },
-        },
 
-        statusline = {
-          poll_interval = ${strings.floatToString cfg.statusline.pollInterval},
-        }
-      })
-    '';
+            postwin = {
+              highlight = ${boolToString cfg.postwin.highlight},
+              auto_toggle_error = ${boolToString cfg.postwin.autoToggleError},
+              scrollback = ${toString cfg.postwin.scrollback},
+              horizontal = ${boolToString cfg.postwin.horizontal},
+              direction = '${cfg.postwin.direction}',
+              float = {
+                enabled = ${boolToString cfg.postwin.float.enable},
+              },
+            },
+
+            editor = {
+              force_ft_supercollider = ${boolToString cfg.editor.forceFtSupercollider},
+              highlight = {
+                type = '${cfg.editor.highlight.type}',
+                flash = {
+                  duration = ${toString cfg.editor.highlight.flash.duration},
+                  repeats = ${toString cfg.editor.highlight.flash.repeats},
+                },
+                fade = {
+                  duration = ${toString cfg.editor.highlight.fade.duration},
+                },
+              },
+              signature = {
+                float = ${boolToString cfg.editor.signature.float},
+                auto = ${boolToString cfg.editor.signature.float},
+              },
+            },
+
+            statusline = {
+              poll_interval = ${strings.floatToString cfg.statusline.pollInterval},
+            }
+          })
+        '';
   };
 }

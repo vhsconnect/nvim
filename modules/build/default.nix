@@ -1,21 +1,25 @@
-{ config
-, lib
-, pkgs
-, currentModules
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  currentModules,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfgBuild = config.build;
   cfgBuilt = config.built;
   cfgVim = config.vim;
 
-  inputsSubmodule = { ... }: {
-    options.src = mkOption {
-      description = "The plugin source";
-      type = types.package;
+  inputsSubmodule =
+    { ... }:
+    {
+      options.src = mkOption {
+        description = "The plugin source";
+        type = types.package;
+      };
     };
-  };
 in
 {
   options = {
@@ -97,54 +101,67 @@ in
 
   config =
     let
-      buildPlug = name:
+      buildPlug =
+        name:
         pkgs.vimUtils.buildVimPlugin rec {
           pname = name;
           version = "master";
           src = cfgBuild.rawPlugins.${pname}.src;
         };
 
-      buildPlugCodeium = name:
+      buildPlugCodeium =
+        name:
         pkgs.vimUtils.buildVimPlugin rec {
           pname = name;
           version = "master";
           src = cfgBuild.rawPlugins.${pname}.src;
-          patches = [
-            ./patches/codeium.patch
-          ];
+          patches = [ ./patches/codeium.patch ];
         };
 
       # User provided grammars & override the bundled grammars with nvim-treesitter compatible ones
       # Override rather than overriding `treesitter-parsers` and rebuilding neovim-unwrapped
       # https://github.com/NixOS/nixpkgs/pull/227159
-      treeSitterPlug = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: config.vim.treesitter.grammars ++ [
-        p.c
-        p.lua
-        p.vim
-        p.vimdoc
-        p.query
-      ]);
+      treeSitterPlug = pkgs.vimPlugins.nvim-treesitter.withPlugins (
+        p:
+        config.vim.treesitter.grammars
+        ++ [
+          p.c
+          p.lua
+          p.vim
+          p.vimdoc
+          p.query
+        ]
+      );
 
-      buildConfigPlugins = plugins:
+      buildConfigPlugins =
+        plugins:
         let
           _plugins = filter (f: f != null) plugins;
           mapPlugins = f: map f _plugins;
         in
-        mapPlugins (plug:
-          (if isString plug
-          then
-            (if (plug == "nvim-treesitter")
-            then treeSitterPlug
-            else if (plug == "codeium")
-            then buildPlugCodeium "codeium"
-            else buildPlug plug)
-          else plug));
+        mapPlugins (
+          plug:
+          (
+            if isString plug then
+              (
+                if (plug == "nvim-treesitter") then
+                  treeSitterPlug
+                else if (plug == "codeium") then
+                  buildPlugCodeium "codeium"
+                else
+                  buildPlug plug
+              )
+            else
+              plug
+          )
+        );
 
       normalizedPlugins =
-        let mapPlugins = f: map f cfgBuilt.optPlugins;
+        let
+          mapPlugins = f: map f cfgBuilt.optPlugins;
         in
-        cfgBuilt.startPlugins ++
-        (mapPlugins (plugin: {
+        cfgBuilt.startPlugins
+        ++ (mapPlugins (plugin: {
           inherit plugin;
           optional = true;
         }));
@@ -158,9 +175,10 @@ in
       failedAssertions = map (x: x.message) (filter (x: !x.assertion) config.assertions);
 
       baseSystemAssertWarn =
-        if failedAssertions != [ ]
-        then throw "\nFailed assertions:\n${concatStringsSep "\n" (map (x: "- ${x}") failedAssertions)}"
-        else lib.showWarnings config.warnings;
+        if failedAssertions != [ ] then
+          throw "\nFailed assertions:\n${concatStringsSep "\n" (map (x: "- ${x}") failedAssertions)}"
+        else
+          lib.showWarnings config.warnings;
     in
     {
       built = baseSystemAssertWarn {
@@ -183,19 +201,16 @@ in
         optPlugins = buildConfigPlugins cfgVim.optPlugins;
 
         package =
-          (pkgs.wrapNeovimUnstable cfgBuild.package (neovimConfig
-            // {
-            wrapRc = true;
-          })).overrideAttrs (oldAttrs: {
-            passthru =
-              oldAttrs.passthru
-              // {
+          (pkgs.wrapNeovimUnstable cfgBuild.package (neovimConfig // { wrapRc = true; })).overrideAttrs
+            (oldAttrs: {
+              passthru = oldAttrs.passthru // {
                 extendConfiguration =
-                  { modules ? [ ]
-                  , pkgs ? config._module.args.pkgs
-                  , lib ? pkgs.lib
-                  , extraSpecialArgs ? { }
-                  , check ? config._module.args.check
+                  {
+                    modules ? [ ],
+                    pkgs ? config._module.args.pkgs,
+                    lib ? pkgs.lib,
+                    extraSpecialArgs ? { },
+                    check ? config._module.args.check,
                   }:
                   import ../../modules {
                     modules = currentModules ++ modules;
@@ -203,14 +218,12 @@ in
                     inherit pkgs lib;
                   };
               };
-            meta =
-              oldAttrs.meta
-              // {
+              meta = oldAttrs.meta // {
                 module = {
                   inherit config options;
                 };
               };
-          });
+            });
       };
     };
 }

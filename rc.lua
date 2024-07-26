@@ -15,9 +15,12 @@ vim.keymap.set('n', 'H', '10h', {noremap = true})
 vim.keymap.set('x', 'J', ':move \'>+1<CR>gv-gv', { noremap = true })
 vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', { noremap = true })
 
-
 -- move split into own tab
 vim.keymap.set('n', '<BSlash><BSlash>', '<C-W>T',  { noremap = true })
+
+-- move split to the left 
+vim.keymap.set('n', '<BSlash>wh', ':wincmd H<CR>',  { noremap = true })
+vim.keymap.set('n', '<BSlash>wl', ':wincmd L<CR>',  { noremap = true })
 
 -- leap
 vim.keymap.set('n', 's', '<Plug>(leap-forward)',  { noremap = true })

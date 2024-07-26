@@ -1,10 +1,12 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   themeSubmodule.options = {
     setup = mkOption {
       description = "Lua code to initialize theme";
@@ -54,7 +56,14 @@ in
         }
         require('onedark').load()
       '';
-      styles = [ "dark" "darker" "cool" "deep" "warm" "warmer" ];
+      styles = [
+        "dark"
+        "darker"
+        "cool"
+        "deep"
+        "warm"
+        "warmer"
+      ];
       defaultStyle = "dark";
     };
 
@@ -67,7 +76,12 @@ in
         -- setup must be called before loading
         vim.cmd.colorscheme "catppuccin"
       '';
-      styles = [ "latte" "frappe" "macchiato" "mocha" ];
+      styles = [
+        "latte"
+        "frappe"
+        "macchiato"
+        "mocha"
+      ];
       defaultStyle = "mocha";
     };
 
@@ -90,7 +104,10 @@ in
         vim.o.background = "${cfg.style}"
         vim.cmd.colorscheme "gruvbox"
       '';
-      styles = [ "dark" "light" ];
+      styles = [
+        "dark"
+        "light"
+      ];
       defaultStyle = "dark";
     };
   };

@@ -1,32 +1,35 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.angular;
   defaultServer = "angular-language-server";
 
   servers = {
     angular-language-server = {
-      package = [ "vscode-extensions" "angular" "ng-template" ];
-      lspConfig = /* lua */ ''
-        local cmd = {"${cfg.lsp.package}/share/vscode/extensions/Angular.ng-template/server/bin/ngserver", "--stdio", "--tsProbeLocations", " ", "--ngProbeLocations", " "}
+      package = [
+        "vscode-extensions"
+        "angular"
+        "ng-template"
+      ];
+      lspConfig = # lua
+        ''
+          local cmd = {"${cfg.lsp.package}/share/vscode/extensions/Angular.ng-template/server/bin/ngserver", "--stdio", "--tsProbeLocations", " ", "--ngProbeLocations", " "}
 
-        require'lspconfig'.angularls.setup{
-          cmd = cmd,
-          on_new_config = function(new_config,new_root_dir)
-            new_config.cmd = cmd
-          end,
-        }
-      '';
-
+          require'lspconfig'.angularls.setup{
+            cmd = cmd,
+            on_new_config = function(new_config,new_root_dir)
+              new_config.cmd = cmd
+            end,
+          }
+        '';
     };
-
   };
-
-
 in
 {
   options.vim.languages.angular = {
@@ -50,15 +53,12 @@ in
         description = "Angular LSP server to use";
         type = with types; enum (attrNames servers);
         default = defaultServer;
-
       };
       package = nvim.options.mkCommandOption pkgs {
         description = "Angular LSP server";
         inherit (servers.${cfg.lsp.server}) package;
       };
     };
-
-
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -71,6 +71,5 @@ in
       vim.lsp.lspconfig.enable = true;
       vim.lsp.lspconfig.sources.angular-lsp = servers.${cfg.lsp.server}.lspConfig;
     })
-
   ]);
 }

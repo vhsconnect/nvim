@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.statusline.lualine;
   supported_themes = import ./supported_lualine_themes.nix;
 in
@@ -24,40 +26,42 @@ in
       in
       mkOption {
         description = "Theme for lualine";
-        type = types.enum ([
-          "auto"
-          "16color"
-          "gruvbox"
-          "ayu_dark"
-          "ayu_light"
-          "ayu_mirage"
-          "codedark"
-          "dracula"
-          "everforest"
-          "gruvbox"
-          "gruvbox_light"
-          "gruvbox_material"
-          "horizon"
-          "iceberg_dark"
-          "iceberg_light"
-          "jellybeans"
-          "material"
-          "modus_vivendi"
-          "molokai"
-          "nightfly"
-          "nord"
-          "oceanicnext"
-          "onelight"
-          "palenight"
-          "papercolor_dark"
-          "papercolor_light"
-          "powerline"
-          "seoul256"
-          "solarized_dark"
-          "tomorrow"
-          "wombat"
-        ]
-        ++ optional themeSupported config.vim.theme.name);
+        type = types.enum (
+          [
+            "auto"
+            "16color"
+            "gruvbox"
+            "ayu_dark"
+            "ayu_light"
+            "ayu_mirage"
+            "codedark"
+            "dracula"
+            "everforest"
+            "gruvbox"
+            "gruvbox_light"
+            "gruvbox_material"
+            "horizon"
+            "iceberg_dark"
+            "iceberg_light"
+            "jellybeans"
+            "material"
+            "modus_vivendi"
+            "molokai"
+            "nightfly"
+            "nord"
+            "oceanicnext"
+            "onelight"
+            "palenight"
+            "papercolor_dark"
+            "papercolor_light"
+            "powerline"
+            "seoul256"
+            "solarized_dark"
+            "tomorrow"
+            "wombat"
+          ]
+          ++ optional themeSupported config.vim.theme.name
+        );
         default = "auto";
         # TODO: xml generation error if the closing '' is on a new line.
         # issue: https://gitlab.com/rycee/nmd/-/issues/10
@@ -200,40 +204,42 @@ in
     #];
 
     vim.startPlugins = [ "lualine" ];
-    vim.luaConfigRC.lualine = nvim.dag.entryAnywhere /* lua */ ''
-      require'lualine'.setup {
-        options = {
-          icons_enabled = ${boolToString cfg.icons},
-          theme = "${cfg.theme}",
-          component_separators = {
-            left = "${cfg.componentSeparator.left}",
-            right = "${cfg.componentSeparator.right}"
-          },
-          section_separators = {
-            left = "${cfg.sectionSeparator.left}",
-            right = "${cfg.sectionSeparator.right}"
-          },
-          disabled_filetypes = {},
-        },
-        sections = {
-          lualine_a = ${cfg.activeSection.a},
-          lualine_b = ${cfg.activeSection.b},
-          lualine_c = ${cfg.activeSection.c},
-          lualine_x = ${cfg.activeSection.x},
-          lualine_y = ${cfg.activeSection.y},
-          lualine_z = ${cfg.activeSection.z},
-        },
-        inactive_sections = {
-          lualine_a = ${cfg.inactiveSection.a},
-          lualine_b = ${cfg.inactiveSection.b},
-          lualine_c = ${cfg.inactiveSection.c},
-          lualine_x = ${cfg.inactiveSection.x},
-          lualine_y = ${cfg.inactiveSection.y},
-          lualine_z = ${cfg.inactiveSection.z},
-        },
-        tabline = {},
-        extensions = {${optionalString config.vim.filetree.nvimTreeLua.enable "'nvim-tree'"}},
-      }
-    '';
+    vim.luaConfigRC.lualine =
+      nvim.dag.entryAnywhere # lua
+        ''
+          require'lualine'.setup {
+            options = {
+              icons_enabled = ${boolToString cfg.icons},
+              theme = "${cfg.theme}",
+              component_separators = {
+                left = "${cfg.componentSeparator.left}",
+                right = "${cfg.componentSeparator.right}"
+              },
+              section_separators = {
+                left = "${cfg.sectionSeparator.left}",
+                right = "${cfg.sectionSeparator.right}"
+              },
+              disabled_filetypes = {},
+            },
+            sections = {
+              lualine_a = ${cfg.activeSection.a},
+              lualine_b = ${cfg.activeSection.b},
+              lualine_c = ${cfg.activeSection.c},
+              lualine_x = ${cfg.activeSection.x},
+              lualine_y = ${cfg.activeSection.y},
+              lualine_z = ${cfg.activeSection.z},
+            },
+            inactive_sections = {
+              lualine_a = ${cfg.inactiveSection.a},
+              lualine_b = ${cfg.inactiveSection.b},
+              lualine_c = ${cfg.inactiveSection.c},
+              lualine_x = ${cfg.inactiveSection.x},
+              lualine_y = ${cfg.inactiveSection.y},
+              lualine_z = ${cfg.inactiveSection.z},
+            },
+            tabline = {},
+            extensions = {${optionalString config.vim.filetree.nvimTreeLua.enable "'nvim-tree'"}},
+          }
+        '';
   };
 }

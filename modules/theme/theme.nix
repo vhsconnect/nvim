@@ -1,11 +1,13 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
 with lib.attrsets;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.theme;
 in
 {

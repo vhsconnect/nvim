@@ -1,23 +1,29 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.ts;
 
   defaultServer = "tsserver";
   servers = {
     tsserver = {
-      package = [ "nodePackages" "typescript-language-server" ];
-      lspConfig = /* lua */ ''
-        lspconfig.tsserver.setup {
-          capabilities = capabilities;
-          on_attach = attach_keymaps,
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "typescript-language-server"}", "--stdio"},
-        }
-      '';
+      package = [
+        "nodePackages"
+        "typescript-language-server"
+      ];
+      lspConfig = # lua
+        ''
+          lspconfig.tsserver.setup {
+            capabilities = capabilities;
+            on_attach = attach_keymaps,
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "typescript-language-server"}", "--stdio"},
+          }
+        '';
     };
   };
 
@@ -25,15 +31,19 @@ with builtins; let
   defaultFormat = "prettier";
   formats = {
     prettier = {
-      package = [ "nodePackages" "prettier" ];
-      nullConfig = /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.formatting.prettier.with({
-            command = "${nvim.languages.commandOptToCmd cfg.format.package "prettier"}",
-          })
-        )
-      '';
+      package = [
+        "nodePackages"
+        "prettier"
+      ];
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.prettier.with({
+              command = "${nvim.languages.commandOptToCmd cfg.format.package "prettier"}",
+            })
+          )
+        '';
     };
   };
 
@@ -42,14 +52,16 @@ with builtins; let
   diagnostics = {
     eslint = {
       package = pkgs.nodePackages.eslint;
-      nullConfig = pkg: /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.diagnostics.eslint.with({
-            command = "${pkg}/bin/eslint",
-          })
-        )
-      '';
+      nullConfig =
+        pkg: # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.diagnostics.eslint.with({
+              command = "${pkg}/bin/eslint",
+            })
+          )
+        '';
     };
   };
 in
@@ -118,7 +130,10 @@ in
   config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.treesitter.enable {
       vim.treesitter.enable = true;
-      vim.treesitter.grammars = [ cfg.treesitter.tsPackage cfg.treesitter.jsPackage ];
+      vim.treesitter.grammars = [
+        cfg.treesitter.tsPackage
+        cfg.treesitter.jsPackage
+      ];
     })
 
     (mkIf cfg.lsp.enable {

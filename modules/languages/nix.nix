@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.nix;
 
   useFormat = "on_attach = default_on_attach";
@@ -15,35 +17,36 @@ with builtins; let
     nil = {
       package = [ "nil" ];
       internalFormatter = true;
-      lspConfig = /* lua */ ''
-        lspconfig.nil_ls.setup{
-          capabilities = capabilities,
-        ${
-          if cfg.format.enable
-          then useFormat
-          else noFormat
-        },
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "nil"}"},
-        ${optionalString cfg.format.enable ''
-          settings = {
-            ["nil"] = {
-          ${optionalString (cfg.format.type == "alejandra")
-            ''
+      lspConfig =
+        # lua
+        ''
+          lspconfig.nil_ls.setup{
+            capabilities = capabilities,
+          ${if cfg.format.enable then useFormat else noFormat},
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "nil"}"},
+          ${optionalString cfg.format.enable ''
+            settings = {
+              ["nil"] = {
+            ${optionalString (cfg.format.type == "alejandra") ''
               formatting = {
                 command = {"${cfg.format.package}/bin/alejandra", "--quiet"},
               },
             ''}
-          ${optionalString (cfg.format.type == "nixpkgs-fmt")
-            ''
+            ${optionalString (cfg.format.type == "nixpkgs-fmt") ''
               formatting = {
                 command = {"${cfg.format.package}/bin/nixpkgs-fmt"},
               },
             ''}
-            },
-          };
-        ''}
-        }
-      '';
+            ${optionalString (cfg.format.type == "nixfmt") ''
+              formatting = {
+                command = {"${cfg.format.package}/bin/nixfmt"},
+              },
+            ''}
+              },
+            };
+          ''}
+          }
+        '';
     };
   };
 
@@ -51,22 +54,30 @@ with builtins; let
   formats = {
     alejandra = {
       package = [ "alejandra" ];
-      nullConfig = /* lua */ ''
-        table.insert(
-          ls_sources,
-          null_ls.builtins.formatting.alejandra.with({
-            command = {"${nvim.languages.commandOptToCmd cfg.format.package "alejandra"}"},
-          })
-        )
-      '';
+      nullConfig =
+        # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.alejandra.with({
+              command = {"${nvim.languages.commandOptToCmd cfg.format.package "alejandra"}"},
+            })
+          )
+        '';
     };
     nixpkgs-fmt = {
       package = [ "nixpkgs-fmt" ];
       # Never need to use null-ls for nixpkgs-fmt
     };
+    nixfmt = {
+      package = [ "nixfmt-rfc-style" ];
+    };
   };
 
-  defaultDiagnostics = [ "statix" "deadnix" ];
+  defaultDiagnostics = [
+    "statix"
+    "deadnix"
+  ];
   diagnostics = {
     statix = {
       package = pkgs.statix;

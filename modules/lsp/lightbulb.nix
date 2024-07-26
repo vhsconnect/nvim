@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.lsp;
 in
 {
@@ -21,9 +23,11 @@ in
       autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
     '';
 
-    vim.luaConfigRC.lightbulb = nvim.dag.entryAnywhere /* lua */ ''
-      -- Enable trouble diagnostics viewer
-      require'nvim-lightbulb'.setup()
-    '';
+    vim.luaConfigRC.lightbulb =
+      nvim.dag.entryAnywhere # lua
+        ''
+          -- Enable trouble diagnostics viewer
+          require'nvim-lightbulb'.setup()
+        '';
   };
 }

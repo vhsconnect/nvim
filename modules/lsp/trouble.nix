@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.lsp;
 in
 {
@@ -26,9 +28,11 @@ in
       "<leader>xl" = "<cmd>TroubleToggle loclist<CR>";
     };
 
-    vim.luaConfigRC.trouble = nvim.dag.entryAnywhere /* lua */ ''
-      -- Enable trouble diagnostics viewer
-      require("trouble").setup {}
-    '';
+    vim.luaConfigRC.trouble =
+      nvim.dag.entryAnywhere # lua
+        ''
+          -- Enable trouble diagnostics viewer
+          require("trouble").setup {}
+        '';
   };
 }

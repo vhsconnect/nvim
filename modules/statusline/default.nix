@@ -1,9 +1,9 @@
-{ pkgs
-, config
-, lib
-, ...
-}: {
-  imports = [
-    ./lualine.nix
-  ];
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
+  imports = [ ./lualine.nix ];
 }

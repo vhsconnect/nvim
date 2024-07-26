@@ -1,25 +1,31 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.css;
 
   defaultServer = "vscode-langservers-extracted";
   servers = {
     vscode-langservers-extracted = {
-      package = [ "nodePackages" "vscode-langservers-extracted" ];
-      lspConfig = /*lua*/''
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
-        lspconfig.cssls.setup{
-          capabilities = capabilities;
-          on_attach = default_on_attach;
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "vscode-css-language-server"}", "--stdio"};
-        }
-      '';
+      package = [
+        "nodePackages"
+        "vscode-langservers-extracted"
+      ];
+      lspConfig = # lua
+        ''
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities.textDocument.completion.completionItem.snippetSupport = true
+          lspconfig.cssls.setup{
+            capabilities = capabilities;
+            on_attach = default_on_attach;
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "vscode-css-language-server"}", "--stdio"};
+          }
+        '';
     };
   };
 in

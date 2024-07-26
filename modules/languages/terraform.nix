@@ -5,9 +5,11 @@
   ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.terraform;
-in {
+in
+{
   options.vim.languages.terraform = {
     enable = mkEnableOption "Terraform language support";
 
@@ -23,7 +25,7 @@ in {
   config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.treesitter.enable {
       vim.treesitter.enable = true;
-      vim.treesitter.grammars = [cfg.treesitter.package];
+      vim.treesitter.grammars = [ cfg.treesitter.package ];
     })
   ]);
 }

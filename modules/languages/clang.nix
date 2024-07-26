@@ -1,35 +1,40 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.languages.clang;
 
   defaultServer = "ccls";
   servers = {
     ccls = {
       package = [ "ccls" ];
-      lspConfig = /* lua */ ''
-        lspconfig.ccls.setup{
-          capabilities = capabilities;
-          on_attach=default_on_attach;
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "ccls"}"};
-          ${optionalString (cfg.lsp.opts != null) "init_options = ${cfg.lsp.opts}"}
-        }
-      '';
+      lspConfig = # lua
+        ''
+          lspconfig.ccls.setup{
+            capabilities = capabilities;
+            on_attach=default_on_attach;
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "ccls"}"};
+            ${optionalString (cfg.lsp.opts != null) "init_options = ${cfg.lsp.opts}"}
+          }
+        '';
     };
 
     clangd = {
       package = [ "clang-tools" ];
-      lspConfig = lib.warnIf (cfg.lsp.opts != null) "clangd does not use lsp.opts" /* lua */ ''
-        lspconfig.ccls.setup{
-          capabilities = capabilities;
-          on_attach=default_on_attach;
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "clangd"}"};
-        }
-      '';
+      lspConfig =
+        lib.warnIf (cfg.lsp.opts != null) "clangd does not use lsp.opts" # lua
+          ''
+            lspconfig.ccls.setup{
+              capabilities = capabilities;
+              on_attach=default_on_attach;
+              cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "clangd"}"};
+            }
+          '';
     };
   };
 in
@@ -87,13 +92,14 @@ in
   };
 
   config = mkIf cfg.enable (mkMerge [
-    (mkIf cfg.cHeader {
-      vim.configRC.c-header = nvim.dag.entryAnywhere "let g:c_syntax_for_h = 1";
-    })
+    (mkIf cfg.cHeader { vim.configRC.c-header = nvim.dag.entryAnywhere "let g:c_syntax_for_h = 1"; })
 
     (mkIf cfg.treesitter.enable {
       vim.treesitter.enable = true;
-      vim.treesitter.grammars = [ cfg.treesitter.cPackage cfg.treesitter.cppPackage ];
+      vim.treesitter.grammars = [
+        cfg.treesitter.cPackage
+        cfg.treesitter.cppPackage
+      ];
     })
 
     (mkIf cfg.lsp.enable (mkMerge [
@@ -103,16 +109,20 @@ in
       }
 
       (mkIf cfg.lsp.cclsNvim.enable {
-        assertions = [{
-          assertion = cfg.lsp.server == "ccls";
-          message = "To enable cclsNvim, lsp must be enabled and set to ccls";
-        }];
+        assertions = [
+          {
+            assertion = cfg.lsp.server == "ccls";
+            message = "To enable cclsNvim, lsp must be enabled and set to ccls";
+          }
+        ];
 
         vim.startPlugins = [ "ccls-nvim" ];
 
-        vim.luaConfigRC.ccls-nvim = nvim.dag.entryAnywhere /* lua */ ''
-          require("ccls").setup({})
-        '';
+        vim.luaConfigRC.ccls-nvim =
+          nvim.dag.entryAnywhere # lua
+            ''
+              require("ccls").setup({})
+            '';
       })
     ]))
   ]);

@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.keys;
 in
 {
@@ -19,8 +21,10 @@ in
   config = mkIf (cfg.enable && cfg.whichKey.enable) {
     vim.startPlugins = [ "which-key" ];
 
-    vim.luaConfigRC.whichkey = nvim.dag.entryAnywhere /* lua */ ''
-      local wk = require("which-key").setup {}
-    '';
+    vim.luaConfigRC.whichkey =
+      nvim.dag.entryAnywhere # lua
+        ''
+          local wk = require("which-key").setup {}
+        '';
   };
 }

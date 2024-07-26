@@ -1,10 +1,12 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   treesitter = config.vim.treesitter;
   cfg = treesitter.context;
 in
@@ -38,13 +40,19 @@ in
 
     trimScope = mkOption {
       description = "Which context lines to discard if <<opt-vim.treesitter.context.maxLines>> is exceeded.";
-      type = types.enum [ "inner" "outer" ];
+      type = types.enum [
+        "inner"
+        "outer"
+      ];
       default = "outer";
     };
 
     mode = mkOption {
       description = "Line used to calculate context.";
-      type = types.enum [ "cursor" "topline" ];
+      type = types.enum [
+        "cursor"
+        "topline"
+      ];
       default = "cursor";
     };
 
@@ -68,18 +76,20 @@ in
   config = mkIf (treesitter.enable && cfg.enable) {
     vim.startPlugins = [ "nvim-treesitter-context" ];
 
-    vim.luaConfigRC.treesitter-context = nvim.dag.entryAnywhere /* lua */ ''
-      require'treesitter-context'.setup {
-        enable = true,
-        max_lines = ${toString cfg.maxLines},
-        min_window_height = ${toString cfg.minWindowHeight},
-        line_numbers = ${boolToString cfg.lineNumbers},
-        multiline_threshold = ${toString cfg.multilineThreshold},
-        trim_scope = '${cfg.trimScope}',
-        mode = '${cfg.mode}',
-        separator = ${nvim.lua.nullString cfg.separator},
-        max_lines = ${toString cfg.zindex},
-      }
-    '';
+    vim.luaConfigRC.treesitter-context =
+      nvim.dag.entryAnywhere # lua
+        ''
+          require'treesitter-context'.setup {
+            enable = true,
+            max_lines = ${toString cfg.maxLines},
+            min_window_height = ${toString cfg.minWindowHeight},
+            line_numbers = ${boolToString cfg.lineNumbers},
+            multiline_threshold = ${toString cfg.multilineThreshold},
+            trim_scope = '${cfg.trimScope}',
+            mode = '${cfg.mode}',
+            separator = ${nvim.lua.nullString cfg.separator},
+            max_lines = ${toString cfg.zindex},
+          }
+        '';
   };
 }

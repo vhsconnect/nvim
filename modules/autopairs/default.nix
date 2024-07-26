@@ -1,10 +1,12 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 with lib;
-with builtins; let
+with builtins;
+let
   cfg = config.vim.autopairs;
 in
 {
@@ -24,13 +26,13 @@ in
     };
   };
 
-  config =
-    mkIf cfg.enable
-      {
-        vim.startPlugins = [ "nvim-autopairs" ];
+  config = mkIf cfg.enable {
+    vim.startPlugins = [ "nvim-autopairs" ];
 
-        vim.luaConfigRC.autopairs = nvim.dag.entryAnywhere /* lua */ ''
+    vim.luaConfigRC.autopairs =
+      nvim.dag.entryAnywhere # lua
+        ''
           require("nvim-autopairs").setup{}
         '';
-      };
+  };
 }

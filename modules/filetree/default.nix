@@ -1,9 +1,9 @@
-{ pkgs
-, lib
-, config
-, ...
-}: {
-  imports = [
-    ./nvimtreelua.nix
-  ];
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  imports = [ ./nvimtreelua.nix ];
 }
