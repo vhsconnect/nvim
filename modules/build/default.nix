@@ -40,7 +40,7 @@ in
       default = [ ];
       type = types.listOf types.str;
       example = [ "The `foo' service is deprecated and will go away soon!" ];
-      description = lib.mdDoc ''
+      description = ''
         This option allows modules to show warnings to users during
         the evaluation of the system configuration.
       '';

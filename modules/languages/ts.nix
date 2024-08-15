@@ -45,6 +45,33 @@ let
           )
         '';
     };
+    eslint = {
+      package = [
+        "nodePackages"
+        "eslint"
+      ];
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.eslint.with({
+              command = "${nvim.languages.commandOptToCmd cfg.format.package "eslint"}",
+            })
+          )
+        '';
+    };
+    eslint_d = {
+      package = [ "eslint_d" ];
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.eslint_d.with({
+              command = "${nvim.languages.commandOptToCmd cfg.format.package "eslint_d"}",
+            })
+          )
+        '';
+    };
   };
 
   # TODO: specify packages
@@ -67,7 +94,7 @@ let
 in
 {
   options.vim.languages.ts = {
-    enable = mkEnableOption "SQL language support";
+    enable = mkEnableOption "TS/JS language support";
 
     treesitter = {
       enable = mkOption {

@@ -154,6 +154,22 @@
         "type": "github"
       }
     },
+    "nixpkgs2405": {
+      "locked": {
+        "lastModified": 1723556749,
+        "narHash": "sha256-+CHVZnTnIYRLYsARInHYoWkujzcRkLY/gXm3s5bE52o=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4a92571f9207810b559c9eac203d1f4d79830073",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvim-surround": {
       "flake": false,
       "locked": {
@@ -1142,6 +1158,7 @@
         "mustache": "mustache",
         "nil": "nil",
         "nixpkgs": "nixpkgs",
+        "nixpkgs2405": "nixpkgs2405",
         "nvim-surround": "nvim-surround",
         "oil": "oil",
         "oxocarbon": "oxocarbon",

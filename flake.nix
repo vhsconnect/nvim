@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs2405.url = "github:nixos/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
     nil.inputs.nixpkgs.follows = "nixpkgs";
@@ -272,7 +273,12 @@
   };
 
   outputs =
-    { nixpkgs, flake-utils, ... }@inputs:
+    {
+      nixpkgs,
+      nixpkgs2405,
+      flake-utils,
+      ...
+    }@inputs:
     let
       sys = {
         x86_64-linux = "x86_64-linux";
@@ -365,6 +371,7 @@
             ts = {
               enable = true;
               treesitter.enable = true;
+              format.type = "eslint_d";
               format.enable = true;
               extraDiagnostics.enable = true;
             };
@@ -421,7 +428,12 @@
           };
         };
 
-        pkgs = nixpkgs.legacyPackages.${system};
+        overlays.default = final: prev: {
+          nodePackages = nixpkgs2405.legacyPackages.${system}.nodePackages;
+          eslint_d = nixpkgs2405.legacyPackages.${system}.eslint_d;
+        };
+
+        pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ overlays.default ];
 
         neovim = (import ./neovim.nix) { inherit inputs; };
 
