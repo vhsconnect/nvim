@@ -1224,7 +1224,8 @@
         "themed-tabs": "themed-tabs",
         "tmux-nav": "tmux-nav",
         "tokyonight": "tokyonight",
-        "tshjkl": "tshjkl"
+        "tshjkl": "tshjkl",
+        "vim-terraform": "vim-terraform"
       }
     },
     "rust-overlay": {
@@ -1344,6 +1345,22 @@
       "original": {
         "owner": "gsuuon",
         "repo": "tshjkl.nvim",
+        "type": "github"
+      }
+    },
+    "vim-terraform": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715090517,
+        "narHash": "sha256-8b9nfSgW2lfplD/513yfkcvJ8mhyp65WHtAyOxoGGbU=",
+        "owner": "hashivim",
+        "repo": "vim-terraform",
+        "rev": "24de93afb05078bac6a2e966402cc1f672277708",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hashivim",
+        "repo": "vim-terraform",
         "type": "github"
       }
     }

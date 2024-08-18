@@ -270,6 +270,11 @@
       url = "github:folke/tokyonight.nvim";
       flake = false;
     };
+    vim-terraform = {
+      url = "github:hashivim/vim-terraform";
+      flake = false;
+    };
+
   };
 
   outputs =
@@ -339,6 +344,9 @@
             };
             tokyonight = {
               src = inputs.tokyonight;
+            };
+            vim-terraform = {
+              src = inputs.vim-terraform;
             };
           };
           vim.visuals.enable = true;
@@ -460,6 +468,7 @@
                 "oxocarbon"
                 "oil"
                 "tokyonight"
+                "vim-terraform"
               ];
               vim.optPlugins = [ "codeium" ];
             }
