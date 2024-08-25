@@ -1022,11 +1022,11 @@
     "plugin-telescope": {
       "flake": false,
       "locked": {
-        "lastModified": 1718461458,
-        "narHash": "sha256-9N8RLtLvHLQpFcno0jpWlfi8BNYuTicMHAC9Ugg0p6Y=",
+        "lastModified": 1723686624,
+        "narHash": "sha256-rNzfnORvbKoglt20i/rKmlkysPUBlB89F6dRKgB5MKU=",
         "owner": "nvim-telescope",
         "repo": "telescope.nvim",
-        "rev": "979bfa2c4440ef6c6447909776b677ffda5d0c70",
+        "rev": "5972437de807c3bc101565175da66a1aa4f8707a",
         "type": "github"
       },
       "original": {
