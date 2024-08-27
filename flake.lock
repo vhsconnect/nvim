@@ -814,11 +814,11 @@
     "plugin-nvim-tree-lua": {
       "flake": false,
       "locked": {
-        "lastModified": 1717900986,
-        "narHash": "sha256-7KO3wPW65IH4m0jEoyFScNiAVwrlNHU+p0H55AuwlWk=",
+        "lastModified": 1724556208,
+        "narHash": "sha256-/1qj0L/d/iZk+zn0JIUkdHSYp2etciMo35fhV28J5Kw=",
         "owner": "kyazdani42",
         "repo": "nvim-tree.lua",
-        "rev": "2086e564c4d23fea714e8a6d63b881e551af2f41",
+        "rev": "d43ab67d0eb4317961c5e9d15fffe908519debe0",
         "type": "github"
       },
       "original": {
