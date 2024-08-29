@@ -602,6 +602,22 @@
         "type": "github"
       }
     },
+    "plugin-neogit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1724926611,
+        "narHash": "sha256-LRN9UU8vLtpP/qO2S0UOB5DvxpjQJ8np4yQtCunZFgs=",
+        "owner": "NeogitOrg",
+        "repo": "neogit",
+        "rev": "8a60ac4b97c1a7c667506425cb9d5ffca5b8dc8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NeogitOrg",
+        "repo": "neogit",
+        "type": "github"
+      }
+    },
     "plugin-nui-nvim": {
       "flake": false,
       "locked": {
@@ -1186,6 +1202,7 @@
         "plugin-lspkind": "plugin-lspkind",
         "plugin-lspsaga": "plugin-lspsaga",
         "plugin-lualine": "plugin-lualine",
+        "plugin-neogit": "plugin-neogit",
         "plugin-nui-nvim": "plugin-nui-nvim",
         "plugin-null-ls": "plugin-null-ls",
         "plugin-nvim-autopairs": "plugin-nvim-autopairs",

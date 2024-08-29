@@ -209,6 +209,10 @@
     plugin-vim-be-good.url = "github:ThePrimeagen/vim-be-good";
     plugin-vim-be-good.flake = false;
 
+    # git
+    plugin-neogit.url = "github:NeogitOrg/neogit";
+    plugin-neogit.flake = false;
+
     oil = {
       url = "github:stevearc/oil.nvim";
       flake = false;
@@ -361,9 +365,10 @@
             enable = false;
           };
           vim.git = {
-            enable = false;
-            gitsigns.enable = true;
-            gitsigns.codeActions = true;
+            enable = true;
+            neogit.enable = true;
+            gitsigns.enable = false;
+            gitsigns.codeActions = false;
           };
           vim.languages = {
             enableLSP = true;
