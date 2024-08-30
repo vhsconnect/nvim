@@ -23,7 +23,7 @@
     plugin-nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
     plugin-nvim-lspconfig.flake = false;
 
-    plugin-lspsaga.url = "github:tami5/lspsaga.nvim";
+    plugin-lspsaga.url = "github:nvimdev/lspsaga.nvim";
     plugin-lspsaga.flake = false;
 
     plugin-lspkind.url = "github:onsails/lspkind-nvim";
@@ -400,7 +400,7 @@
           vim.lsp = {
             formatOnSave = true;
             lightbulb.enable = true;
-            lspsaga.enable = false;
+            lspsaga.enable = true;
             nvimCodeActionMenu.enable = true;
             trouble.enable = true;
             lspSignature.enable = true;

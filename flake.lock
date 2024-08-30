@@ -573,15 +573,15 @@
     "plugin-lspsaga": {
       "flake": false,
       "locked": {
-        "lastModified": 1670360222,
-        "narHash": "sha256-7ENInq3LAPPTdm0Fb7klOc630j8m4LRj1kLZZFYLh68=",
-        "owner": "tami5",
+        "lastModified": 1723724288,
+        "narHash": "sha256-gVq2C6sT4WQ+zFcuOP+Lg3Rb08OL0BCoiwh2ww8zqiQ=",
+        "owner": "nvimdev",
         "repo": "lspsaga.nvim",
-        "rev": "5faeec9f2508d2d49a66c0ac0d191096b4e3fa81",
+        "rev": "4ce44df854f447cf0a8972e5387b3aeb5efc798b",
         "type": "github"
       },
       "original": {
-        "owner": "tami5",
+        "owner": "nvimdev",
         "repo": "lspsaga.nvim",
         "type": "github"
       }

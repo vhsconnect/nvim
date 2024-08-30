@@ -13,23 +13,17 @@ in
 
   config = mkIf (cfg.enable && cfg.lspsaga.enable) {
     vim.startPlugins = [ "lspsaga" ];
-
     vim.vnoremap = {
       "<silent><leader>ca" = ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>";
     };
 
     vim.nnoremap =
+
       {
-        "<silent><leader>lf" = "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>";
-        "<silent><leader>lh" = "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>";
-        "<silent><C-f>" = "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>";
-        "<silent><C-b>" = "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>";
-        "<silent><leader>lr" = "<cmd>lua require'lspsaga.rename'.rename()<CR>";
-        "<silent><leader>ld" = "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>";
-        "<silent><leader>ll" = "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>";
-        "<silent><leader>lc" = "<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>";
-        "<silent><leader>lp" = "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>";
-        "<silent><leader>ln" = "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>";
+        "<silent><leader>lf" = "<cmd>Lspsaga finder<cr>";
+        "<silent><leader>q" = "<cmd>Lspsaga term_toggle<cr>";
+        "<silent><leader>li" = "<cmd>Lspsaga incomming_calls<cr>";
+        "<silent><leader>lo>" = "<cmd>Lspsaga outgoing_calls<cr>";
       }
       // (
         if (!cfg.nvimCodeActionMenu.enable) then
@@ -48,8 +42,9 @@ in
       nvim.dag.entryAnywhere # lua
         ''
           -- Enable lspsaga
-          local saga = require 'lspsaga'
-          saga.init_lsp_saga()
+          local saga = require 'lspsaga'.setup({ 
+            lightbulb = { enable = false }
+          })
         '';
   };
 }
