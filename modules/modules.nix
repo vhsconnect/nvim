@@ -5,6 +5,7 @@
 }:
 let
   modules = [
+    ./avante
     ./chatgpt
     ./completion
     ./codeium

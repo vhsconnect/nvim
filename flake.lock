@@ -418,6 +418,22 @@
         "type": "github"
       }
     },
+    "plugin-avante-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1725119514,
+        "narHash": "sha256-8E+nnom0AK2nKruz9MnVuWc0uX0xJd4kzUDOos+vRP4=",
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "rev": "534b1e6becaac1df61a9677b050627dfa9678c42",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "type": "github"
+      }
+    },
     "plugin-bufdelete-nvim": {
       "flake": false,
       "locked": {
@@ -642,6 +658,22 @@
         "type": "github"
       }
     },
+    "plugin-dressing": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723846795,
+        "narHash": "sha256-6T2p0hI7/WqaDFQodaDq7uiyuplVqeekayQ2equ/mC0=",
+        "owner": "stevearc",
+        "repo": "dressing.nvim",
+        "rev": "c5775a888adbc50652cb370073fcfec963eca93e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stevearc",
+        "repo": "dressing.nvim",
+        "type": "github"
+      }
+    },
     "plugin-fidget": {
       "flake": false,
       "locked": {
@@ -821,11 +853,11 @@
     "plugin-nui-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1717558941,
-        "narHash": "sha256-tZNe1EA7sMnXCL4KtDlIhPaKry8uSubMW/4aof79L9A=",
+        "lastModified": 1719375254,
+        "narHash": "sha256-o2iNktcWxL0oCtCkbARMiWnTlZA8QWQHy2qeOanBlO4=",
         "owner": "MunifTanjim",
         "repo": "nui.nvim",
-        "rev": "322978c734866996274467de084a95e4f9b5e0b1",
+        "rev": "61574ce6e60c815b0a0c4b5655b8486ba58089a1",
         "type": "github"
       },
       "original": {
@@ -1187,6 +1219,22 @@
         "type": "github"
       }
     },
+    "plugin-render-markdown": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1724977149,
+        "narHash": "sha256-kWENpKZZhqUFYsJkJFts6J0Wc9hhRPV0G8X0TJY9GlU=",
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "rev": "bc8213ddcd91d2045cc3813df861adb93fbf2d2d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MeanderingProgrammer",
+        "repo": "render-markdown.nvim",
+        "type": "github"
+      }
+    },
     "plugin-rust-tools": {
       "flake": false,
       "locked": {
@@ -1379,6 +1427,7 @@
         "nvim-surround": "nvim-surround",
         "oil": "oil",
         "oxocarbon": "oxocarbon",
+        "plugin-avante-nvim": "plugin-avante-nvim",
         "plugin-bufdelete-nvim": "plugin-bufdelete-nvim",
         "plugin-catppuccin": "plugin-catppuccin",
         "plugin-ccls-nvim": "plugin-ccls-nvim",
@@ -1393,6 +1442,7 @@
         "plugin-crates-nvim": "plugin-crates-nvim",
         "plugin-dracula": "plugin-dracula",
         "plugin-dracula-nvim": "plugin-dracula-nvim",
+        "plugin-dressing": "plugin-dressing",
         "plugin-fidget": "plugin-fidget",
         "plugin-gitsigns-nvim": "plugin-gitsigns-nvim",
         "plugin-glow-nvim": "plugin-glow-nvim",
@@ -1427,6 +1477,7 @@
         "plugin-plantuml-syntax": "plugin-plantuml-syntax",
         "plugin-plenary-nvim": "plugin-plenary-nvim",
         "plugin-registers": "plugin-registers",
+        "plugin-render-markdown": "plugin-render-markdown",
         "plugin-rust-tools": "plugin-rust-tools",
         "plugin-scnvim": "plugin-scnvim",
         "plugin-sqls-nvim": "plugin-sqls-nvim",

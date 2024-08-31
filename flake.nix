@@ -214,6 +214,15 @@
     plugin-neogit.url = "github:NeogitOrg/neogit";
     plugin-neogit.flake = false;
 
+    plugin-dressing.url = "github:stevearc/dressing.nvim";
+    plugin-dressing.flake = false;
+
+    plugin-render-markdown.url = "github:MeanderingProgrammer/render-markdown.nvim";
+    plugin-render-markdown.flake = false;
+
+    plugin-avante-nvim.url = "github:yetone/avante.nvim";
+    plugin-avante-nvim.flake = false;
+
     oil = {
       url = "github:stevearc/oil.nvim";
       flake = false;
@@ -279,7 +288,6 @@
       url = "github:hashivim/vim-terraform";
       flake = false;
     };
-
   };
 
   outputs =
@@ -421,6 +429,7 @@
             enable = false;
             name = "oxocarbon";
           };
+          vim.avante.enable = true;
           vim.autopairs.enable = true;
           vim.autocomplete = {
             enable = true;
