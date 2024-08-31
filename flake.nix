@@ -6,6 +6,7 @@
     nil.url = "github:oxalica/nil";
     nil.inputs.nixpkgs.follows = "nixpkgs";
     nil.inputs.flake-utils.follows = "flake-utils";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     ## Plugins (must begin with plugin-)
 
@@ -303,9 +304,11 @@
     flake-utils.lib.eachSystem systems (
       system:
       let
+        package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
         configModule = {
           build.viAlias = true;
           build.vimAlias = true;
+          build.package = package;
           build.rawPlugins = {
             oil = {
               src = inputs.oil;
