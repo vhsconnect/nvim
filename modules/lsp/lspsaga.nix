@@ -17,11 +17,13 @@ in
       "<silent><leader>ca" = ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>";
     };
 
+    vim.tnoremap = {
+      "<silent><C-q>" = "<cmd>Lspsaga term_toggle<cr>";
+    };
     vim.nnoremap =
-
       {
         "<silent><leader>lf" = "<cmd>Lspsaga finder<cr>";
-        "<silent><leader>q" = "<cmd>Lspsaga term_toggle<cr>";
+        "<silent><C-q>" = "<cmd>Lspsaga term_toggle<cr>";
         "<silent><leader>li" = "<cmd>Lspsaga incomming_calls<cr>";
         "<silent><leader>lo>" = "<cmd>Lspsaga outgoing_calls<cr>";
       }

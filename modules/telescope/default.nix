@@ -96,19 +96,19 @@ in
     })
     (mkIf config.vim.treesitter.enable {
       vim.nnoremap = {
-        "<leader>fs" = "<cmd> Telescope treesitter<CR>";
+        # "<leader>fs" = "<cmd> Telescope treesitter<CR>";
       };
     })
     (mkIf config.vim.lsp.enable {
       vim.nnoremap = {
-        "<leader>flsb" = "<cmd> Telescope lsp_document_symbols<CR>";
-        "<leader>flsw" = "<cmd> Telescope lsp_workspace_symbols<CR>";
+        "<leader>fs" = "<cmd> Telescope lsp_document_symbols<CR>";
+        "<leader>fw" = "<cmd> Telescope lsp_workspace_symbols<CR>";
+        "<leader>fd" = "<cmd> Telescope diagnostics<CR>";
 
-        "<leader>flr" = "<cmd> Telescope lsp_references<CR>";
-        "<leader>fli" = "<cmd> Telescope lsp_implementations<CR>";
-        "<leader>flD" = "<cmd> Telescope lsp_definitions<CR>";
-        "<leader>flt" = "<cmd> Telescope lsp_type_definitions<CR>";
-        "<leader>fld" = "<cmd> Telescope diagnostics<CR>";
+        # "<leader>flr" = "<cmd> Telescope lsp_references<CR>";
+        # "<leader>fli" = "<cmd> Telescope lsp_implementations<CR>";
+        # "<leader>flD" = "<cmd> Telescope lsp_definitions<CR>";
+        # "<leader>flt" = "<cmd> Telescope lsp_type_definitions<CR>";
       };
     })
     {
