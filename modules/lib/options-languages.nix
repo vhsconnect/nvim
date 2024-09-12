@@ -30,13 +30,11 @@ in
     };
 
   mkGrammarOption =
-    pkgs: grammar:
-    mkPackageOption pkgs [ "${grammar} treesitter" ] {
+    pkgs: language:
+    mkPackageOption pkgs [ "${language} treesitter" ] {
       default = [
-        "vimPlugins"
-        "nvim-treesitter"
-        "builtGrammars"
-        grammar
+        "tree-sitter-grammars"
+        "tree-sitter-${language}"
       ];
     };
 
