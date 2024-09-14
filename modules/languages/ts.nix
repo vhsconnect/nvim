@@ -102,7 +102,7 @@ in
         type = types.bool;
         default = config.vim.languages.enableTreesitter;
       };
-      tsPackage = nvim.options.mkGrammarOption pkgs "typescript";
+      tsPackage = nvim.options.mkGrammarOption pkgs "tsx";
       jsPackage = nvim.options.mkGrammarOption pkgs "javascript";
     };
 
