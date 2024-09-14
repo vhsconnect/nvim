@@ -131,24 +131,29 @@ in
       vim.luaConfigRC.telescope =
         nvim.dag.entryAnywhere # lua
           ''
-            require("telescope").setup {
-              defaults = {
-                vimgrep_arguments = {
-                  "${pkgs.ripgrep}/bin/rg",
-                  "--color=never",
-                  "--no-heading",
-                  "--with-filename",
-                  "--line-number",
-                  "--column",
-                  "--smart-case"
-                },
-                pickers = {
-                  find_command = {
-                    "${pkgs.fd}/bin/fd",
-                  },
-                },
-              }
-            }
+
+            local telescope = require('telescope')
+            telescope.setup({
+            	defaults = {
+            		vimgrep_arguments =  {
+                   "${pkgs.ripgrep}/bin/rg",
+                   "--color=never",
+                   "--no-heading",
+                   "--hidden",
+                   "--with-filename",
+                   "--line-number",
+                   "--column",
+                   "--smart-case",
+                   "--glob",
+                   "!**/.git/*"
+                }
+            	},
+            	pickers = {
+            		find_files = {
+            			find_command = { "${pkgs.ripgrep}/bin/rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+            		},
+            	},
+            })
           '';
     }
   ]);
