@@ -14,6 +14,7 @@
     plugin-codeium = {
       url = "github:exafunction/codeium.vim";
       flake = false;
+
     };
 
     # tresitter plugins
@@ -288,6 +289,12 @@
       url = "github:hashivim/vim-terraform";
       flake = false;
     };
+
+    diffview = {
+      url = "github:sindrets/diffview.nvim";
+      flake = false;
+    };
+
   };
 
   outputs =
@@ -363,6 +370,9 @@
             vim-terraform = {
               src = inputs.vim-terraform;
             };
+            diffview = {
+              src = inputs.diffview;
+            };
           };
           vim.visuals.enable = true;
           vim.visuals.nvimWebDevicons.enable = true;
@@ -370,7 +380,10 @@
           vim.useSystemClipboard = true;
           vim.showSignColumn = true;
           vim.codeium.enable = true;
-
+          vim.lsp = {
+            enable = true;
+            lspkind.enable = true;
+          };
           vim.splitBelow = false;
           vim.tabline.nvimBufferline = {
             enable = false;
@@ -434,6 +447,14 @@
           vim.autocomplete = {
             enable = true;
             type = "nvim-cmp";
+            # sources = {
+            #   # treesitter = "[TS]";
+            #   # buffer = "b";
+            #   path = "[Path]";
+            #   buffer = "[Buffer]";
+            #   nvim_lsp = "[LSP]";
+            #   # vsnip = "[V]";
+            # };
           };
           vim.filetree.nvimTreeLua.enable = true;
           vim.treesitter.context.enable = false;
@@ -486,6 +507,7 @@
                 "oil"
                 "tokyonight"
                 "vim-terraform"
+                "diffview"
               ];
               vim.optPlugins = [ "codeium" ];
             }

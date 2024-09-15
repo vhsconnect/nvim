@@ -7,7 +7,6 @@
 }:
 let
   extendedLib = import ./lib/stdlib-extended.nix lib;
-
   nvimModules = import ./modules.nix {
     inherit check pkgs;
     lib = extendedLib;

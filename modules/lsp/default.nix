@@ -27,7 +27,7 @@ in
     vim.startPlugins = optional usingNvimCmp "cmp-nvim-lsp";
 
     vim.autocomplete.sources = {
-      "nvim_lsp" = "[LSP]";
+      "nvim_lsp" = null; # setup in autocomplete folder
     };
 
     vim.luaConfigRC.lsp-setup = # lua

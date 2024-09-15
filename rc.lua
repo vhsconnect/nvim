@@ -26,6 +26,9 @@ vim.keymap.set('n', '<BSlash>wl', ':wincmd L<CR>',  { noremap = true })
 vim.keymap.set('n', 's', '<Plug>(leap-forward)',  { noremap = true })
 vim.keymap.set('n', 'S', '<Plug>(leap-backward)',  { noremap = true })
 
+-- neogit
+vim.keymap.set('n', '<leader>hn', ':Neogit<CR>',  { noremap = true })
+
 -- todo
 vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
 -- vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
@@ -167,9 +170,17 @@ require('tshjkl').setup {
 ---------------
 require("oil").setup()
 
+----------------
+-- diffview 
+---------------
 
+require("diffview").setup()
 ----------------
 -- Theme 
 ---------------
 vim.cmd('colorscheme ' .. os.getenv("VIM_THEME"))
+----------------
+-- Neogit
+---------------
+
 

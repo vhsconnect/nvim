@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "diffview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718279802,
+        "narHash": "sha256-SX+ybIzL/w6uyCy4iZKnWnzTFwqB1oXSgyYVAdpdKi8=",
+        "owner": "sindrets",
+        "repo": "diffview.nvim",
+        "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sindrets",
+        "repo": "diffview.nvim",
+        "type": "github"
+      }
+    },
     "emmet": {
       "flake": false,
       "locked": {
@@ -1414,6 +1430,7 @@
     "root": {
       "inputs": {
         "colorschemes": "colorschemes",
+        "diffview": "diffview",
         "emmet": "emmet",
         "flake-utils": "flake-utils",
         "gen": "gen",
