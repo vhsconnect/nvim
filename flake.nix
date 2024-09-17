@@ -447,14 +447,29 @@
           vim.autocomplete = {
             enable = true;
             type = "nvim-cmp";
-            # sources = {
-            #   # treesitter = "[TS]";
-            #   # buffer = "b";
-            #   path = "[Path]";
-            #   buffer = "[Buffer]";
-            #   nvim_lsp = "[LSP]";
-            #   # vsnip = "[V]";
-            # };
+            sources = [
+              {
+                name = "path";
+                priority = "200";
+                format = "[Path]";
+              }
+              {
+                name = "nvim_lsp";
+                priority = "100";
+                format = "[LSP]";
+              }
+              {
+                name = "buffer";
+                priority = "50";
+                format = "[Buffer]";
+              }
+              {
+                name = "vsnip";
+                priority = "50";
+                format = "[Vsnip]";
+              }
+
+            ];
           };
           vim.filetree.nvimTreeLua.enable = true;
           vim.treesitter.context.enable = false;

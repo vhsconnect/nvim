@@ -12,10 +12,20 @@ let
   debuggerEnabled = config.vim.debugger.enable;
 
   defaultTo50 = v: if v == null then "50" else v;
-  entryToSet = n: p: "{ name = '${n}', priority = ${defaultTo50 p}},";
-  builtSources = concatStringsSep "\n" (attrValues (mapAttrs entryToSet cfg.sources));
-  builtMaps = concatStringsSep "\n" (
-    mapAttrsToList (n: v: if v == null then "" else "${n} = '${n}',") cfg.sources
+  # entryToSet = n: p: "{ name = '${n}', priority = ${defaultTo50 p}},";
+  # builtSources = concatStringsSep "\n" (attrValues (mapAttrs (map entryToSet cfg.sources))); # [{} {}]
+
+  sources =
+    let
+      mapper = map (x: ''
+        { name = '${x.name}', priority = ${x.priority}},
+      '');
+    in
+    mapper cfg.sources;
+  builtSources = concatStringsSep "" sources;
+
+  builtMaps = builtins.concatStringsSep " " (
+    map (y: if y.format == null then "" else "${y.name} = '${y.format}',") cfg.sources
   );
 
   dagPlacement = if lspkindEnabled then nvim.dag.entryAfter [ "lspkind" ] else nvim.dag.entryAnywhere;
@@ -45,17 +55,37 @@ in
 
           Note: only use a single attribute name per attribute set
         '';
-        type = with types; attrsOf (nullOr str);
-        default = {
-          path = "200";
-          nvim_lsp = "100";
-          buffer = "50";
-          # treesitter = "50";
-          vsnip = "50";
-        };
-        example = ''
-          {nvim-cmp = null; buffer = "[Buffer]";}
-        '';
+        # type = types.listOf types.attrSet;
+        default = [
+          {
+            name = "path";
+            priority = "200";
+            format = "[Path]";
+          }
+          {
+            name = "nvim_lsp";
+            priority = "100";
+            format = "[LSP]";
+          }
+          {
+            name = "buffer";
+            priority = "50";
+            format = "[Buffer]";
+          }
+          {
+            name = "vsnip";
+            priority = "50";
+            format = "[Vsnip]";
+          }
+        ];
+
+        example = [
+          {
+            name = "path";
+            priority = "200";
+            format = "[Path]";
+          }
+        ];
       };
 
       formatting = {
@@ -90,14 +120,15 @@ in
       "cmp-path"
     ] ++ optional debuggerEnabled "cmp-dap";
 
-    vim.autocomplete.sources = {
-      "nvim-cmp" = null;
-      "nvim_lsp" = null;
-      "vsnip" = null;
-      "buffer" = null;
-      "crates" = null;
-      "path" = null;
-    };
+    # vim.autocomplete.sources = {
+    #   "nvim-cmp" = null;
+    #   "nvim_lsp" = null;
+    #   "vsnip" = null;
+    #   "buffer" = null;
+    #   "crates" = null;
+    #   "path" = null;
+    # };
+    vim.autocomplete.sources = [ ];
 
     vim.luaConfigRC.completion = mkIf (cfg.type == "nvim-cmp") (
       # lua
@@ -170,7 +201,8 @@ in
           },
           formatting = {
             format = ${
-              if lspkindEnabled then "lspkind.cmp_format(lspkind_opts)" else cfg.formatting.format
+              # if lspkindEnabled then "lspkind.cmp_format(lspkind_opts)" else cfg.formatting.format
+              cfg.formatting.format
             },
           },
           ${optionalString debuggerEnabled ''

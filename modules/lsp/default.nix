@@ -26,9 +26,14 @@ in
   config = mkIf cfg.enable {
     vim.startPlugins = optional usingNvimCmp "cmp-nvim-lsp";
 
-    vim.autocomplete.sources = {
-      "nvim_lsp" = null; # setup in autocomplete folder
-    };
+    vim.autocomplete.sources = [
+      # {
+      #   name = "nvim_lsp";
+      #   priority = "200";
+      #   format = "[LSP]";
+      # }
+
+    ];
 
     vim.luaConfigRC.lsp-setup = # lua
       ''

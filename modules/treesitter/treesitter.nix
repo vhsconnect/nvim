@@ -29,9 +29,11 @@ in
   config = mkIf cfg.enable {
     vim.startPlugins = [ "nvim-treesitter" ] ++ optional usingNvimCmp "cmp-treesitter";
 
-    vim.autocomplete.sources = {
+    vim.autocomplete.sources = [
+      #{
       # "treesitter" = null;
-    };
+      #}
+    ];
 
     # For some reason treesitter highlighting does not work on start if this is set before syntax on
     vim.configRC.treesitter-fold = mkIf cfg.fold (

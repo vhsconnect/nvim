@@ -69,9 +69,13 @@ in
 
       vim.startPlugins = [ "crates-nvim" ];
 
-      vim.autocomplete.sources = {
-        "crates" = "[Crates]";
-      };
+      vim.autocomplete.sources = [
+        {
+          name = "crates";
+          format = "[Crates]";
+          priority = "50";
+        }
+      ];
       vim.luaConfigRC.rust-crates =
         nvim.dag.entryAnywhere # lua
           ''
