@@ -11,6 +11,16 @@ vim.keymap.set('n', 'J', '5j', {noremap = true})
 vim.keymap.set('n', 'L', '10l', {noremap = true})
 vim.keymap.set('n', 'H', '10h', {noremap = true})
 
+vim.keymap.set('n', '<Up>', ':resize +3<CR>', {noremap = true})
+vim.keymap.set('n', '<Down>', ':resize -3<CR>', {noremap = true})
+vim.keymap.set('n', '<Right>', ':vertical resize +3<CR>', {noremap = true})
+vim.keymap.set('n', '<Left>', ':vertical resize -3<CR>', {noremap = true})
+
+vim.keymap.set('i', '<Up>', '<C-o>:resize +3<CR>', {noremap = true})
+vim.keymap.set('i', '<Down>', '<C-o>:resize -3<CR>', {noremap = true})
+vim.keymap.set('i', '<Right>', '<C-o>:vertical resize +3<CR>', {noremap = true})
+vim.keymap.set('i', '<Left>', '<C-o>:vertical resize -3<CR>', {noremap = true})
+
 -- move visual block up and down
 vim.keymap.set('x', 'J', ':move \'>+1<CR>gv-gv', { noremap = true })
 vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', { noremap = true })
