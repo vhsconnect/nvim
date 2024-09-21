@@ -75,19 +75,20 @@ let
   };
 
   # TODO: specify packages
-  defaultDiagnostics = [ "eslint" ];
+  defaultDiagnostics = [ "eslint_d" ];
   diagnostics = {
-    eslint = {
-      package = pkgs.nodePackages.eslint;
+    eslint_d = {
+      package = pkgs.eslint_d;
       nullConfig =
         pkg: # lua
         ''
           table.insert(
             ls_sources,
-            null_ls.builtins.diagnostics.eslint.with({
-              command = "${pkg}/bin/eslint",
+            null_ls.builtins.diagnostics.eslint_d.with({
+              command = "${pkg}/bin/eslint_d",
+
             })
-          )
+            )
         '';
     };
   };

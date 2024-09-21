@@ -490,8 +490,8 @@
         };
 
         overlays.default = final: prev: {
-          nodePackages = nixpkgs2405.legacyPackages.${system}.nodePackages;
-          eslint_d = nixpkgs2405.legacyPackages.${system}.eslint_d;
+          # nodePackages = nixpkgs2405.legacyPackages.${system}.nodePackages;
+          # eslint_d = nixpkgs2405.legacyPackages.${system}.eslint_d;
         };
 
         pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ overlays.default ];
