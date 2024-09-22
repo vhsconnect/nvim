@@ -1283,6 +1283,22 @@
         "type": "github"
       }
     },
+    "plugin-sqlite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713684746,
+        "narHash": "sha256-nbvc2hoOscOYoPPFUPnYdnXDwAPh5kiC2vI3lDP2QNo=",
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "rev": "d0ffd703b56d090d213b497ed4eb840495f14a11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "type": "github"
+      }
+    },
     "plugin-sqls-nvim": {
       "flake": false,
       "locked": {
@@ -1312,6 +1328,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope.nvim",
+        "type": "github"
+      }
+    },
+    "plugin-telescope-all-recent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716130221,
+        "narHash": "sha256-EYU7HazKcABAGnJ3iqGqM2n+XTo64L1uqoopL/XuLFg=",
+        "owner": "prochri",
+        "repo": "telescope-all-recent.nvim",
+        "rev": "267e9e5fd13a6e9a4cc6ffe00452d446d040401d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "prochri",
+        "repo": "telescope-all-recent.nvim",
         "type": "github"
       }
     },
@@ -1497,8 +1529,10 @@
         "plugin-render-markdown": "plugin-render-markdown",
         "plugin-rust-tools": "plugin-rust-tools",
         "plugin-scnvim": "plugin-scnvim",
+        "plugin-sqlite": "plugin-sqlite",
         "plugin-sqls-nvim": "plugin-sqls-nvim",
         "plugin-telescope": "plugin-telescope",
+        "plugin-telescope-all-recent": "plugin-telescope-all-recent",
         "plugin-telescope-file-browser": "plugin-telescope-file-browser",
         "plugin-telescope-live-grep-args": "plugin-telescope-live-grep-args",
         "plugin-todo-comments": "plugin-todo-comments",

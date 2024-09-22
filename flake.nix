@@ -17,6 +17,10 @@
 
     };
 
+    # utility plugins
+    plugin-sqlite.url = "github:kkharji/sqlite.lua";
+    plugin-sqlite.flake = false;
+
     # tresitter plugins
     plugin-nvim-treesitter-context.url = "github:nvim-treesitter/nvim-treesitter-context";
     plugin-nvim-treesitter-context.flake = false;
@@ -85,6 +89,9 @@
 
     plugin-telescope-live-grep-args.url = "github:nvim-telescope/telescope-live-grep-args.nvim";
     plugin-telescope-live-grep-args.flake = false;
+
+    plugin-telescope-all-recent.url = "github:prochri/telescope-all-recent.nvim";
+    plugin-telescope-all-recent.flake = false;
 
     # Filetrees
     plugin-nvim-tree-lua.url = "github:kyazdani42/nvim-tree.lua";
@@ -479,6 +486,7 @@
             whichKey.enable = true;
           };
           vim.telescope.enable = true;
+          vim.telescope.recency-bias.enable = true;
           vim.debugger = {
             enable = false;
             ui.enable = true;
