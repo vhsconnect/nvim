@@ -298,7 +298,21 @@
     };
 
     diffview = {
+
       url = "github:sindrets/diffview.nvim";
+      flake = false;
+    };
+
+    dadbod = {
+      url = "github:tpope/vim-dadbod";
+      flake = false;
+    };
+    dadbod-ui = {
+      url = "github:kristijanhusak/vim-dadbod-ui";
+      flake = false;
+    };
+    dadbod-completion = {
+      url = "github:kristijanhusak/vim-dadbod-completion";
       flake = false;
     };
 
@@ -380,6 +394,15 @@
             diffview = {
               src = inputs.diffview;
             };
+            dadbod = {
+              src = inputs.dadbod;
+            };
+            dadbod-ui = {
+              src = inputs.dadbod-ui;
+            };
+            dadbod-completion = {
+              src = inputs.dadbod-completion;
+            };
           };
           vim.visuals.enable = true;
           vim.visuals.nvimWebDevicons.enable = true;
@@ -423,15 +446,18 @@
             rust.lsp.enable = true;
             css.enable = true;
             css.lsp.enable = true;
-            tailwindcss.enable = true;
-            tailwindcss.lsp.enable = true;
+            tailwindcss.enable = false;
+            tailwindcss.lsp.enable = false;
             haskell.enable = true;
             haskell.lsp.enable = true;
             haskell.format.enable = true;
-            angular.enable = true;
-            angular.lsp.enable = true;
-            scala.enable = true;
-            scala.lsp.enable = true;
+            angular.enable = false;
+            angular.lsp.enable = false;
+            scala.enable = false;
+            scala.lsp.enable = false;
+            sql.enable = false;
+            sql.lsp.enable = false;
+
           };
           vim.lsp = {
             formatOnSave = true;
@@ -531,6 +557,9 @@
                 "tokyonight"
                 "vim-terraform"
                 "diffview"
+                "dadbod"
+                "dadbod-ui"
+                "dadbod-completion"
               ];
               vim.optPlugins = [ "codeium" ];
             }

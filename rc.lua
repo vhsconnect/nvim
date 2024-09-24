@@ -189,8 +189,28 @@ require("diffview").setup()
 -- Theme 
 ---------------
 vim.cmd('colorscheme ' .. os.getenv("VIM_THEME"))
+
 ----------------
--- Neogit
+-- DBUI
 ---------------
 
+vim.g.db_ui_use_nerd_fonts = 1
+vim.g.db_ui_save_location = '~/Dropbox/db_queries/'
+-- TODO this belongs in completion module
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"sql", "mysql", "plsql"},
+  callback = function()
+    require('cmp').setup.buffer({
+      sources = {{
+        name = 'vim-dadbod-completion'
+      }}
+    })
+  end
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dbout",
+  callback = function()
+    vim.opt_local.foldenable = false
+  end
+})
 

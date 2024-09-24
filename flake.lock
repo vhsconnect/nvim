@@ -16,6 +16,54 @@
         "type": "github"
       }
     },
+    "dadbod": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717176478,
+        "narHash": "sha256-8wnUSYctVn3JeCVz2fdi9qcKi8ZyA4To+xs4WaP6rog=",
+        "owner": "tpope",
+        "repo": "vim-dadbod",
+        "rev": "7888cb7164d69783d3dce4e0283decd26b82538b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-dadbod",
+        "type": "github"
+      }
+    },
+    "dadbod-completion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723710262,
+        "narHash": "sha256-kci8ksgSRPmRhwTYw7Ya1v4hwPjN4BLFjV6+6YiK1hA=",
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-completion",
+        "rev": "880f7e9f2959e567c718d52550f9fae1aa07aa81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-completion",
+        "type": "github"
+      }
+    },
+    "dadbod-ui": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727066614,
+        "narHash": "sha256-mgY/vVrv8hq7TtwX4tvHXfGX3Z3PIcRGdt299WU4YhI=",
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-ui",
+        "rev": "f29c85ab42861c6ef683289b0c6a51e0d436dcf6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-ui",
+        "type": "github"
+      }
+    },
     "diffview": {
       "flake": false,
       "locked": {
@@ -1462,6 +1510,9 @@
     "root": {
       "inputs": {
         "colorschemes": "colorschemes",
+        "dadbod": "dadbod",
+        "dadbod-completion": "dadbod-completion",
+        "dadbod-ui": "dadbod-ui",
         "diffview": "diffview",
         "emmet": "emmet",
         "flake-utils": "flake-utils",
