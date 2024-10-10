@@ -51,8 +51,12 @@
     plugin-lsp-signature.url = "github:ray-x/lsp_signature.nvim";
     plugin-lsp-signature.flake = false;
 
-    plugin-null-ls.url = "github:jose-elias-alvarez/null-ls.nvim";
+    plugin-null-ls.url = "github:nvimtools/none-ls.nvim";
     plugin-null-ls.flake = false;
+
+    # needed for eslint_d
+    plugin-none-ls-extras.url = "github:nvimtools/none-ls-extras.nvim";
+    plugin-none-ls-extras.flake = false;
 
     plugin-sqls-nvim.url = "github:nanotee/sqls.nvim";
     plugin-sqls-nvim.flake = false;
@@ -432,8 +436,8 @@
             nix.enable = true;
             nix.format.enable = true;
             nix.format.type = "nixfmt";
-            markdown.enable = true;
-            html.enable = true;
+            markdown.enable = false;
+            html.enable = false;
             html.treesitter.enable = true;
             python.enable = true;
             ts = {
@@ -443,13 +447,13 @@
               format.enable = true;
               extraDiagnostics.enable = true;
             };
-            rust.enable = true;
+            rust.enable = false;
             rust.lsp.enable = true;
-            css.enable = true;
+            css.enable = false;
             css.lsp.enable = true;
             tailwindcss.enable = false;
             tailwindcss.lsp.enable = false;
-            haskell.enable = true;
+            haskell.enable = false;
             haskell.lsp.enable = true;
             haskell.format.enable = true;
             angular.enable = false;

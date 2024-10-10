@@ -914,6 +914,22 @@
         "type": "github"
       }
     },
+    "plugin-none-ls-extras": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1728140247,
+        "narHash": "sha256-w4Z2P1Mkx5nfdab23AtU443CRLxzQqKegmPuNB5Rbw8=",
+        "owner": "nvimtools",
+        "repo": "none-ls-extras.nvim",
+        "rev": "958db3b4575bb96373cb20846b4cc76f3499a9bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvimtools",
+        "repo": "none-ls-extras.nvim",
+        "type": "github"
+      }
+    },
     "plugin-nui-nvim": {
       "flake": false,
       "locked": {
@@ -933,16 +949,16 @@
     "plugin-null-ls": {
       "flake": false,
       "locked": {
-        "lastModified": 1691810493,
-        "narHash": "sha256-cWA0rzkOp/ekVKaFee7iea1lhnqKtWUIU+fW5M950wI=",
-        "owner": "jose-elias-alvarez",
-        "repo": "null-ls.nvim",
-        "rev": "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7",
+        "lastModified": 1727776881,
+        "narHash": "sha256-3QPk7Vqh0wLsH3F6qJ2hK1a97UDzlrACuWZH+RHLrPw=",
+        "owner": "nvimtools",
+        "repo": "none-ls.nvim",
+        "rev": "0e0a940477cc08fa7b1799384a1d668058ed4e61",
         "type": "github"
       },
       "original": {
-        "owner": "jose-elias-alvarez",
-        "repo": "null-ls.nvim",
+        "owner": "nvimtools",
+        "repo": "none-ls.nvim",
         "type": "github"
       }
     },
@@ -1554,6 +1570,7 @@
         "plugin-lspsaga": "plugin-lspsaga",
         "plugin-lualine": "plugin-lualine",
         "plugin-neogit": "plugin-neogit",
+        "plugin-none-ls-extras": "plugin-none-ls-extras",
         "plugin-nui-nvim": "plugin-nui-nvim",
         "plugin-null-ls": "plugin-null-ls",
         "plugin-nvim-autopairs": "plugin-nvim-autopairs",

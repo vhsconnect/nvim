@@ -44,30 +44,18 @@ let
           )
         '';
     };
-    eslint = {
-      package = [
-        "nodePackages"
-        "eslint"
-      ];
-      nullConfig = # lua
-        ''
-          table.insert(
-            ls_sources,
-            null_ls.builtins.formatting.eslint.with({
-              command = "${nvim.languages.commandOptToCmd cfg.format.package "eslint"}",
-            })
-          )
-        '';
-    };
     eslint_d = {
       package = [ "eslint_d" ];
       nullConfig = # lua
         ''
           table.insert(
             ls_sources,
-            null_ls.builtins.formatting.eslint_d.with({
-              command = "${nvim.languages.commandOptToCmd cfg.format.package "eslint_d"}",
+            require("none-ls.formatting.eslint_d").with({
+               command = "${pkgs.eslint_d}/bin/eslint_d",
             })
+            --  null_ls.builtins.formatting.eslint_d.with({
+            --   command = "${nvim.languages.commandOptToCmd cfg.format.package "eslint_d"} ",
+            -- })
           )
         '';
     };
@@ -83,9 +71,8 @@ let
         ''
           table.insert(
             ls_sources,
-            null_ls.builtins.diagnostics.eslint_d.with({
+            require("none-ls.diagnostics.eslint_d").with({
               command = "${pkg}/bin/eslint_d",
-
             })
             )
         '';
