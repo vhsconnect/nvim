@@ -9,16 +9,15 @@ with builtins;
 let
   cfg = config.vim.languages.ts;
 
-  defaultServer = "tsserver";
+  defaultServer = "ts_ls";
   servers = {
-    tsserver = {
+    ts_ls = {
       package = [
-        "nodePackages"
         "typescript-language-server"
       ];
       lspConfig = # lua
         ''
-          lspconfig.tsserver.setup {
+          lspconfig.ts_ls.setup {
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "typescript-language-server"}", "--stdio"},

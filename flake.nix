@@ -1,5 +1,6 @@
 {
   inputs = {
+
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs2405.url = "github:nixos/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
@@ -409,7 +410,7 @@
           vim.preventJunkFiles = true;
           vim.useSystemClipboard = true;
           vim.showSignColumn = true;
-          vim.codeium.enable = true;
+          vim.codeium.enable = false;
           vim.lsp = {
             enable = true;
             lspkind.enable = true;

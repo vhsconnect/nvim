@@ -1,7 +1,7 @@
 vim.keymap.set('n', '<space>n', ':NvimTreeToggle<CR>', {noremap = true})
 vim.keymap.set('n', '<space>ss', ':set spell<CR>', {noremap = true})
 vim.keymap.set('n', '<space>sn', ':set nospell<CR>', {noremap = true})
-vim.keymap.set('n', '<space>l', ':PrettierAsync<CR>', {noremap = true})
+vim.keymap.set('n', '<space>l', ':DBUI<CR>', {noremap = true})
 vim.keymap.set('n', '<space>g<space>', ':Gen<CR>', {noremap = true})
 vim.keymap.set('n', '<space>\'', ':b#<CR>', {noremap = true})
 
