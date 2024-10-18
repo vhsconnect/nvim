@@ -219,10 +219,6 @@
     plugin-plantuml-previewer.url = "github:weirongxu/plantuml-previewer.vim";
     plugin-plantuml-previewer.flake = false;
 
-    # misc
-    plugin-vim-be-good.url = "github:ThePrimeagen/vim-be-good";
-    plugin-vim-be-good.flake = false;
-
     # git
     plugin-neogit.url = "github:NeogitOrg/neogit";
     plugin-neogit.flake = false;
@@ -301,9 +297,7 @@
       url = "github:hashivim/vim-terraform";
       flake = false;
     };
-
     diffview = {
-
       url = "github:sindrets/diffview.nvim";
       flake = false;
     };
@@ -320,7 +314,10 @@
       url = "github:kristijanhusak/vim-dadbod-completion";
       flake = false;
     };
-
+    vim-prettier = {
+      url = "github:prettier/vim-prettier";
+      flake = false;
+    };
   };
 
   outputs =
@@ -407,6 +404,9 @@
             };
             dadbod-completion = {
               src = inputs.dadbod-completion;
+            };
+            vim-prettier = {
+              src = inputs.vim-prettier;
             };
           };
           vim.visuals.enable = true;
@@ -565,6 +565,7 @@
                 "dadbod"
                 "dadbod-ui"
                 "dadbod-completion"
+                "vim-prettier"
               ];
               vim.optPlugins = [ "codeium" ];
             }

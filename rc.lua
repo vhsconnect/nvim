@@ -1,9 +1,12 @@
 vim.keymap.set('n', '<space>n', ':NvimTreeToggle<CR>', {noremap = true})
 vim.keymap.set('n', '<space>ss', ':set spell<CR>', {noremap = true})
 vim.keymap.set('n', '<space>sn', ':set nospell<CR>', {noremap = true})
-vim.keymap.set('n', '<space>l', ':DBUI<CR>', {noremap = true})
-vim.keymap.set('n', '<space>g<space>', ':Gen<CR>', {noremap = true})
+vim.keymap.set('n', '<space>ld', ':DBUI<CR>', {noremap = true})
+vim.keymap.set('n', '<space>ln', ':Neogit<CR>', {noremap = true})
 vim.keymap.set('n', '<space>\'', ':b#<CR>', {noremap = true})
+vim.keymap.set('n', '<space>gl', ':PrettierAsync<CR>', {noremap = true})
+vim.keymap.set('v', '<space>gl', ':PrettierFragment<CR>', {noremap = true})
+vim.keymap.set('n', '<space>g<space>', ':Gen<CR>', {noremap = true})
 
 
 vim.keymap.set('n', 'K', '5k', {noremap = true})
@@ -193,6 +196,7 @@ vim.cmd('colorscheme ' .. os.getenv("VIM_THEME"))
 ----------------
 -- DBUI
 ---------------
+vim.g['prettier#exec_cmd_path'] = "/etc/profiles/per-user/vhs/bin/prettierd"
 
 vim.g.db_ui_use_nerd_fonts = 1
 vim.g.db_ui_save_location = '~/Dropbox/db_queries/'
