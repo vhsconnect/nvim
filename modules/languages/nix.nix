@@ -27,6 +27,7 @@ let
           ${optionalString cfg.format.enable ''
             settings = {
               ["nil"] = {
+              nix = { flake = { autoArchive = false }},
             ${optionalString (cfg.format.type == "alejandra") ''
               formatting = {
                 command = {"${cfg.format.package}/bin/alejandra", "--quiet"},

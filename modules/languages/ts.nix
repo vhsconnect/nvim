@@ -13,6 +13,7 @@ let
   servers = {
     ts_ls = {
       package = [
+        "nodePackages"
         "typescript-language-server"
       ];
       lspConfig = # lua

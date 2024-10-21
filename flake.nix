@@ -1,12 +1,11 @@
 {
   inputs = {
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs2405.url = "github:nixos/nixpkgs/nixos-24.05";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
     nil.inputs.nixpkgs.follows = "nixpkgs";
-    nil.inputs.flake-utils.follows = "flake-utils";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     ## Plugins (must begin with plugin-)
@@ -344,73 +343,77 @@
       let
         package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
         configModule = {
-          build.viAlias = true;
-          build.vimAlias = true;
-          build.package = package;
-          build.rawPlugins = {
-            oil = {
-              src = inputs.oil;
-            };
-            oxocarbon = {
-              src = inputs.oxocarbon;
-            };
-            tshjkl = {
-              src = inputs.tshjkl;
-            };
-            emmet = {
-              src = inputs.emmet;
-            };
-            mustache = {
-              src = inputs.mustache;
-            };
-            tmux-nav = {
-              src = inputs.tmux-nav;
-            };
-            gen = {
-              src = inputs.gen;
-            };
-            leap-nvim = {
-              src = inputs.leap-nvim;
-            };
-            tcomment = {
-              src = inputs.tcomment;
-            };
-            colorschemes = {
-              src = inputs.colorschemes;
-            };
-            gitgutter = {
-              src = inputs.gitgutter;
-            };
-            themed-tabs = {
-              src = inputs.themed-tabs;
-            };
-            nvim-surround = {
-              src = inputs.nvim-surround;
-            };
-            tokyonight = {
-              src = inputs.tokyonight;
-            };
-            vim-terraform = {
-              src = inputs.vim-terraform;
-            };
-            diffview = {
-              src = inputs.diffview;
-            };
-            dadbod = {
-              src = inputs.dadbod;
-            };
-            dadbod-ui = {
-              src = inputs.dadbod-ui;
-            };
-            dadbod-completion = {
-              src = inputs.dadbod-completion;
-            };
-            vim-prettier = {
-              src = inputs.vim-prettier;
+          build = {
+            inherit package;
+            viAlias = true;
+            vimAlias = true;
+            rawPlugins = {
+              oil = {
+                src = inputs.oil;
+              };
+              oxocarbon = {
+                src = inputs.oxocarbon;
+              };
+              tshjkl = {
+                src = inputs.tshjkl;
+              };
+              emmet = {
+                src = inputs.emmet;
+              };
+              mustache = {
+                src = inputs.mustache;
+              };
+              tmux-nav = {
+                src = inputs.tmux-nav;
+              };
+              gen = {
+                src = inputs.gen;
+              };
+              leap-nvim = {
+                src = inputs.leap-nvim;
+              };
+              tcomment = {
+                src = inputs.tcomment;
+              };
+              colorschemes = {
+                src = inputs.colorschemes;
+              };
+              gitgutter = {
+                src = inputs.gitgutter;
+              };
+              themed-tabs = {
+                src = inputs.themed-tabs;
+              };
+              nvim-surround = {
+                src = inputs.nvim-surround;
+              };
+              tokyonight = {
+                src = inputs.tokyonight;
+              };
+              vim-terraform = {
+                src = inputs.vim-terraform;
+              };
+              diffview = {
+                src = inputs.diffview;
+              };
+              dadbod = {
+                src = inputs.dadbod;
+              };
+              dadbod-ui = {
+                src = inputs.dadbod-ui;
+              };
+              dadbod-completion = {
+                src = inputs.dadbod-completion;
+              };
+              vim-prettier = {
+                src = inputs.vim-prettier;
+              };
             };
           };
-          vim.visuals.enable = true;
-          vim.visuals.nvimWebDevicons.enable = true;
+          vim.visuals = {
+            enable = true;
+            nvimWebDevicons.enable = true;
+          };
           vim.preventJunkFiles = true;
           vim.useSystemClipboard = true;
           vim.showSignColumn = true;
@@ -433,9 +436,12 @@
             enableLSP = true;
             enableFormat = true;
             enableTreesitter = true;
-            nix.enable = true;
-            nix.format.enable = true;
-            nix.format.type = "nixfmt";
+            nix = {
+              enable = true;
+              extraDiagnostics.enable = true;
+              format.enable = true;
+              format.type = "nixfmt";
+            };
             markdown.enable = false;
             html.enable = false;
             html.treesitter.enable = true;
@@ -453,9 +459,11 @@
             css.lsp.enable = true;
             tailwindcss.enable = false;
             tailwindcss.lsp.enable = false;
-            haskell.enable = false;
-            haskell.lsp.enable = true;
-            haskell.format.enable = true;
+            haskell = {
+              enable = false;
+              lsp.enable = true;
+              format.enable = true;
+            };
             angular.enable = false;
             angular.lsp.enable = false;
             scala.enable = false;
