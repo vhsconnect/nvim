@@ -16,6 +16,8 @@ in
 
     fold = mkEnableOption "fold with treesitter";
 
+    highlight = mkEnableOption "highlight with treesitter";
+
     grammars = mkOption {
       type = with types; listOf package;
       default = [ ];
@@ -27,46 +29,48 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins = [ "nvim-treesitter" ] ++ optional usingNvimCmp "cmp-treesitter";
+    vim = {
+      startPlugins = [ "nvim-treesitter" ] ++ optional usingNvimCmp "cmp-treesitter";
 
-    vim.autocomplete.sources = [
-      #{
-      # "treesitter" = null;
-      #}
-    ];
+      autocomplete.sources = [
+        #{
+        # "treesitter" = null;
+        #}
+      ];
 
-    # For some reason treesitter highlighting does not work on start if this is set before syntax on
-    vim.configRC.treesitter-fold = mkIf cfg.fold (
-      nvim.dag.entryBefore [ "basic" ] ''
-        set foldmethod=expr
-        set foldexpr=nvim_treesitter#foldexpr()
-        set nofoldenable
-      ''
-    );
-
-    vim.luaConfigRC.treesitter =
-      nvim.dag.entryAnywhere # lua
+      # For some reason treesitter highlighting does not work on start if this is set before syntax on
+      configRC.treesitter-fold = mkIf cfg.fold (
+        nvim.dag.entryBefore [ "basic" ] ''
+          set foldmethod=expr
+          set foldexpr=nvim_treesitter#foldexpr()
+          set nofoldenable
         ''
-          require'nvim-treesitter.configs'.setup {
-            highlight = {
-              enable = true,
-              disable = {},
-            },
+      );
 
-            auto_install = false,
-            ignore_install = {"all"},
-            ensure_installed = {},
-
-            incremental_selection = {
-              enable = true,
-              keymaps = {
-                init_selection = "gnn",
-                node_incremental = "<leader>]",
-                scope_incremental = "<leader><leader>]",
-                node_decremental = "<leader>[",
+      luaConfigRC.treesitter =
+        nvim.dag.entryAnywhere # lua
+          ''
+            require'nvim-treesitter.configs'.setup {
+              highlight = {
+                enable = ${if cfg.highlight then "true" else "false"},
+                disable = {},
               },
+
+              auto_install = false,
+              ignore_install = {"all"},
+              ensure_installed = {},
+
+              incremental_selection = {
+                enable = true,
+                keymaps = {
+                  init_selection = "gnn",
+                  node_incremental = "<leader>]",
+                  scope_incremental = "<leader><leader>]",
+                  node_decremental = "<leader>[",
+                },
+              }
             }
-          }
-        '';
+          '';
+    };
   };
 }

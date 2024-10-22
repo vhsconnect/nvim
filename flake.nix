@@ -320,12 +320,7 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      nixpkgs2405,
-      flake-utils,
-      ...
-    }@inputs:
+    { nixpkgs, flake-utils, ... }@inputs:
     let
       sys = {
         x86_64-linux = "x86_64-linux";
@@ -410,136 +405,138 @@
               };
             };
           };
-          vim.visuals = {
-            enable = true;
-            nvimWebDevicons.enable = true;
-          };
-          vim.preventJunkFiles = true;
-          vim.useSystemClipboard = true;
-          vim.showSignColumn = true;
-          vim.codeium.enable = false;
-          vim.lsp = {
-            enable = true;
-            lspkind.enable = true;
-          };
-          vim.splitBelow = false;
-          vim.tabline.nvimBufferline = {
-            enable = false;
-          };
-          vim.git = {
-            enable = true;
-            neogit.enable = true;
-            gitsigns.enable = false;
-            gitsigns.codeActions = false;
-          };
-          vim.languages = {
-            enableLSP = true;
-            enableFormat = true;
-            enableTreesitter = true;
-            nix = {
+          vim = {
+            visuals = {
               enable = true;
-              extraDiagnostics.enable = true;
-              format.enable = true;
-              format.type = "nixfmt";
+              nvimWebDevicons.enable = true;
             };
-            markdown.enable = false;
-            html.enable = false;
-            html.treesitter.enable = true;
-            python.enable = true;
-            ts = {
+            preventJunkFiles = true;
+            useSystemClipboard = true;
+            showSignColumn = true;
+            codeium.enable = false;
+            lsp = {
               enable = true;
-              treesitter.enable = true;
-              format.type = "eslint_d";
-              format.enable = true;
-              extraDiagnostics.enable = true;
+              lspkind.enable = true;
             };
-            rust.enable = false;
-            rust.lsp.enable = true;
-            css.enable = false;
-            css.lsp.enable = true;
-            tailwindcss.enable = false;
-            tailwindcss.lsp.enable = false;
-            haskell = {
+            splitBelow = false;
+            tabline.nvimBufferline = {
               enable = false;
-              lsp.enable = true;
-              format.enable = true;
             };
-            angular.enable = false;
-            angular.lsp.enable = false;
-            scala.enable = false;
-            scala.lsp.enable = false;
-            sql.enable = false;
-            sql.lsp.enable = false;
+            git = {
+              enable = true;
+              neogit.enable = true;
+              gitsigns.enable = false;
+              gitsigns.codeActions = false;
+            };
+            languages = {
+              enableLSP = true;
+              enableFormat = true;
+              enableTreesitter = true;
+              nix = {
+                enable = true;
+                extraDiagnostics.enable = true;
+                format.enable = true;
+                format.type = "nixfmt";
+              };
+              markdown.enable = false;
+              html.enable = false;
+              html.treesitter.enable = true;
+              python.enable = true;
+              ts = {
+                enable = true;
+                treesitter.enable = true;
+                format.type = "eslint_d";
+                format.enable = true;
+                extraDiagnostics.enable = true;
+              };
+              rust.enable = false;
+              rust.lsp.enable = true;
+              css.enable = false;
+              css.lsp.enable = true;
+              tailwindcss.enable = false;
+              tailwindcss.lsp.enable = false;
+              haskell = {
+                enable = false;
+                lsp.enable = true;
+                format.enable = true;
+              };
+              angular.enable = false;
+              angular.lsp.enable = false;
+              scala.enable = false;
+              scala.lsp.enable = false;
+              sql.enable = false;
+              sql.lsp.enable = false;
 
-          };
-          vim.lsp = {
-            formatOnSave = true;
-            lightbulb.enable = true;
-            lspsaga.enable = true;
-            nvimCodeActionMenu.enable = true;
-            trouble.enable = true;
-            lspSignature.enable = true;
-          };
-          vim.statusline.lualine = {
-            enable = false;
-            icons = false;
-          };
-          vim.theme = {
-            enable = false;
-            name = "oxocarbon";
-          };
-          vim.avante.enable = true;
-          vim.autopairs.enable = true;
-          vim.autocomplete = {
-            enable = true;
-            type = "nvim-cmp";
-            sources = [
-              {
-                name = "path";
-                priority = "200";
-                format = "[Path]";
-              }
-              {
-                name = "nvim_lsp";
-                priority = "100";
-                format = "[LSP]";
-              }
-              {
-                name = "buffer";
-                priority = "50";
-                format = "[Buffer]";
-              }
-              {
-                name = "vsnip";
-                priority = "50";
-                format = "[Vsnip]";
-              }
+            };
+            lsp = {
+              formatOnSave = true;
+              lightbulb.enable = true;
+              lspsaga.enable = true;
+              nvimCodeActionMenu.enable = true;
+              trouble.enable = true;
+              lspSignature.enable = true;
+            };
+            statusline.lualine = {
+              enable = false;
+              icons = false;
+            };
+            theme = {
+              enable = false;
+              name = "oxocarbon";
+            };
+            avante.enable = true;
+            autopairs.enable = true;
+            autocomplete = {
+              enable = true;
+              type = "nvim-cmp";
+              sources = [
+                {
+                  name = "path";
+                  priority = "200";
+                  format = "[Path]";
+                }
+                {
+                  name = "nvim_lsp";
+                  priority = "100";
+                  format = "[LSP]";
+                }
+                {
+                  name = "buffer";
+                  priority = "50";
+                  format = "[Buffer]";
+                }
+                {
+                  name = "vsnip";
+                  priority = "50";
+                  format = "[Vsnip]";
+                }
 
-            ];
-          };
-          vim.filetree.nvimTreeLua.enable = true;
-          vim.treesitter.context.enable = false;
-          vim.treesitter.enable = true;
-          vim.keys = {
-            enable = true;
-            whichKey.enable = true;
-          };
-          vim.telescope.enable = true;
-          vim.telescope.recency-bias.enable = true;
-          vim.debugger = {
-            enable = false;
-            ui.enable = true;
-            virtualText.enable = true;
-          };
-          vim.luaConfigRC = {
-            a = "${builtins.readFile ./rc.lua}";
+              ];
+            };
+            filetree.nvimTreeLua.enable = true;
+            treesitter = {
+              enable = true;
+              context.enable = false;
+              highlight = false;
+            };
+            keys = {
+              enable = true;
+              whichKey.enable = true;
+            };
+            telescope.enable = true;
+            telescope.recency-bias.enable = true;
+            debugger = {
+              enable = false;
+              ui.enable = true;
+              virtualText.enable = true;
+            };
+            luaConfigRC = {
+              a = "${builtins.readFile ./rc.lua}";
+            };
           };
         };
 
-        overlays.default = final: prev: {
-          # nodePackages = nixpkgs2405.legacyPackages.${system}.nodePackages;
-          # eslint_d = nixpkgs2405.legacyPackages.${system}.eslint_d;
-        };
+        overlays.default = _: __: { };
 
         pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ overlays.default ];
 

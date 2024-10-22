@@ -54,9 +54,6 @@ let
             require("none-ls.formatting.eslint_d").with({
                command = "${pkgs.eslint_d}/bin/eslint_d",
             })
-            --  null_ls.builtins.formatting.eslint_d.with({
-            --   command = "${nvim.languages.commandOptToCmd cfg.format.package "eslint_d"} ",
-            -- })
           )
         '';
     };
@@ -90,7 +87,7 @@ in
         type = types.bool;
         default = config.vim.languages.enableTreesitter;
       };
-      tsPackage = nvim.options.mkGrammarOption pkgs "tsx";
+      tsPackage = nvim.options.mkGrammarOption pkgs "typescript";
       jsPackage = nvim.options.mkGrammarOption pkgs "javascript";
     };
 
