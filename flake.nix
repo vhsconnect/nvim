@@ -44,9 +44,6 @@
     plugin-fidget.url = "github:j-hui/fidget.nvim";
     plugin-fidget.flake = false;
 
-    plugin-nvim-code-action-menu.url = "github:weilbith/nvim-code-action-menu";
-    plugin-nvim-code-action-menu.flake = false;
-
     plugin-lsp-signature.url = "github:ray-x/lsp_signature.nvim";
     plugin-lsp-signature.flake = false;
 
@@ -472,7 +469,6 @@
               formatOnSave = true;
               lightbulb.enable = true;
               lspsaga.enable = true;
-              nvimCodeActionMenu.enable = true;
               trouble.enable = true;
               lspSignature.enable = true;
             };

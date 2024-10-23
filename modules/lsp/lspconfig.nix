@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 with lib;
 with builtins;
 let
@@ -22,15 +17,17 @@ in
 
   config = mkIf cfg.lspconfig.enable (mkMerge [
     {
-      vim.lsp.enable = true;
+      vim = {
+        lsp.enable = true;
 
-      vim.startPlugins = [ "nvim-lspconfig" ];
+        startPlugins = [ "nvim-lspconfig" ];
 
-      vim.luaConfigRC.lspconfig =
-        nvim.dag.entryAfter [ "lsp-setup" ] # lua
-          ''
-            local lspconfig = require('lspconfig')
-          '';
+        luaConfigRC.lspconfig =
+          nvim.dag.entryAfter [ "lsp-setup" ] # lua
+            ''
+              local lspconfig = require('lspconfig')
+            '';
+      };
     }
     {
       vim.luaConfigRC = mapAttrs (_: v: (nvim.dag.entryAfter [ "lspconfig" ] v)) cfg.lspconfig.sources;
