@@ -439,6 +439,18 @@
               html.enable = false;
               html.treesitter.enable = true;
               python.enable = true;
+              bash = {
+                enable = true;
+                lsp.enable = true;
+                extraDiagnostics.enable = false;
+                format.enable = true;
+              };
+              fish = {
+                enable = true;
+                extraDiagnostics.enable = true;
+                format.enable = true;
+                treesitter.enable = true;
+              };
               ts = {
                 enable = true;
                 treesitter.enable = true;

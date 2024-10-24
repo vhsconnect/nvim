@@ -15,6 +15,7 @@ in
     ./bash.nix
     ./clang.nix
     ./css.nix
+    ./fish.nix
     ./go.nix
     ./haskell.nix
     ./html.nix
