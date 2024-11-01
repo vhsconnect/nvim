@@ -1,84 +1,85 @@
-vim.keymap.set('n', '<space>n', ':NvimTreeToggle<CR>', {noremap = true})
-vim.keymap.set('n', '<space>ss', ':set spell<CR>', {noremap = true})
-vim.keymap.set('n', '<space>sn', ':set nospell<CR>', {noremap = true})
-vim.keymap.set('n', '<space>ld', ':DBUI<CR>', {noremap = true})
-vim.keymap.set('n', '<space>ln', ':Neogit<CR>', {noremap = true})
-vim.keymap.set('n', '<space>\'', ':b#<CR>', {noremap = true})
-vim.keymap.set('n', '<space>gl', ':PrettierAsync<CR>', {noremap = true})
-vim.keymap.set('v', '<space>gl', ':PrettierFragment<CR>', {noremap = true})
-vim.keymap.set('n', '<space>g<space>', ':Gen<CR>', {noremap = true})
+vim.keymap.set("n", "<space>n", ":NvimTreeToggle<CR>", { noremap = true })
+vim.keymap.set("n", "<space>ss", ":set spell<CR>", { noremap = true })
+vim.keymap.set("n", "<space>sn", ":set nospell<CR>", { noremap = true })
+vim.keymap.set("n", "<space>ld", ":DBUI<CR>", { noremap = true })
+vim.keymap.set("n", "<space>ln", ":Neogit<CR>", { noremap = true })
+vim.keymap.set("n", "<space>'", ":b#<CR>", { noremap = true })
+vim.keymap.set("n", "<space>gl", ":PrettierAsync<CR>", { noremap = true })
+vim.keymap.set("v", "<space>gl", ":PrettierFragment<CR>", { noremap = true })
+vim.keymap.set("n", "<space>g<space>", ":Gen<CR>", { noremap = true })
 
+vim.keymap.set("n", "K", "5k", { noremap = true })
+vim.keymap.set("n", "J", "5j", { noremap = true })
+vim.keymap.set("n", "L", "10l", { noremap = true })
+vim.keymap.set("n", "H", "10h", { noremap = true })
 
-vim.keymap.set('n', 'K', '5k', {noremap = true})
-vim.keymap.set('n', 'J', '5j', {noremap = true})
-vim.keymap.set('n', 'L', '10l', {noremap = true})
-vim.keymap.set('n', 'H', '10h', {noremap = true})
+vim.keymap.set("n", "<Up>", ":resize +3<CR>", { noremap = true })
+vim.keymap.set("n", "<Down>", ":resize -3<CR>", { noremap = true })
+vim.keymap.set("n", "<Right>", ":vertical resize +3<CR>", { noremap = true })
+vim.keymap.set("n", "<Left>", ":vertical resize -3<CR>", { noremap = true })
 
-vim.keymap.set('n', '<Up>', ':resize +3<CR>', {noremap = true})
-vim.keymap.set('n', '<Down>', ':resize -3<CR>', {noremap = true})
-vim.keymap.set('n', '<Right>', ':vertical resize +3<CR>', {noremap = true})
-vim.keymap.set('n', '<Left>', ':vertical resize -3<CR>', {noremap = true})
-
-vim.keymap.set('i', '<Up>', '<C-o>:resize +3<CR>', {noremap = true})
-vim.keymap.set('i', '<Down>', '<C-o>:resize -3<CR>', {noremap = true})
-vim.keymap.set('i', '<Right>', '<C-o>:vertical resize +3<CR>', {noremap = true})
-vim.keymap.set('i', '<Left>', '<C-o>:vertical resize -3<CR>', {noremap = true})
+vim.keymap.set("i", "<Up>", "<C-o>:resize +3<CR>", { noremap = true })
+vim.keymap.set("i", "<Down>", "<C-o>:resize -3<CR>", { noremap = true })
+vim.keymap.set("i", "<Right>", "<C-o>:vertical resize +3<CR>", { noremap = true })
+vim.keymap.set("i", "<Left>", "<C-o>:vertical resize -3<CR>", { noremap = true })
 
 -- move visual block up and down
-vim.keymap.set('x', 'J', ':move \'>+1<CR>gv-gv', { noremap = true })
-vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', { noremap = true })
+vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", { noremap = true })
+vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", { noremap = true })
 
 -- move split into own tab
-vim.keymap.set('n', '<BSlash><BSlash>', '<C-W>T',  { noremap = true })
+vim.keymap.set("n", "<BSlash><BSlash>", "<C-W>T", { noremap = true })
 
--- move split to the left 
-vim.keymap.set('n', '<BSlash>wh', ':wincmd H<CR>',  { noremap = true })
-vim.keymap.set('n', '<BSlash>wl', ':wincmd L<CR>',  { noremap = true })
+-- move split to the left
+vim.keymap.set("n", "<BSlash>wh", ":wincmd H<CR>", { noremap = true })
+vim.keymap.set("n", "<BSlash>wl", ":wincmd L<CR>", { noremap = true })
 
 -- leap
-vim.keymap.set('n', 's', '<Plug>(leap-forward)',  { noremap = true })
-vim.keymap.set('n', 'S', '<Plug>(leap-backward)',  { noremap = true })
+vim.keymap.set("n", "s", "<Plug>(leap-forward)", { noremap = true })
+vim.keymap.set("n", "S", "<Plug>(leap-backward)", { noremap = true })
 
 -- neogit
-vim.keymap.set('n', '<leader>hn', ':Neogit<CR>',  { noremap = true })
+vim.keymap.set("n", "<leader>hn", ":Neogit<CR>", { noremap = true })
 
 -- todo
-vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
+vim.keymap.set("n", "<space>u", ":tabdo e<CR>", { noremap = true })
 -- vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
 
 -- close quickfix
 -- vim.keymap.set('n', '<space><space>q', ':cclose<CR>', {noremap = true})
 
-
 function interop(str)
-   local outer_env = _ENV
-   return (str:gsub("%b{}", function(block)
-      local code = block:match("{(.*)}")
-      local exp_env = {}
-      setmetatable(exp_env, { __index = function(_, k)
-         local stack_level = 5
-         while debug.getinfo(stack_level, "") ~= nil do
-            local i = 1
-            repeat
-               local name, value = debug.getlocal(stack_level, i)
-               if name == k then
-                  return value
-               end
-               i = i + 1
-            until name == nil
-            stack_level = stack_level + 1
-         end
-         return rawget(outer_env, k)
-      end })
-      local fn, err = load("return "..code, "expression `"..code.."`", "t", exp_env)
-      if fn then
-         return tostring(fn())
-      else
-         error(err, 0)
-      end
-   end))
+	local outer_env = _ENV
+	return (
+		str:gsub("%b{}", function(block)
+			local code = block:match("{(.*)}")
+			local exp_env = {}
+			setmetatable(exp_env, {
+				__index = function(_, k)
+					local stack_level = 5
+					while debug.getinfo(stack_level, "") ~= nil do
+						local i = 1
+						repeat
+							local name, value = debug.getlocal(stack_level, i)
+							if name == k then
+								return value
+							end
+							i = i + 1
+						until name == nil
+						stack_level = stack_level + 1
+					end
+					return rawget(outer_env, k)
+				end,
+			})
+			local fn, err = load("return " .. code, "expression `" .. code .. "`", "t", exp_env)
+			if fn then
+				return tostring(fn())
+			else
+				error(err, 0)
+			end
+		end)
+	)
 end
-
 
 ------------------
 -- markdown
@@ -86,97 +87,97 @@ end
 
 vim.g["mkdp_auto_start"] = 0
 vim.g["mkdp_refresh_slow"] = 1
-vim.g["mkdp_browser"] = 'firefox'
+vim.g["mkdp_browser"] = "firefox"
 
 ------------------
 -- colorscheme
 ------------------
-vim.keymap.set('n', '<space>1', ':colorscheme OceanicNext<CR>', {noremap = true})
-vim.keymap.set('n', '<space>2', ':colorscheme gruvbox<CR>', {noremap = true})
-vim.keymap.set('n', '<space>3', ':colorscheme horseradish256<CR>', {noremap = true})
-vim.keymap.set('n', '<space>4', ':colorscheme softblue<CR>', {noremap = true})
-vim.keymap.set('n', '<space>5', ':colorscheme railscasts<CR>', {noremap = true})
-vim.keymap.set('n', '<space>6', ':colorscheme Tomorrow<CR>', {noremap = true})
-vim.keymap.set('n', '<space>7', ':colorscheme lightning<CR>', {noremap = true})
-vim.keymap.set('n', '<space>8', ':colorscheme seoul256-light<CR>', {noremap = true})
-vim.keymap.set('n', '<space>9', ':colorscheme summerfruit256<CR>', {noremap = true})
-vim.keymap.set('n', '<space>0', ':colorscheme PaperColor<CR>', {noremap = true})
+vim.keymap.set("n", "<space>1", ":colorscheme OceanicNext<CR>", { noremap = true })
+vim.keymap.set("n", "<space>2", ":colorscheme gruvbox<CR>", { noremap = true })
+vim.keymap.set("n", "<space>3", ":colorscheme horseradish256<CR>", { noremap = true })
+vim.keymap.set("n", "<space>4", ":colorscheme softblue<CR>", { noremap = true })
+vim.keymap.set("n", "<space>5", ":colorscheme railscasts<CR>", { noremap = true })
+vim.keymap.set("n", "<space>6", ":colorscheme Tomorrow<CR>", { noremap = true })
+vim.keymap.set("n", "<space>7", ":colorscheme lightning<CR>", { noremap = true })
+vim.keymap.set("n", "<space>8", ":colorscheme seoul256-light<CR>", { noremap = true })
+vim.keymap.set("n", "<space>9", ":colorscheme summerfruit256<CR>", { noremap = true })
+vim.keymap.set("n", "<space>0", ":colorscheme PaperColor<CR>", { noremap = true })
 -- atom theme
 
 ------------------
 -- navigation
 ------------------
-vim.keymap.set('n', '<C-J>', ':TmuxNavigateDown<CR>', {noremap = true})
-vim.keymap.set('n', '<C-K>', ':TmuxNavigateUp<CR>', {noremap = true})
-vim.keymap.set('n', '<C-L>', ':TmuxNavigateRight<CR>', {noremap = true})
-vim.keymap.set('n', '<C-H>', ':TmuxNavigateLeft<CR>', {noremap = true})
+vim.keymap.set("n", "<C-J>", ":TmuxNavigateDown<CR>", { noremap = true })
+vim.keymap.set("n", "<C-K>", ":TmuxNavigateUp<CR>", { noremap = true })
+vim.keymap.set("n", "<C-L>", ":TmuxNavigateRight<CR>", { noremap = true })
+vim.keymap.set("n", "<C-H>", ":TmuxNavigateLeft<CR>", { noremap = true })
 
 ------------------
 -- leap
 ------------------
 
-require('leap').setup {
-      case_insensitive = true,
-    }
+require("leap").setup({
+	case_insensitive = true,
+})
 
 ----------------
 -- themed-tabs
 ----------------
 
-require('themed-tabs').setup {
-      colorschemes = {
-          os.getenv("VIM_THEME"),
-          "oxocarbon",
-          "PaperColor",
-          "gruvbox",
-          "OceanicNext",
-          "horseradish256",
-          "railscasts", 
-          "softblue",
-          }
-      }
+ -- os.setenv("ESLINT_USE_FLAT_CONFIG", "true")
+require("themed-tabs").setup({
+	colorschemes = {
+		os.getenv("VIM_THEME"),
+		"oxocarbon",
+		"PaperColor",
+		"gruvbox",
+		"OceanicNext",
+		"horseradish256",
+		"railscasts",
+		"softblue",
+	},
+})
 
-require('nvim-surround').setup()
+require("nvim-surround").setup()
 
 ------------------
 -- git gutter
 ------------------
 
 vim.g["gitgtter_signs"] = 1
-vim.g["gitgutter_sign_added"] = ''
-vim.g["gitgutter_sign_modified"] = ''
-vim.g["gitgutter_sign_removed"] =  ''
-vim.g["gitgutter_sign_removed_first_line"] = ''
-vim.g["gitgutter_sign_removed_above_and_below"] = ''
-vim.g["gitgutter_sign_modified_removed"] = ''
+vim.g["gitgutter_sign_added"] = ""
+vim.g["gitgutter_sign_modified"] = ""
+vim.g["gitgutter_sign_removed"] = ""
+vim.g["gitgutter_sign_removed_first_line"] = ""
+vim.g["gitgutter_sign_removed_above_and_below"] = ""
+vim.g["gitgutter_sign_modified_removed"] = ""
 vim.g["gitgutter_sign_allow_clobber"] = 0
 
-vim.keymap.set('n', '<space>gj', ':GitGutterNextHunk<CR>', {noremap = true})
-vim.keymap.set('n', '<space>gk', ':GitGutterPrevHunk<CR>', {noremap = true})
+vim.keymap.set("n", "<space>gj", ":GitGutterNextHunk<CR>", { noremap = true })
+vim.keymap.set("n", "<space>gk", ":GitGutterPrevHunk<CR>", { noremap = true })
 
 ------------------
 -- global subs with confirm
 ------------------
 
-vim.keymap.set('n', '<space>r',  [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], {noremap = true})
+vim.keymap.set("n", "<space>r", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], { noremap = true })
 
 ------------------
 -- tshjkl
 ------------------
 
-require('tshjkl').setup {
-  keymaps = {
-    toggle = '<C-w>',
-    toggle_outer = '<S-C-w>',
+require("tshjkl").setup({
+	keymaps = {
+		toggle = "<C-w>",
+		toggle_outer = "<S-C-w>",
 
-    parent = 'h',
-    next = 'j',
-    prev = 'k',
-    child = 'l',
-    toggle_named = '<S-M-n>', -- named mode skips unnamed nodes
-  }
-
-}
+		parent = "h",
+		next = "j",
+		prev = "k",
+		child = "l",
+		toggle_named = "<S-M-n>", -- named mode skips unnamed nodes
+	},
+})
 
 ----------------
 -- Oil
@@ -184,37 +185,40 @@ require('tshjkl').setup {
 require("oil").setup()
 
 ----------------
--- diffview 
+-- diffview
 ---------------
 
 require("diffview").setup()
 ----------------
--- Theme 
+-- Theme
 ---------------
-vim.cmd('colorscheme ' .. os.getenv("VIM_THEME"))
+vim.cmd("colorscheme " .. os.getenv("VIM_THEME"))
 
 ----------------
 -- DBUI
 ---------------
-vim.g['prettier#exec_cmd_path'] = "/etc/profiles/per-user/vhs/bin/prettierd"
 
 vim.g.db_ui_use_nerd_fonts = 1
-vim.g.db_ui_save_location = '~/Dropbox/db_queries/'
+vim.g.db_ui_save_location = "~/Dropbox/db_queries/"
 -- TODO this belongs in completion module
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"sql", "mysql", "plsql"},
-  callback = function()
-    require('cmp').setup.buffer({
-      sources = {{
-        name = 'vim-dadbod-completion'
-      }}
-    })
-  end
+	pattern = { "sql", "mysql", "plsql" },
+	callback = function()
+		require("cmp").setup.buffer({
+			sources = { {
+				name = "vim-dadbod-completion",
+			} },
+		})
+	end,
 })
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "dbout",
-  callback = function()
-    vim.opt_local.foldenable = false
-  end
+	pattern = "dbout",
+	callback = function()
+		vim.opt_local.foldenable = false
+	end,
 })
 
+----------------
+-- Prettier
+---------------
+vim.g["prettier#exec_cmd_path"] = "/etc/profiles/per-user/vhs/bin/prettierd"

@@ -3,6 +3,7 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs2405.url = "github:nixos/nixpkgs/nixos-24.05";
+    master.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
     nil.inputs.nixpkgs.follows = "nixpkgs";
@@ -317,7 +318,12 @@
   };
 
   outputs =
-    { nixpkgs, flake-utils, ... }@inputs:
+    {
+      nixpkgs,
+      flake-utils,
+      master,
+      ...
+    }@inputs:
     let
       sys = {
         x86_64-linux = "x86_64-linux";
@@ -439,6 +445,13 @@
               html.enable = false;
               html.treesitter.enable = true;
               python.enable = true;
+              lua = {
+                enable = true;
+                lsp.enable = true;
+                treesitter.enable = true;
+                extraDiagnostics.enable = false;
+                format.enable = true;
+              };
               bash = {
                 enable = true;
                 lsp.enable = true;
@@ -544,7 +557,13 @@
           };
         };
 
-        overlays.default = _: __: { };
+        masterPackages = master.legacyPackages.${system};
+
+        overlays.default = _: __: {
+          eslint = masterPackages.nodePackages.eslint;
+          eslint_d = masterPackages.nodePackages.eslint_d;
+
+        };
 
         pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ overlays.default ];
 

@@ -21,6 +21,7 @@ in
     ./html.nix
     ./java.nix
     ./kotlin.nix
+    ./lua.nix
     ./markdown.nix
     ./nix.nix
     ./plantuml.nix
