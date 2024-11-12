@@ -437,7 +437,7 @@
               enableTreesitter = true;
               nix = {
                 enable = true;
-                extraDiagnostics.enable = true;
+                extraDiagnostics.enable = false;
                 format.enable = true;
                 format.type = "nixfmt";
               };
