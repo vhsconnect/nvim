@@ -124,7 +124,7 @@ require("leap").setup({
 -- themed-tabs
 ----------------
 
- -- os.setenv("ESLINT_USE_FLAT_CONFIG", "true")
+-- os.setenv("ESLINT_USE_FLAT_CONFIG", "true")
 require("themed-tabs").setup({
 	colorschemes = {
 		os.getenv("VIM_THEME"),
@@ -199,7 +199,7 @@ vim.cmd("colorscheme " .. os.getenv("VIM_THEME"))
 ---------------
 
 vim.g.db_ui_use_nerd_fonts = 1
-vim.g.db_ui_save_location = "~/Dropbox/db_queries/"
+vim.g.db_ui_save_location = "/home/common/Folder/db_queries"
 -- TODO this belongs in completion module
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "sql", "mysql", "plsql" },
