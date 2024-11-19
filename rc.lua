@@ -1,3 +1,4 @@
+
 vim.keymap.set("n", "<space>n", ":NvimTreeToggle<CR>", { noremap = true })
 vim.keymap.set("n", "<space>ss", ":set spell<CR>", { noremap = true })
 vim.keymap.set("n", "<space>sn", ":set nospell<CR>", { noremap = true })
@@ -188,7 +189,7 @@ require("oil").setup()
 -- diffview
 ---------------
 
-require("diffview").setup()
+-- require("diffview").setup()
 ----------------
 -- Theme
 ---------------

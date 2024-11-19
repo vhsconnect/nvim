@@ -27,6 +27,10 @@ in
       enable = mkEnableOption "recent-all";
     };
 
+    cmdline = {
+      enable = mkEnableOption "cmdline";
+    };
+
     liveGrepArgs = {
       enable = mkEnableOption "telescope live grep with args";
       autoQuoting = mkOption {
@@ -72,6 +76,41 @@ in
             require("telescope").load_extension "live_grep_args"
 
           '';
+    })
+    (mkIf cfg.cmdline.enable {
+      vim.startPlugins = [ "telescope-cmdline" ];
+
+      vim.nnoremap = {
+        "Q" = "<cmd> Telescope cmdline<CR>";
+      };
+
+      vim.luaConfigRC.telescope-cmdline-setup =
+        nvim.dag.entryBefore [ "telescope" ] # lua
+          ''
+            require("telescope").setup({
+              extensions = {
+                cmdline = {
+                  -- Adjust telescope picker size and layout
+                  picker = {
+                    layout_config = {
+                      width  = 120,
+                      height = 25,
+                    }
+                  },
+                  mappings    = {
+                    complete      = '<Tab>',
+                    run_selection = '<C-CR>',
+                    run_input     = '<CR>',
+                  },
+                  -- Triggers any shell command using overseer.nvim (`:!`)
+                  overseer    = {
+                    enabled = true,
+                  },
+                },
+              }
+            })
+          '';
+
     })
     (mkIf cfg.recency-bias.enable {
       vim.startPlugins = [

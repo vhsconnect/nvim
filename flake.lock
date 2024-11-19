@@ -609,6 +609,22 @@
         "type": "github"
       }
     },
+    "plugin-cmp-cmdline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711081050,
+        "narHash": "sha256-iBmXp+gUSMbgfkv7c7RDQAwPq02e07wEnBETP0dWBOo=",
+        "owner": "hrsh7th",
+        "repo": "cmp-cmdline",
+        "rev": "d250c63aa13ead745e3a40f61fdd3470efde3923",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "cmp-cmdline",
+        "type": "github"
+      }
+    },
     "plugin-cmp-dap": {
       "flake": false,
       "locked": {
@@ -1426,6 +1442,22 @@
         "type": "github"
       }
     },
+    "plugin-telescope-cmdline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729422170,
+        "narHash": "sha256-huL3BI3YKSvQtk/9PTf4108CWlR+olid515RhkXRGoA=",
+        "owner": "jonarrien",
+        "repo": "telescope-cmdline.nvim",
+        "rev": "8b05928ac1b9f2b772cedde891faa6669b0ec59a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jonarrien",
+        "repo": "telescope-cmdline.nvim",
+        "type": "github"
+      }
+    },
     "plugin-telescope-file-browser": {
       "flake": false,
       "locked": {
@@ -1549,6 +1581,7 @@
         "plugin-ccls-nvim": "plugin-ccls-nvim",
         "plugin-chatgpt-nvim": "plugin-chatgpt-nvim",
         "plugin-cmp-buffer": "plugin-cmp-buffer",
+        "plugin-cmp-cmdline": "plugin-cmp-cmdline",
         "plugin-cmp-dap": "plugin-cmp-dap",
         "plugin-cmp-nvim-lsp": "plugin-cmp-nvim-lsp",
         "plugin-cmp-path": "plugin-cmp-path",
@@ -1600,6 +1633,7 @@
         "plugin-sqls-nvim": "plugin-sqls-nvim",
         "plugin-telescope": "plugin-telescope",
         "plugin-telescope-all-recent": "plugin-telescope-all-recent",
+        "plugin-telescope-cmdline": "plugin-telescope-cmdline",
         "plugin-telescope-file-browser": "plugin-telescope-file-browser",
         "plugin-telescope-live-grep-args": "plugin-telescope-live-grep-args",
         "plugin-todo-comments": "plugin-todo-comments",

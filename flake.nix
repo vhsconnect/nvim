@@ -95,6 +95,9 @@
     plugin-telescope-all-recent.url = "github:prochri/telescope-all-recent.nvim";
     plugin-telescope-all-recent.flake = false;
 
+    plugin-telescope-cmdline.url = "github:jonarrien/telescope-cmdline.nvim";
+    plugin-telescope-cmdline.flake = false;
+
     # Filetrees
     plugin-nvim-tree-lua.url = "github:kyazdani42/nvim-tree.lua";
     plugin-nvim-tree-lua.flake = false;
@@ -122,6 +125,9 @@
 
     plugin-cmp-path.url = "github:hrsh7th/cmp-path";
     plugin-cmp-path.flake = false;
+
+    plugin-cmp-cmdline.url = "github:hrsh7th/cmp-cmdline";
+    plugin-cmp-cmdline.flake = false;
 
     plugin-cmp-treesitter.url = "github:ray-x/cmp-treesitter";
     plugin-cmp-treesitter.flake = false;
@@ -510,6 +516,7 @@
             autocomplete = {
               enable = true;
               type = "nvim-cmp";
+              enableCmdline = true;
               sources = [
                 {
                   name = "path";
@@ -546,6 +553,7 @@
             };
             telescope.enable = true;
             telescope.recency-bias.enable = true;
+            telescope.cmdline.enable = true;
             debugger = {
               enable = false;
               ui.enable = true;
@@ -553,6 +561,7 @@
             };
             luaConfigRC = {
               a = "${builtins.readFile ./rc.lua}";
+              b = "${builtins.readFile ./diffview.lua}";
             };
           };
         };

@@ -10,11 +10,6 @@ let
   cfg = config.vim.autocomplete;
   lspkindEnabled = config.vim.lsp.enable && config.vim.lsp.lspkind.enable;
   debuggerEnabled = config.vim.debugger.enable;
-
-  defaultTo50 = v: if v == null then "50" else v;
-  # entryToSet = n: p: "{ name = '${n}', priority = ${defaultTo50 p}},";
-  # builtSources = concatStringsSep "\n" (attrValues (mapAttrs (map entryToSet cfg.sources))); # [{} {}]
-
   sources =
     let
       mapper = map (x: ''
@@ -43,6 +38,12 @@ in
         type = types.enum [ "nvim-cmp" ];
         default = "nvim-cmp";
         description = "Set the autocomplete plugin. Options: [nvim-cmp]";
+      };
+
+      enableCmdline = mkOption {
+        type = types.bool;
+        default = false;
+        description = "cmdline autocompletion";
       };
 
       sources = mkOption {
@@ -118,7 +119,7 @@ in
       "cmp-buffer"
       "cmp-vsnip"
       "cmp-path"
-    ] ++ optional debuggerEnabled "cmp-dap";
+    ] ++ (if cfg.enableCmdline then [ "cmp-cmdline" ] else [ ]) ++ optional debuggerEnabled "cmp-dap";
 
     # vim.autocomplete.sources = {
     #   "nvim-cmp" = null;
@@ -200,10 +201,7 @@ in
             completeopt = 'menu,menuone,noinsert',
           },
           formatting = {
-            format = ${
-              # if lspkindEnabled then "lspkind.cmp_format(lspkind_opts)" else cfg.formatting.format
-              cfg.formatting.format
-            },
+            format = ${cfg.formatting.format},
           },
           ${optionalString debuggerEnabled ''
             enabled = function()
@@ -212,6 +210,29 @@ in
             end,
           ''}
         })
+          ${optionalString cfg.enableCmdline ''
+            cmp.setup.cmdline('/', {
+              mapping = cmp.mapping.preset.cmdline(),
+              sources = {
+                { name = 'buffer' }
+              }
+            })
+            cmp.setup.cmdline(':', {
+              mapping = cmp.mapping.preset.cmdline(),
+              sources = cmp.config.sources({
+                { name = 'path' }
+              }, {
+                {
+                  name = 'cmdline',
+                  option = {
+                    ignore_cmds = { 'Man', '!' }
+                  }
+                }
+              })
+            })
+          ''}
+
+
         ${optionalString (config.vim.autopairs.enable && config.vim.autopairs.type == "nvim-autopairs") ''
           local cmp_autopairs = require('nvim-autopairs.completion.cmp')
           cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { text = ""} }))
