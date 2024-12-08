@@ -945,6 +945,22 @@
         "type": "github"
       }
     },
+    "plugin-noice": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733604332,
+        "narHash": "sha256-0otV4qnUumHu6zyaM/om7zhKf01DlPKv+VYREceW84Y=",
+        "owner": "folke",
+        "repo": "noice.nvim",
+        "rev": "7b1960c48078a8b2fb44a89db82f4fa637b2d7c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "noice.nvim",
+        "type": "github"
+      }
+    },
     "plugin-none-ls-extras": {
       "flake": false,
       "locked": {
@@ -1151,6 +1167,22 @@
       "original": {
         "owner": "AckslD",
         "repo": "nvim-neoclip.lua",
+        "type": "github"
+      }
+    },
+    "plugin-nvim-notify": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727022370,
+        "narHash": "sha256-Sd7IR5roXHOKRCxhqtYMhWfEltyRJMDEMDO/ecSKenE=",
+        "owner": "rcarriga",
+        "repo": "nvim-notify",
+        "rev": "fbef5d32be8466dd76544a257d3f3dce20082a07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rcarriga",
+        "repo": "nvim-notify",
         "type": "github"
       }
     },
@@ -1586,6 +1618,7 @@
         "plugin-lspsaga": "plugin-lspsaga",
         "plugin-lualine": "plugin-lualine",
         "plugin-neogit": "plugin-neogit",
+        "plugin-noice": "plugin-noice",
         "plugin-none-ls-extras": "plugin-none-ls-extras",
         "plugin-nui-nvim": "plugin-nui-nvim",
         "plugin-null-ls": "plugin-null-ls",
@@ -1599,6 +1632,7 @@
         "plugin-nvim-lightbulb": "plugin-nvim-lightbulb",
         "plugin-nvim-lspconfig": "plugin-nvim-lspconfig",
         "plugin-nvim-neoclip": "plugin-nvim-neoclip",
+        "plugin-nvim-notify": "plugin-nvim-notify",
         "plugin-nvim-tree-lua": "plugin-nvim-tree-lua",
         "plugin-nvim-treesitter-context": "plugin-nvim-treesitter-context",
         "plugin-nvim-ts-autotag": "plugin-nvim-ts-autotag",

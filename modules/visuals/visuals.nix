@@ -17,12 +17,6 @@ in
 
     cursorWordline = {
       enable = mkEnableOption "word and delayed line highlight [nvim-cursorline].";
-
-      lineTimeout = mkOption {
-        description = "Time in milliseconds for cursorline to appear.";
-        type = types.int;
-        default = 500;
-      };
     };
 
     indentBlankline = {
@@ -102,7 +96,18 @@ in
       vim.luaConfigRC.cursorline =
         nvim.dag.entryAnywhere # lua
           ''
-            vim.g.cursorline_timeout = ${toString cfg.cursorWordline.lineTimeout}
+            require('nvim-cursorline').setup {
+              cursorline = {
+                enable = false,
+                timeout = 1000,
+                number = false,
+              },
+              cursorword = {
+                enable = true,
+                min_length = 3,
+                hl = { underline = true },
+              }
+            }
           '';
     })
     (mkIf cfg.nvimWebDevicons.enable { vim.startPlugins = [ "nvim-web-devicons" ]; })

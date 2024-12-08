@@ -232,6 +232,15 @@
     plugin-avante-nvim.url = "github:yetone/avante.nvim";
     plugin-avante-nvim.flake = false;
 
+    plugin-noice.url = "github:folke/noice.nvim";
+    plugin-noice.flake = false;
+
+    plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
+    plugin-nvim-notify.flake = false;
+
+    # plugin-illuminate.url = "github:rrethy/vim-illuminate";
+    # plugin-illuminate.flake = false;
+
     oil = {
       url = "github:stevearc/oil.nvim";
       flake = false;
@@ -338,14 +347,14 @@
         sys.aarch64-darwin
         sys.x86_64-linux
       ];
+      useNightly = false;
     in
     flake-utils.lib.eachSystem systems (
       system:
       let
-        package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+        nightly = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
         configModule = {
           build = {
-            inherit package;
             viAlias = true;
             vimAlias = true;
             rawPlugins = {
@@ -410,11 +419,12 @@
                 src = inputs.vim-prettier;
               };
             };
-          };
+          } // (if useNightly then { build.package = nightly; } else { });
           vim = {
             visuals = {
               enable = true;
               nvimWebDevicons.enable = true;
+              cursorWordline.enable = true;
             };
             preventJunkFiles = true;
             useSystemClipboard = true;
@@ -475,7 +485,7 @@
                 format.enable = true;
                 extraDiagnostics.enable = true;
               };
-              rust.enable = false;
+              rust.enable = true;
               rust.lsp.enable = true;
               css.enable = false;
               css.lsp.enable = true;
@@ -499,7 +509,7 @@
               lightbulb.enable = true;
               lspsaga.enable = true;
               trouble.enable = true;
-              lspSignature.enable = true;
+              lspSignature.enable = false;
             };
             statusline.lualine = {
               enable = false;
@@ -510,6 +520,7 @@
               name = "oxocarbon";
             };
             avante.enable = true;
+            noice.enable = true;
             autopairs.enable = true;
             autocomplete = {
               enable = true;

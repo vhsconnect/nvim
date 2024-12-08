@@ -5,27 +5,28 @@
 }:
 let
   modules = [
+    ./autopairs
     ./avante
-    ./chatgpt
-    ./completion
-    ./codeium
-    ./theme
-    ./core
     ./basic
+    ./build
+    ./chatgpt
+    ./codeium
+    ./completion
+    ./core
+    ./debugger
+    ./filetree
+    ./git
+    ./keys
+    ./languages
+    ./lsp
+    ./noice
+    ./snippets
     ./statusline
     ./tabline
-    ./filetree
-    ./visuals
-    ./lsp
-    ./languages
-    ./treesitter
-    ./autopairs
-    ./snippets
-    ./keys
     ./telescope
-    ./git
-    ./build
-    ./debugger
+    ./theme
+    ./treesitter
+    ./visuals
   ];
 
   pkgsModule =
