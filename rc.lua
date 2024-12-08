@@ -1,4 +1,3 @@
-
 vim.keymap.set("n", "<space>n", ":NvimTreeToggle<CR>", { noremap = true })
 vim.keymap.set("n", "<space>ss", ":set spell<CR>", { noremap = true })
 vim.keymap.set("n", "<space>sn", ":set nospell<CR>", { noremap = true })
@@ -90,6 +89,7 @@ vim.g["mkdp_auto_start"] = 0
 vim.g["mkdp_refresh_slow"] = 1
 vim.g["mkdp_browser"] = "firefox"
 
+-- delphi
 ------------------
 -- colorscheme
 ------------------
@@ -128,14 +128,9 @@ require("leap").setup({
 -- os.setenv("ESLINT_USE_FLAT_CONFIG", "true")
 require("themed-tabs").setup({
 	colorschemes = {
-		os.getenv("VIM_THEME"),
-		"oxocarbon",
 		"PaperColor",
+		"oxocarbon",
 		"gruvbox",
-		"OceanicNext",
-		"horseradish256",
-		"railscasts",
-		"softblue",
 	},
 })
 
@@ -185,11 +180,6 @@ require("tshjkl").setup({
 ---------------
 require("oil").setup()
 
-----------------
--- diffview
----------------
-
--- require("diffview").setup()
 ----------------
 -- Theme
 ---------------

@@ -1,8 +1,6 @@
 {
   inputs = {
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs2405.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     master.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
@@ -15,7 +13,6 @@
     plugin-codeium = {
       url = "github:exafunction/codeium.vim";
       flake = false;
-
     };
 
     # utility plugins
@@ -451,6 +448,7 @@
               html.enable = false;
               html.treesitter.enable = true;
               python.enable = true;
+              python.format.enable = false;
               lua = {
                 enable = true;
                 lsp.enable = true;
@@ -516,7 +514,7 @@
             autocomplete = {
               enable = true;
               type = "nvim-cmp";
-              enableCmdline = true;
+              enableCmdline = false;
               sources = [
                 {
                   name = "path";
@@ -566,15 +564,9 @@
           };
         };
 
-        masterPackages = master.legacyPackages.${system};
+        overlays.default = _: __: { };
 
-        overlays.default = _: __: {
-          eslint = masterPackages.nodePackages.eslint;
-          eslint_d = masterPackages.nodePackages.eslint_d;
-
-        };
-
-        pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ overlays.default ];
+        pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ ];
 
         neovim = (import ./neovim.nix) { inherit inputs; };
 
