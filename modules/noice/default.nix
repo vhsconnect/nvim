@@ -12,11 +12,6 @@ in
 {
   options.vim.noice = {
     enable = mkEnableOption "Enable noice.nvim";
-    # config = mkOption {
-    #   description = "noice.nvim configuration";
-    #   type = with types; nullOr lines;
-    #   default = "";
-    # };
   };
 
   config = mkIf cfg.enable {

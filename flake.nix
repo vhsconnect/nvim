@@ -238,9 +238,6 @@
     plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
     plugin-nvim-notify.flake = false;
 
-    # plugin-illuminate.url = "github:rrethy/vim-illuminate";
-    # plugin-illuminate.flake = false;
-
     oil = {
       url = "github:stevearc/oil.nvim";
       flake = false;
@@ -563,6 +560,7 @@
             telescope.enable = true;
             telescope.recency-bias.enable = true;
             telescope.cmdline.enable = true;
+            telescope.advanced-git-search.enable = true;
             debugger = {
               enable = false;
               ui.enable = true;

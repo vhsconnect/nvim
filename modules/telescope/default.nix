@@ -31,6 +31,10 @@ in
       enable = mkEnableOption "cmdline";
     };
 
+    advanced-git-search = {
+      enable = mkEnableOption "advanced_git_search";
+    };
+
     liveGrepArgs = {
       enable = mkEnableOption "telescope live grep with args";
       autoQuoting = mkOption {
@@ -75,6 +79,69 @@ in
           ''
             require("telescope").load_extension "live_grep_args"
 
+          '';
+    })
+    (mkIf cfg.advanced-git-search.enable {
+      vim.startPlugins = [ pkgs.vimPlugins.advanced-git-search-nvim ];
+
+      vim.nnoremap = {
+        "<leader>fa" = "<cmd>AdvancedGitSearch<CR>";
+      };
+
+      vim.luaConfigRC.telescope-advanced-git-search-setup =
+        nvim.dag.entryBefore [ "telescope" ] # lua
+          ''
+
+            require("telescope").setup {
+              extensions = {
+                advanced_git_search = {
+
+                  -- Browse command to open commits in browser. Default fugitive GBrowse.
+                  -- {commit_hash} is the placeholder for the commit hash.
+                  browse_command = "GBrowse {commit_hash}",
+                  -- when {commit_hash} is not provided, the commit will be appended to the specified command seperated by a space
+                  -- browse_command = "GBrowse",
+                  -- => both will result in calling `:GBrowse commit`
+
+                  -- fugitive or diffview
+                  diff_plugin = "diffview",
+                  -- customize git in previewer
+                  -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
+                  git_flags = {},
+                  -- customize git diff in previewer
+                  -- e.g. flags such as { "--raw" }
+                  git_diff_flags = {},
+                  git_log_flags = {},
+                  -- Show builtin git pickers when executing "show_custom_functions" or :AdvancedGitSearch
+                  show_builtin_git_pickers = false,
+                  entry_default_author_or_date = "date", -- one of "author" or "date"
+                  keymaps = {
+                    -- following keymaps can be overridden
+                    toggle_date_author = "<C-w>",
+                    open_commit_in_browser = "<C-o>",
+                    copy_commit_hash = "<C-y>",
+                    show_entire_commit = "<C-e>",
+                  },
+
+                  telescope_theme = {
+                    function_name_1 = {
+                      -- Theme options
+                    },
+                    function_name_2 = "dropdown",
+                    -- e.g. realistic example
+                    show_custom_functions = {
+                      layout_config = { width = 0.4, height = 0.4 },
+                    },
+                  },
+                }
+              }
+            }
+          '';
+
+      vim.luaConfigRC.telescope-advanced-git-search-load =
+        nvim.dag.entryAfter [ "telescope" ] # lua
+          ''
+            require("telescope").load_extension("advanced_git_search")
           '';
     })
     (mkIf cfg.cmdline.enable {
@@ -306,7 +373,6 @@ in
       vim.luaConfigRC.telescope =
         nvim.dag.entryAnywhere # lua
           ''
-
             local telescope = require('telescope')
             telescope.setup({
             	defaults = {
