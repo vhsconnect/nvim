@@ -5,11 +5,11 @@ let
   rawPlugins = nvimLib.plugins.fromInputs inputs "plugin-";
 
   neovimConfiguration =
-    args:
-    let
-      modules = args.modules ++ [ { config.build.rawPlugins = rawPlugins; } ];
-    in
-    import ./modules (args // { inherit modules; });
+    { modules, pkgs }:
+    import ./modules ({
+      inherit pkgs;
+      modules = modules ++ [ { config.build.rawPlugins = rawPlugins; } ];
+    });
 
   nvimBin = pkg: "${pkg}/bin/nvim";
 

@@ -88,7 +88,9 @@ in
 
               use_treesitter = ${boolToString cfg.indentBlankline.useTreesitter},
               show_current_context = ${boolToString cfg.indentBlankline.showCurrContext},
+
             }
+
           '';
     })
     (mkIf cfg.cursorWordline.enable {
@@ -104,7 +106,7 @@ in
               },
               cursorword = {
                 enable = true,
-                min_length = 3,
+                min_length = 7,
                 hl = { underline = true },
               }
             }
