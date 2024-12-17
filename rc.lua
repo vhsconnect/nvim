@@ -6,6 +6,7 @@ vim.keymap.set("n", "<space>ln", ":Neogit<CR>", { noremap = true })
 vim.keymap.set("n", "<space>'", ":b#<CR>", { noremap = true })
 vim.keymap.set("n", "<space>gl", ":PrettierAsync<CR>", { noremap = true })
 vim.keymap.set("v", "<space>gl", ":PrettierFragment<CR>", { noremap = true })
+vim.keymap.set("n", "<space><space>", ":e #<CR>", { noremap = true })
 vim.keymap.set("n", "<space>g<space>", ":Gen<CR>", { noremap = true })
 
 vim.keymap.set("n", "K", "5k", { noremap = true })
@@ -213,3 +214,23 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Prettier
 ---------------
 vim.g["prettier#exec_cmd_path"] = "/etc/profiles/per-user/vhs/bin/prettierd"
+
+----------------
+-- Link to Github
+---------------
+function GetGitHubLineLink(useMaster)
+	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
+	if remote_url:match("^git@github.com:") then
+		remote_url = remote_url:gsub("^git@github.com:", "https://github.com/")
+		remote_url = remote_url:gsub("%.git$", "")
+	end
+	local file_path = vim.fn.system("git ls-files --full-name " .. vim.fn.expand("%:p")):gsub("\n", "")
+	local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
+	local line_number = vim.fn.line(".")
+	local github_link = string.format("%s/blob/%s/%s#L%d", remote_url, branch, file_path, line_number)
+
+	vim.fn.setreg("+", github_link)
+	print("GitHub link copied: " .. github_link)
+end
+
+vim.api.nvim_set_keymap("n", "<leader>gL", ":lua GetGitHubLineLink()<CR>", { noremap = true, silent = true })
