@@ -932,11 +932,11 @@
     "plugin-neogit": {
       "flake": false,
       "locked": {
-        "lastModified": 1728885184,
-        "narHash": "sha256-LCOWbgP5rdW9mMBo4gcEKH7O7mA4elUztrccGAGxvtU=",
+        "lastModified": 1734765935,
+        "narHash": "sha256-gFGEcPjqrSckfajHjyBUBfECBeanwdlbZ5QFdSvk0Ec=",
         "owner": "NeogitOrg",
         "repo": "neogit",
-        "rev": "eda716c44d3b5a424ea8604b10756c7fd8bed93a",
+        "rev": "9d5ac8f375a76e4ffc6b4deadd56d0d8a4594dc7",
         "type": "github"
       },
       "original": {

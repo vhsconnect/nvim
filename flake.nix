@@ -560,6 +560,7 @@
             telescope.enable = true;
             telescope.recency-bias.enable = true;
             telescope.cmdline.enable = true;
+            telescope.liveGrepArgs.enable = true;
             telescope.advanced-git-search.enable = true;
             debugger = {
               enable = false;
@@ -568,7 +569,7 @@
             };
             luaConfigRC = {
               a = "${builtins.readFile ./rc.lua}";
-              b = "${builtins.readFile ./diffview.lua}";
+              # b = "${builtins.readFile ./diffview.lua}";
             };
           };
         };
@@ -593,6 +594,7 @@
                 "tcomment"
                 "gitgutter"
                 "themed-tabs"
+                #  "diffview"
                 "nvim-surround"
                 "gen"
                 "tmux-nav"
@@ -603,7 +605,6 @@
                 "oil"
                 "tokyonight"
                 "vim-terraform"
-                "diffview"
                 "dadbod"
                 "dadbod-ui"
                 "dadbod-completion"

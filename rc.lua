@@ -129,8 +129,9 @@ require("leap").setup({
 -- os.setenv("ESLINT_USE_FLAT_CONFIG", "true")
 require("themed-tabs").setup({
 	colorschemes = {
-		"PaperColor",
+		"tokyonight",
 		"oxocarbon",
+		"PaperColor",
 		"gruvbox",
 	},
 })
@@ -180,6 +181,9 @@ require("tshjkl").setup({
 -- Oil
 ---------------
 require("oil").setup()
+vim.keymap.set("n", "<leader>o", function()
+	require("oil").open(vim.fn.expand("%:p:h"))
+end, { desc = "Open Oil at current buffer's directory" })
 
 ----------------
 -- Theme

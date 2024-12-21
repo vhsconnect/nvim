@@ -7,6 +7,7 @@ let
   modules = [
     ./autopairs
     ./avante
+    ./diffview
     ./basic
     ./build
     ./chatgpt

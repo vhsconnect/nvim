@@ -50,16 +50,13 @@ in
       vim.startPlugins = [ "telescope-live-grep-args" ];
 
       vim.nnoremap = {
-        "<leader>fa" = "<cmd> Telescope live_grep_args<CR>";
+        "<leader>fl" = "<cmd> Telescope live_grep_args<CR>";
+      };
+      vim.inoremap = {
+        "<C-k>" = "lga_actions.quote_prompt()";
+        "<C-i>" = ''lga_actions.quote_prompt({ postfix = " --iglob " })'';
       };
 
-      # Mappings currently broken: https://github.com/nvim-telescope/telescope-live-grep-args.nvim/issues/71
-      # mappings = {
-      #   i = {
-      #     ["<C-k>"] = lga_actions.quote_prompt(),
-      #     ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-      #   },
-      # },
       vim.luaConfigRC.telescope-live-grep-args-setup =
         nvim.dag.entryBefore [ "telescope" ] # lua
           ''
@@ -82,7 +79,11 @@ in
           '';
     })
     (mkIf cfg.advanced-git-search.enable {
-      vim.startPlugins = [ pkgs.vimPlugins.advanced-git-search-nvim ];
+      vim.startPlugins = [
+        pkgs.vimPlugins.vim-fugitive
+        pkgs.vimPlugins.vim-rhubarb
+        pkgs.vimPlugins.advanced-git-search-nvim
+      ];
 
       vim.nnoremap = {
         "<leader>fa" = "<cmd>AdvancedGitSearch<CR>";
@@ -139,7 +140,7 @@ in
           '';
 
       vim.luaConfigRC.telescope-advanced-git-search-load =
-        nvim.dag.entryAfter [ "telescope" ] # lua
+        nvim.dag.entryAfter [ "telescope" "diffview" ] # lua
           ''
             require("telescope").load_extension("advanced_git_search")
           '';

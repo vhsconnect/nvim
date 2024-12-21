@@ -101,7 +101,7 @@ in
     (mkIf cfg.neogit.enable {
       vim.startPlugins = [ "neogit" ];
       vim.luaConfigRC.gitsigns =
-        nvim.dag.entryAnywhere # lua
+        nvim.dag.entryAfter [ "diffview" ] # lua
           ''
             local neogit = require("neogit")
 
