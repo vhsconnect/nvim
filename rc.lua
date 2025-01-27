@@ -42,6 +42,9 @@ vim.keymap.set("n", "S", "<Plug>(leap-backward)", { noremap = true })
 -- neogit
 vim.keymap.set("n", "<leader>hn", ":Neogit<CR>", { noremap = true })
 
+-- fold all indented
+vim.keymap.set("n", "zz", ":set fdm=indent<CR>", { noremap = true })
+
 -- todo
 vim.keymap.set("n", "<space>u", ":tabdo e<CR>", { noremap = true })
 -- vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
@@ -238,3 +241,39 @@ function GetGitHubLineLink(useMaster)
 end
 
 vim.api.nvim_set_keymap("n", "<leader>gL", ":lua GetGitHubLineLink()<CR>", { noremap = true, silent = true })
+
+----------------
+-- Shift windows
+---------------
+function Rotate_windows()
+	local wins = vim.fn.winnr("$")
+	if wins <= 1 then
+		return
+	end
+
+	local current_win = vim.fn.winnr()
+
+	local buffers = {}
+	for i = 1, wins do
+		vim.cmd(i .. "wincmd w")
+		buffers[i] = vim.fn.bufnr("%")
+	end
+
+	local temp = buffers[1]
+	for i = 1, wins - 1 do
+		vim.cmd(i .. "wincmd w")
+		vim.cmd("buffer " .. buffers[i + 1])
+	end
+
+	vim.cmd(wins .. "wincmd w")
+	vim.cmd("buffer " .. temp)
+
+	local new_win = current_win - 1
+	if new_win < 1 then
+		new_win = wins -- Wrap around to the last window
+	end
+
+	vim.cmd(new_win .. "wincmd w")
+end
+
+vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true })

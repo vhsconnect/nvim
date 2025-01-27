@@ -58,10 +58,22 @@ let
           )
         '';
     };
+    eslint = {
+      package = [ "eslint" ];
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            require("none-ls.formatting.eslint").with({
+               command = "${pkgs.eslint}/bin/eslint",
+            })
+          )
+        '';
+    };
   };
 
   # TODO: specify packages
-  defaultDiagnostics = [ "eslint_d" ];
+  defaultDiagnostics = [ "eslint" ];
   diagnostics = {
     eslint_d = {
       package = pkgs.eslint_d;
@@ -72,6 +84,19 @@ let
             ls_sources,
             require("none-ls.diagnostics.eslint_d").with({
               command = "${pkg}/bin/eslint_d",
+            })
+            )
+        '';
+    };
+    eslint = {
+      package = pkgs.eslint;
+      nullConfig =
+        pkg: # lua
+        ''
+          table.insert(
+            ls_sources,
+            require("none-ls.diagnostics.eslint").with({
+              command = "${pkg}/bin/eslint",
             })
             )
         '';

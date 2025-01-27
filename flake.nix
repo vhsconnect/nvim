@@ -478,8 +478,8 @@
               ts = {
                 enable = true;
                 treesitter.enable = true;
-                format.type = "eslint_d";
-                format.enable = true;
+                format.type = "eslint";
+                format.enable = false;
                 extraDiagnostics.enable = true;
               };
               rust.enable = true;
@@ -574,7 +574,7 @@
           };
         };
 
-        overlays.default = _: __: { };
+        overlays.default = _: __: { eslint_d = master.eslint_d; };
 
         pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ ];
 
