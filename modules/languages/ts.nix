@@ -73,7 +73,7 @@ let
   };
 
   # TODO: specify packages
-  defaultDiagnostics = [ "eslint" ];
+  defaultDiagnostics = [ "eslint_d" ];
   diagnostics = {
     eslint_d = {
       package = pkgs.eslint_d;

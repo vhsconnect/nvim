@@ -478,8 +478,8 @@
               ts = {
                 enable = true;
                 treesitter.enable = true;
-                format.type = "eslint";
-                format.enable = false;
+                format.type = "eslint_d";
+                format.enable = true;
                 extraDiagnostics.enable = true;
               };
               rust.enable = true;
