@@ -23,6 +23,9 @@
     plugin-nvim-treesitter-context.url = "github:nvim-treesitter/nvim-treesitter-context";
     plugin-nvim-treesitter-context.flake = false;
 
+    plugin-nvim-treesitter-textobjects.url = "github:nvim-treesitter/nvim-treesitter-textobjects";
+    plugin-nvim-treesitter-textobjects.flake = false;
+
     # LSP plugins
     plugin-nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
     plugin-nvim-lspconfig.flake = false;
@@ -551,6 +554,7 @@
             treesitter = {
               enable = true;
               context.enable = false;
+              textobjects.enable = true;
               highlight = false;
             };
             keys = {
