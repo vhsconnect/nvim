@@ -569,6 +569,7 @@
             };
             luaConfigRC = {
               a = "${builtins.readFile ./rc.lua}";
+              b = "${builtins.readFile ./cheat_sheet.lua}";
               # b = "${builtins.readFile ./diffview.lua}";
             };
           };

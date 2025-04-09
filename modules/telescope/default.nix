@@ -394,6 +394,7 @@ in
             		find_files = {
             			find_command = { "${pkgs.ripgrep}/bin/rg", "--files", "--hidden", "--glob", "!**/.git/*" },
             		},
+                colorscheme = { enable_preview = true }
             	},
             })
           '';

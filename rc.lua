@@ -101,7 +101,7 @@ vim.keymap.set("n", "<space>1", ":colorscheme OceanicNext<CR>", { noremap = true
 vim.keymap.set("n", "<space>2", ":colorscheme gruvbox<CR>", { noremap = true })
 vim.keymap.set("n", "<space>3", ":colorscheme horseradish256<CR>", { noremap = true })
 vim.keymap.set("n", "<space>4", ":colorscheme softblue<CR>", { noremap = true })
-vim.keymap.set("n", "<space>5", ":colorscheme railscasts<CR>", { noremap = true })
+vim.keymap.set("n", "<space>5", ":colorscheme seoul256<CR>", { noremap = true })
 vim.keymap.set("n", "<space>6", ":colorscheme Tomorrow<CR>", { noremap = true })
 vim.keymap.set("n", "<space>7", ":colorscheme lightning<CR>", { noremap = true })
 vim.keymap.set("n", "<space>8", ":colorscheme seoul256-light<CR>", { noremap = true })
@@ -192,7 +192,6 @@ end, { desc = "Open Oil at current buffer's directory" })
 -- Theme
 ---------------
 vim.cmd("colorscheme " .. os.getenv("VIM_THEME"))
-
 ----------------
 -- DBUI
 ---------------
