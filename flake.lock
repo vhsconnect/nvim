@@ -705,6 +705,38 @@
         "type": "github"
       }
     },
+    "plugin-copilot-chat-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744183503,
+        "narHash": "sha256-XMrjDUvQjkW9tlTubVou2RMQfOfzmMFlQAWgCx3/4y4=",
+        "owner": "CopilotC-Nvim",
+        "repo": "CopilotChat.nvim",
+        "rev": "a89f5f1162b04a0962e5f4c3cdf248a81e7e53cb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CopilotC-Nvim",
+        "repo": "CopilotChat.nvim",
+        "type": "github"
+      }
+    },
+    "plugin-copilot-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744392443,
+        "narHash": "sha256-626maMAOOO9COWHb4ihcY/5AHHSnDcbELVLwk/f/waY=",
+        "owner": "github",
+        "repo": "copilot.vim",
+        "rev": "250f24cc485aede5d0069e8765542c3787448d8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "github",
+        "repo": "copilot.vim",
+        "type": "github"
+      }
+    },
     "plugin-crates-nvim": {
       "flake": false,
       "locked": {
@@ -1619,6 +1651,8 @@
         "plugin-cmp-treesitter": "plugin-cmp-treesitter",
         "plugin-cmp-vsnip": "plugin-cmp-vsnip",
         "plugin-codeium": "plugin-codeium",
+        "plugin-copilot-chat-nvim": "plugin-copilot-chat-nvim",
+        "plugin-copilot-vim": "plugin-copilot-vim",
         "plugin-crates-nvim": "plugin-crates-nvim",
         "plugin-dracula": "plugin-dracula",
         "plugin-dracula-nvim": "plugin-dracula-nvim",

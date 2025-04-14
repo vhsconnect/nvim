@@ -146,9 +146,15 @@
     plugin-nvim-ts-autotag.url = "github:windwp/nvim-ts-autotag";
     plugin-nvim-ts-autotag.flake = false;
 
-    # ChatGPT.nvim
+    # AI
     plugin-chatgpt-nvim.url = "github:jackMort/ChatGPT.nvim";
     plugin-chatgpt-nvim.flake = false;
+
+    plugin-copilot-vim.url = "github:github/copilot.vim";
+    plugin-copilot-vim.flake = false;
+
+    plugin-copilot-chat-nvim.url = "github:CopilotC-Nvim/CopilotChat.nvim";
+    plugin-copilot-chat-nvim.flake = false;
 
     # Commenting
     plugin-kommentary.url = "github:b3nj5m1n/kommentary";
@@ -520,6 +526,7 @@
               name = "oxocarbon";
             };
             avante.enable = true;
+            copilot.enable = true;
             noice.enable = true;
             autopairs.enable = true;
             autocomplete = {

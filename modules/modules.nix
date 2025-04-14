@@ -12,6 +12,7 @@ let
     ./build
     ./chatgpt
     ./codeium
+    ./copilot
     ./completion
     ./core
     ./debugger
