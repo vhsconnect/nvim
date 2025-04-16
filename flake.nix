@@ -586,8 +586,6 @@
           };
         };
 
-        overlays.default = _: __: { eslint_d = master.eslint_d; };
-
         pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ ];
 
         neovim = (import ./neovim.nix) { inherit inputs; };

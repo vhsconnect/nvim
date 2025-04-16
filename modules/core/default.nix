@@ -101,7 +101,7 @@ in
           (if (isBool val) then (mkVimBool val) else (toJSON val));
 
       filterNonNull = mappings: filterAttrs (name: value: value != null) mappings;
-      globalsScript = mapAttrsFlatten (name: value: "let g:${name}=${valToVim value}") (
+      globalsScript = mapAttrsToList (name: value: "let g:${name}=${valToVim value}") (
         filterNonNull cfg.globals
       );
 
@@ -114,7 +114,7 @@ in
         if groups == null then it else "<C-${toUpper (head groups)}>${head (tail groups)}";
       mapVimBinding =
         prefix: mappings:
-        mapAttrsFlatten (name: value: "${prefix} ${mapKeyBinding name} ${value}") (filterNonNull mappings);
+        mapAttrsToList (name: value: "${prefix} ${mapKeyBinding name} ${value}") (filterNonNull mappings);
 
       nmap = mapVimBinding "nmap" config.vim.nmap;
       imap = mapVimBinding "imap" config.vim.imap;
