@@ -4,6 +4,9 @@ function OpenCheatSheet()
 		"=== Neovim Cheat Sheet ===",
 		"  <leader>fs - fuzzy find symbols in document",
 		"  <leader>gL - link current line to github",
+		"  <leader>gL - link current line to github",
+		"  mn - go to next function",
+		"  mp - go to previous function",
 		"",
 	}
 

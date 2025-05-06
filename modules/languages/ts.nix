@@ -48,7 +48,6 @@ let
     eslint_d = {
       package = [ "eslint_d" ];
       nullConfig = # lua
-
         ''
           table.insert(
             ls_sources,

@@ -121,17 +121,7 @@ in
       # User provided grammars & override the bundled grammars with nvim-treesitter compatible ones
       # Override rather than overriding `treesitter-parsers` and rebuilding neovim-unwrapped
       # https://github.com/NixOS/nixpkgs/pull/227159
-      treeSitterPlug = pkgs.vimPlugins.nvim-treesitter.withPlugins (
-        p:
-        config.vim.treesitter.grammars
-        ++ [
-          p.c
-          p.lua
-          p.vim
-          p.vimdoc
-          p.query
-        ]
-      );
+      treeSitterPlug = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
 
       buildConfigPlugins = map (
         plug:

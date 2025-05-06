@@ -68,7 +68,11 @@ in
                   scope_incremental = "<leader><leader>]",
                   node_decremental = "<leader>[",
                 },
-              }
+              },
+
+              injection = {
+                enable = true,
+              },
             }
           '';
     };

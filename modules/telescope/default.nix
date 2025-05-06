@@ -52,10 +52,10 @@ in
       vim.nnoremap = {
         "<leader>fl" = "<cmd> Telescope live_grep_args<CR>";
       };
-      vim.inoremap = {
-        "<C-k>" = "lga_actions.quote_prompt()";
-        "<C-i>" = ''lga_actions.quote_prompt({ postfix = " --iglob " })'';
-      };
+      # vim.inoremap = {
+      #   "<C-k>" = "lga_actions.quote_prompt()";
+      #   "<C-i>" = ''lga_actions.quote_prompt({ postfix = " --iglob " })'';
+      # };
 
       vim.luaConfigRC.telescope-live-grep-args-setup =
         nvim.dag.entryBefore [ "telescope" ] # lua
@@ -75,7 +75,6 @@ in
         nvim.dag.entryAfter [ "telescope" ] # lua
           ''
             require("telescope").load_extension "live_grep_args"
-
           '';
     })
     (mkIf cfg.advanced-git-search.enable {
