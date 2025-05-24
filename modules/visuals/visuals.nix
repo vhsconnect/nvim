@@ -81,15 +81,31 @@ in
               vim.opt.listchars:append({ space = "${cfg.indentBlankline.fillChar}" })
             ''}
 
-            require("indent_blankline").setup {
+            require("ibl").setup {
               enabled = true,
-              char = "${cfg.indentBlankline.listChar}",
-              show_end_of_line = ${boolToString cfg.indentBlankline.showEndOfLine},
-
-              use_treesitter = ${boolToString cfg.indentBlankline.useTreesitter},
-              show_current_context = ${boolToString cfg.indentBlankline.showCurrContext},
-
+              indent = {
+                char = "",
+              },
+              scope = {
+                enabled = true,
+                show_start = true,
+                show_end = true,
+                include = {
+                  node_type = {
+                    ["*"] = {
+                      "class",
+                      "function", 
+                      "method",
+                      "if_statement",
+                      "for_statement",
+                      "while_statement",
+                      "try_statement",
+                    }
+                  }
+                }
+              }
             }
+
 
           '';
     })

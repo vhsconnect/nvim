@@ -438,6 +438,9 @@
               enable = true;
               nvimWebDevicons.enable = true;
               cursorWordline.enable = true;
+              indentBlankline = {
+                enable = true;
+              };
             };
             preventJunkFiles = true;
             useSystemClipboard = true;
