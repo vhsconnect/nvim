@@ -38,7 +38,7 @@ in
           ''
             -- Enable lspsaga
             local saga = require 'lspsaga'.setup({ 
-              lightbulb = { enable = false }
+              lightbulb = { enable = false },
             })
           '';
     };

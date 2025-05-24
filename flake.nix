@@ -454,8 +454,8 @@
             git = {
               enable = true;
               neogit.enable = true;
-              gitsigns.enable = false;
-              gitsigns.codeActions = false;
+              gitsigns.enable = true;
+              gitsigns.codeActions = true;
             };
             languages = {
               enableLSP = true;
@@ -533,7 +533,7 @@
               name = "oxocarbon";
             };
             avante.enable = true;
-            copilot.enable = true;
+            copilot.enable = false;
             noice.enable = true;
             autopairs.enable = true;
             autocomplete = {
@@ -556,12 +556,11 @@
                   priority = "50";
                   format = "[Buffer]";
                 }
-                {
-                  name = "vsnip";
-                  priority = "50";
-                  format = "[Vsnip]";
-                }
-
+                # {
+                #   name = "vsnip";
+                #   priority = "50";
+                #   format = "[Vsnip]";
+                # }
               ];
             };
             filetree.nvimTreeLua.enable = true;
@@ -609,7 +608,7 @@
                 "leap-nvim"
                 "colorschemes"
                 "tcomment"
-                "gitgutter"
+                #"gitgutter"
                 "themed-tabs"
                 #  "diffview"
                 "nvim-surround"
@@ -626,7 +625,7 @@
                 "dadbod-ui"
                 "dadbod-completion"
                 "vim-prettier"
-                "vim-polyglot"
+                # "vim-polyglot"
               ];
               vim.optPlugins = [ "codeium" ];
             }

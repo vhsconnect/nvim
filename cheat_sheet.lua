@@ -6,6 +6,7 @@ function OpenCheatSheet()
 		"  <leader>gL - link current line to github",
 		"  <leader>gL - link current line to github",
 		"  mn - go to next function",
+		"<leader>fl - live grep ;",
 		"  mp - go to previous function",
 		"",
 	}

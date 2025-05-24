@@ -276,3 +276,11 @@ function Rotate_windows()
 end
 
 vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true })
+
+-- vim.cmd([[
+--    profile start nvim-profile.log
+--    profile func *
+--    profile file *
+--  ]])
+
+vim.g.loaded_matchparen = 1

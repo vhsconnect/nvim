@@ -68,16 +68,16 @@ in
             priority = "100";
             format = "[LSP]";
           }
-          {
-            name = "buffer";
-            priority = "50";
-            format = "[Buffer]";
-          }
-          {
-            name = "vsnip";
-            priority = "50";
-            format = "[Vsnip]";
-          }
+          # {
+          #   name = "buffer";
+          #   priority = "50";
+          #   format = "[Buffer]";
+          # }
+          # {
+          #   name = "vsnip";
+          #   priority = "50";
+          #   format = "[Vsnip]";
+          # }
         ];
 
         example = [
@@ -114,12 +114,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins = [
-      "nvim-cmp"
-      "cmp-buffer"
-      "cmp-vsnip"
-      "cmp-path"
-    ] ++ (if cfg.enableCmdline then [ "cmp-cmdline" ] else [ ]) ++ optional debuggerEnabled "cmp-dap";
+    vim.startPlugins =
+      [
+        "nvim-cmp"
+        "cmp-buffer"
+        "cmp-vsnip"
+        "cmp-path"
+      ]
+      ++ (if cfg.enableCmdline then [ "cmp-cmdline" ] else [ ])
+      ++ optional debuggerEnabled "cmp-dap";
 
     # vim.autocomplete.sources = {
     #   "nvim-cmp" = null;
@@ -158,6 +161,12 @@ in
 
         local cmp = require'cmp'
         cmp.setup({
+            performance = {
+            debounce = 40,
+            throttle = 70,
+            fetching_timeout = 500
+          },
+
           snippet = {
             expand = function(args)
               vim.fn["vsnip#anonymous"](args.body)
