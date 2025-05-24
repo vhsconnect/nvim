@@ -1,5 +1,4 @@
 function OpenCheatSheet()
-	-- Define your cheat sheet content
 	local content = {
 		"=== Neovim Cheat Sheet ===",
 		"  <leader>fs - fuzzy find symbols in document",
@@ -7,8 +6,26 @@ function OpenCheatSheet()
 		"  <leader>gL - link current line to github",
 		"  mn - go to next function",
 		"<leader>fl - live grep ;",
-		"  mp - go to previous function",
-		"",
+		"  <leader>hp', gs.preview_hunk)                         ",
+		"  <leader>hp', gs.undo_stage_hunk)                      ",
+		"                                                        ",
+		"  <leader>hS', gs.stage_buffer)                         ",
+		"  <leader>hR', gs.reset_buffer)                         ",
+		"                                                        ",
+		"  <leader>hd', gs.diffthis)                             ",
+		"  <leader>hD', function() gs.diffthis('~') end)         ",
+		"                                                        ",
+		"  <leader>hb', function() gs.blame_line{full=true} end) ",
+		"                                                        ",
+		"                                                        ",
+		"  <leader>htd', gs.toggle_deleted)                      ",
+		"  <leader>htb', gs.toggle_current_line_blame)           ",
+		"  <leader>hts', gs.toggle_signs)                        ",
+		"  <leader>htn', gs.toggle_numhl)                        ",
+		"  <leader>htl', gs.toggle_linehl)                       ",
+        "  <leader>htw', gs.toggle_word_diff)"
+
+
 	}
 
 	-- Create a scratch buffer
