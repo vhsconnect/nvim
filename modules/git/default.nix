@@ -32,6 +32,24 @@ in
           nvim.dag.entryAnywhere # lua
             ''
               require('gitsigns').setup {
+                signs = {
+                  add          = { text = '' },
+                  change       = { text = '' },
+                  delete       = { text = '' },
+                  topdelete    = { text = '' },
+                  changedelete = { text = '' },
+                  untracked    = { text = '' },
+                },
+                signs_staged = {
+                  add          = { text = '' },
+                  change       = { text = '' },
+                  delete       = { text = '' },
+                  topdelete    = { text = '' },
+                  changedelete = { text = '' },
+                  untracked    = { text = '' },
+                },
+                sign_priority = 6,
+                update_debounce = 500,
                 on_attach = function(bufnr)
                   local gs = package.loaded.gitsigns
 
@@ -55,30 +73,30 @@ in
                   end, {expr=true})
 
                   -- actions
-                  map('n', '<leader>gs', gs.stage_hunk)
-                  map('v', '<leader>gs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+                  map('n', '<leader>hs', gs.stage_hunk)
+                  map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
 
-                  map('n', '<leader>gr', gs.reset_hunk)
-                  map('v', '<leader>gr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+                  map('n', '<leader>hu', gs.reset_hunk)
+                  map('v', '<leader>hu', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
 
-                  map('n', '<leader>gp', gs.preview_hunk)
-                  map('n', '<leader>gu', gs.undo_stage_hunk)
+                  map('n', '<leader>hp', gs.preview_hunk)
+                  map('n', '<leader>hp', gs.undo_stage_hunk)
 
-                  map('n', '<leader>gS', gs.stage_buffer)
-                  map('n', '<leader>gR', gs.reset_buffer)
+                  map('n', '<leader>hS', gs.stage_buffer)
+                  map('n', '<leader>hR', gs.reset_buffer)
 
-                  map('n', '<leader>gd', gs.diffthis)
-                  map('n', '<leader>gD', function() gs.diffthis('~') end)
+                  map('n', '<leader>hd', gs.diffthis)
+                  map('n', '<leader>hD', function() gs.diffthis('~') end)
 
-                  map('n', '<leader>gb', function() gs.blame_line{full=true} end)
+                  map('n', '<leader>hb', function() gs.blame_line{full=true} end)
 
                   -- Toggles
-                  map('n', '<leader>gtd', gs.toggle_deleted)
-                  map('n', '<leader>gtb', gs.toggle_current_line_blame)
-                  map('n', '<leader>gts', gs.toggle_signs)
-                  map('n', '<leader>gtn', gs.toggle_numhl)
-                  map('n', '<leader>gtl', gs.toggle_linehl)
-                  map('n', '<leader>gtw', gs.toggle_word_diff)
+                  map('n', '<leader>htd', gs.toggle_deleted)
+                  map('n', '<leader>htb', gs.toggle_current_line_blame)
+                  map('n', '<leader>hts', gs.toggle_signs)
+                  map('n', '<leader>htn', gs.toggle_numhl)
+                  map('n', '<leader>htl', gs.toggle_linehl)
+                  map('n', '<leader>htw', gs.toggle_word_diff)
 
                   -- Text objects
                   map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
