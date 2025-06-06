@@ -1710,7 +1710,6 @@
         "tmux-nav": "tmux-nav",
         "tokyonight": "tokyonight",
         "tshjkl": "tshjkl",
-        "vim-polyglot": "vim-polyglot",
         "vim-prettier": "vim-prettier",
         "vim-terraform": "vim-terraform"
       }
@@ -1864,22 +1863,6 @@
       "original": {
         "owner": "gsuuon",
         "repo": "tshjkl.nvim",
-        "type": "github"
-      }
-    },
-    "vim-polyglot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1733350963,
-        "narHash": "sha256-5m61Ws335Ip3IofFEd07vuvIdLUZGFd3mCz8/K/fyhY=",
-        "owner": "sheerun",
-        "repo": "vim-polyglot",
-        "rev": "f5393cfee07aeb666f4d75f9b3a83163862fb094",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sheerun",
-        "repo": "vim-polyglot",
         "type": "github"
       }
     },

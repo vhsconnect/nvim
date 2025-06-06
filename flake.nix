@@ -333,10 +333,6 @@
       url = "github:prettier/vim-prettier";
       flake = false;
     };
-    vim-polyglot = {
-      url = "github:sheerun/vim-polyglot";
-      flake = false;
-    };
   };
 
   outputs =
@@ -428,9 +424,6 @@
               vim-prettier = {
                 src = inputs.vim-prettier;
               };
-              vim-polyglot = {
-                src = inputs.vim-polyglot;
-              };
             };
           } // (if useNightly then { build.package = nightly; } else { });
           vim = {
@@ -439,7 +432,7 @@
               nvimWebDevicons.enable = true;
               cursorWordline.enable = true;
               indentBlankline = {
-                enable = true;
+                enable = false;
               };
             };
             preventJunkFiles = true;
@@ -628,7 +621,6 @@
                 "dadbod-ui"
                 "dadbod-completion"
                 "vim-prettier"
-                # "vim-polyglot"
               ];
               vim.optPlugins = [ "codeium" ];
             }
