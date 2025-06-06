@@ -60,17 +60,13 @@ in
                   end
 
                   -- navigation
-                  map('n', '<leader>gn', function()
-                    if vim.wo.diff then return '<leader>gn' end
-                    vim.schedule(function() gs.next_hunk() end)
-                    return '<Ignore>'
-                  end, {expr=true})
+                  map('n', ']c', function()
+                      gs.nav_hunk('next')
+                  end)
 
-                  map('n', '<leader>gp', function()
-                    if vim.wo.diff then return '<leader>gn' end
-                    vim.schedule(function() gs.prev_hunk() end)
-                    return '<Ignore>'
-                  end, {expr=true})
+                  map('n', '[c', function()
+                      gs.nav_hunk('prev')
+                  end)
 
                   -- actions
                   map('n', '<leader>hs', gs.stage_hunk)
