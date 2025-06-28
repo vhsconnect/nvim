@@ -862,22 +862,6 @@
         "type": "github"
       }
     },
-    "plugin-indent-blankline": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1742224677,
-        "narHash": "sha256-0q/V+b4UrDRnaC/eRWOi9HU9a61vQSAM9/C8ZQyKt+Y=",
-        "owner": "lukas-reineke",
-        "repo": "indent-blankline.nvim",
-        "rev": "005b56001b2cb30bfa61b7986bc50657816ba4ba",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lukas-reineke",
-        "repo": "indent-blankline.nvim",
-        "type": "github"
-      }
-    },
     "plugin-kommentary": {
       "flake": false,
       "locked": {
@@ -1658,7 +1642,6 @@
         "plugin-gitsigns-nvim": "plugin-gitsigns-nvim",
         "plugin-glow-nvim": "plugin-glow-nvim",
         "plugin-gruvbox": "plugin-gruvbox",
-        "plugin-indent-blankline": "plugin-indent-blankline",
         "plugin-kommentary": "plugin-kommentary",
         "plugin-lsp-signature": "plugin-lsp-signature",
         "plugin-lspkind": "plugin-lspkind",
@@ -1705,6 +1688,7 @@
         "plugin-trouble": "plugin-trouble",
         "plugin-vim-vsnip": "plugin-vim-vsnip",
         "plugin-which-key": "plugin-which-key",
+        "scope-gutter": "scope-gutter",
         "tcomment": "tcomment",
         "themed-tabs": "themed-tabs",
         "tmux-nav": "tmux-nav",
@@ -1732,6 +1716,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "scope-gutter": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1751119979,
+        "narHash": "sha256-LQV95kz46m8jOfVCX5tEqppNf/hO8a3SLSBV2bwPuHQ=",
+        "owner": "vhsconnect",
+        "repo": "scope-gutter.nvim",
+        "rev": "5830e20c65ffa9a1cbd4f94520e62b468ad048f1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vhsconnect",
+        "repo": "scope-gutter.nvim",
         "type": "github"
       }
     },

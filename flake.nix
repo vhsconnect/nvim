@@ -190,9 +190,6 @@
     plugin-nvim-cursorline.url = "github:yamatsum/nvim-cursorline";
     plugin-nvim-cursorline.flake = false;
 
-    plugin-indent-blankline.url = "github:lukas-reineke/indent-blankline.nvim";
-    plugin-indent-blankline.flake = false;
-
     # nui - UI Component Library for Neovim - required by ChatGPT.nvim
     plugin-nui-nvim.url = "github:MunifTanjim/nui.nvim";
     plugin-nui-nvim.flake = false;
@@ -333,6 +330,10 @@
       url = "github:prettier/vim-prettier";
       flake = false;
     };
+    scope-gutter = {
+      url = "github:vhsconnect/scope-gutter.nvim";
+      flake = false;
+    };
   };
 
   outputs =
@@ -424,6 +425,9 @@
               vim-prettier = {
                 src = inputs.vim-prettier;
               };
+              scope-gutter = {
+                src = inputs.scope-gutter;
+              };
             };
           } // (if useNightly then { build.package = nightly; } else { });
           vim = {
@@ -431,9 +435,6 @@
               enable = true;
               nvimWebDevicons.enable = true;
               cursorWordline.enable = true;
-              indentBlankline = {
-                enable = false;
-              };
             };
             preventJunkFiles = true;
             useSystemClipboard = true;
@@ -583,7 +584,6 @@
             luaConfigRC = {
               a = "${builtins.readFile ./rc.lua}";
               b = "${builtins.readFile ./cheat_sheet.lua}";
-              # b = "${builtins.readFile ./diffview.lua}";
             };
           };
         };
@@ -621,6 +621,7 @@
                 "dadbod-ui"
                 "dadbod-completion"
                 "vim-prettier"
+                "scope-gutter"
               ];
               vim.optPlugins = [ "codeium" ];
             }

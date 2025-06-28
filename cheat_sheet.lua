@@ -5,7 +5,7 @@ function OpenCheatSheet()
 		"  <leader>gL - link current line to github",
 		"  <leader>gL - link current line to github",
 		"  mn - go to next function",
-		"<leader>fl - live grep ;",
+		"  <leader>fl - live grep ;",
 		"  <leader>hp', gs.preview_hunk)                         ",
 		"  <leader>hp', gs.undo_stage_hunk)                      ",
 		"                                                        ",
@@ -23,9 +23,7 @@ function OpenCheatSheet()
 		"  <leader>hts', gs.toggle_signs)                        ",
 		"  <leader>htn', gs.toggle_numhl)                        ",
 		"  <leader>htl', gs.toggle_linehl)                       ",
-        "  <leader>htw', gs.toggle_word_diff)"
-
-
+		"  <leader>htw', gs.toggle_word_diff)",
 	}
 
 	-- Create a scratch buffer

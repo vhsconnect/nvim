@@ -17,40 +17,23 @@ in
 
     cursorWordline = {
       enable = mkEnableOption "word and delayed line highlight [nvim-cursorline].";
+
+      lineTimeout = mkOption {
+        description = "Time in milliseconds for cursorline to appear.";
+        type = types.int;
+        default = 500;
+      };
     };
 
-    indentBlankline = {
-      enable = mkEnableOption "indentation guides [indent-blankline].";
   };
 
   config = mkIf cfg.enable (mkMerge [
-    (mkIf cfg.indentBlankline.enable {
-      vim.startPlugins = [ "indent-blankline" ];
-      vim.luaConfigRC.indent-blankline =
-        nvim.dag.entryAnywhere # lua
-          ''
-            vim.opt.list = true
-            require("ibl").setup {}
-
-          '';
-    })
     (mkIf cfg.cursorWordline.enable {
       vim.startPlugins = [ "nvim-cursorline" ];
       vim.luaConfigRC.cursorline =
         nvim.dag.entryAnywhere # lua
           ''
-            require('nvim-cursorline').setup {
-              cursorline = {
-                enable = false,
-                timeout = 1000,
-                number = false,
-              },
-              cursorword = {
-                enable = true,
-                min_length = 7,
-                hl = { underline = true },
-              }
-            }
+            vim.g.cursorline_timeout = ${toString cfg.cursorWordline.lineTimeout}
           '';
     })
     (mkIf cfg.nvimWebDevicons.enable { vim.startPlugins = [ "nvim-web-devicons" ]; })
