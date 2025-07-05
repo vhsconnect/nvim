@@ -131,10 +131,9 @@ require("leap").setup({
 
 require("themed-tabs").setup({
 	colorschemes = {
-		"tokyonight",
 		"oxocarbon",
 		"PaperColor",
-		"gruvbox",
+		"tokyonight",
 	},
 })
 
