@@ -16,6 +16,7 @@ in
     ./clang.nix
     ./css.nix
     ./fish.nix
+    ./gleam.nix
     ./go.nix
     ./haskell.nix
     ./html.nix
