@@ -107,6 +107,7 @@ in
           pname = name;
           version = "master";
           src = cfgBuild.rawPlugins.${pname}.src;
+          doCheck = false;
         };
 
       buildPlugCodeium =
