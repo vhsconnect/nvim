@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     master.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
@@ -429,7 +429,7 @@
                 src = inputs.scope-gutter;
               };
             };
-          } // (if useNightly then { build.package = nightly; } else { });
+          } // (if useNightly then { package = nightly; } else { });
           vim = {
             visuals = {
               enable = true;
@@ -485,6 +485,11 @@
               fish = {
                 enable = true;
                 extraDiagnostics.enable = true;
+                format.enable = true;
+                treesitter.enable = true;
+              };
+              gleam = {
+                enable = true;
                 format.enable = true;
                 treesitter.enable = true;
               };
