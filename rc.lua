@@ -104,7 +104,7 @@ vim.keymap.set("n", "<space>4", ":colorscheme falcon<CR>", { noremap = true })
 vim.keymap.set("n", "<space>5", ":colorscheme seoul256<CR>", { noremap = true })
 vim.keymap.set("n", "<space>6", ":colorscheme Tomorrow<CR>", { noremap = true })
 vim.keymap.set("n", "<space>7", ":colorscheme lightning<CR>", { noremap = true })
-vim.keymap.set("n", "<space>8", ":colorscheme seoul256-light<CR>", { noremap = true })
+vim.keymap.set("n", "<space>8", ":colorscheme LightDefault<CR>", { noremap = true })
 vim.keymap.set("n", "<space>9", ":colorscheme summerfruit256<CR>", { noremap = true })
 vim.keymap.set("n", "<space>0", ":colorscheme PaperColor<CR>", { noremap = true })
 -- atom theme
@@ -131,6 +131,7 @@ require("leap").setup({
 
 require("themed-tabs").setup({
 	colorschemes = {
+		"horseradish256",
 		"oxocarbon",
 		"PaperColor",
 		"tokyonight",
