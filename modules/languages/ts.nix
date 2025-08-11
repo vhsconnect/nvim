@@ -11,6 +11,19 @@ let
 
   defaultServer = "ts_ls";
   servers = {
+    oxc = {
+      package = [
+        "oxlint"
+      ];
+      lspConfig = # lua
+        ''
+          lspconfig.oxlint.setup {
+            capabilities = capabilities;
+            on_attach = attach_keymaps,
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "oxc_language_server"}" },
+          }
+        '';
+    };
     ts_ls = {
       package = [
         "nodePackages"
