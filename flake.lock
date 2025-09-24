@@ -3,17 +3,17 @@
     "colorschemes": {
       "flake": false,
       "locked": {
-        "lastModified": 1589579820,
-        "narHash": "sha256-JhBnyvuKqP0ddKTUi+oVrfBd4Af/pxW4Goe+DfjB6LE=",
-        "owner": "flazz",
-        "repo": "vim-colorschemes",
-        "rev": "fd8f122cef604330c96a6a6e434682dbdfb878c9",
-        "type": "github"
+        "lastModified": 1758719689,
+        "narHash": "sha256-hZcgNAockR0LA+x4geqjWDRqVJ12avxkYMc3bp9rQtc=",
+        "ref": "refs/heads/master",
+        "rev": "bd0c80e760a1e36126c12c728ee03f350f710a10",
+        "revCount": 216,
+        "type": "git",
+        "url": "file:../vim-colorschemes"
       },
       "original": {
-        "owner": "flazz",
-        "repo": "vim-colorschemes",
-        "type": "github"
+        "type": "git",
+        "url": "file:../vim-colorschemes"
       }
     },
     "dadbod": {
@@ -412,11 +412,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1751582995,
-        "narHash": "sha256-u7ubvtxdTnFPpV27AHpgoKn7qHuE7sgWgza/1oj5nzA=",
+        "lastModified": 1755922037,
+        "narHash": "sha256-wY1+2JPH0ZZC4BQefoZw/k+3+DowFyfOxv17CN/idKs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7a732ed41ca0dd64b4b71b563ab9805a80a7d693",
+        "rev": "b1b3291469652d5a2edb0becc4ef0246fff97a7c",
         "type": "github"
       },
       "original": {

@@ -282,7 +282,7 @@
       flake = false;
     };
     colorschemes = {
-      url = "github:flazz/vim-colorschemes";
+      url = "github:vhsconnect/vim-colorschemes";
       flake = false;
     };
     tcomment = {
@@ -429,7 +429,8 @@
                 src = inputs.scope-gutter;
               };
             };
-          } // (if useNightly then { package = nightly; } else { });
+          }
+          // (if useNightly then { package = nightly; } else { });
           vim = {
             visuals = {
               enable = true;
