@@ -235,7 +235,7 @@
     plugin-render-markdown.url = "github:MeanderingProgrammer/render-markdown.nvim";
     plugin-render-markdown.flake = false;
 
-    plugin-avante-nvim.url = "github:yetone/avante.nvim";
+    plugin-avante-nvim.url = "github:vhsconnect/avante.nvim";
     plugin-avante-nvim.flake = false;
 
     plugin-noice.url = "github:folke/noice.nvim";

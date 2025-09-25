@@ -3,17 +3,17 @@
     "colorschemes": {
       "flake": false,
       "locked": {
-        "lastModified": 1758719689,
-        "narHash": "sha256-hZcgNAockR0LA+x4geqjWDRqVJ12avxkYMc3bp9rQtc=",
-        "ref": "refs/heads/master",
-        "rev": "bd0c80e760a1e36126c12c728ee03f350f710a10",
-        "revCount": 216,
-        "type": "git",
-        "url": "file:../vim-colorschemes"
+        "lastModified": 1758800328,
+        "narHash": "sha256-TSylxyLm7h5cJsXXJiEnqCl8ct4dXM9gxWMm3NJWGOA=",
+        "owner": "vhsconnect",
+        "repo": "vim-colorschemes",
+        "rev": "1a72fb73664dc4903828975d8f153993a4838931",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:../vim-colorschemes"
+        "owner": "vhsconnect",
+        "repo": "vim-colorschemes",
+        "type": "github"
       }
     },
     "dadbod": {
@@ -479,13 +479,13 @@
       "locked": {
         "lastModified": 1725119514,
         "narHash": "sha256-8E+nnom0AK2nKruz9MnVuWc0uX0xJd4kzUDOos+vRP4=",
-        "owner": "yetone",
+        "owner": "vhsconnect",
         "repo": "avante.nvim",
         "rev": "534b1e6becaac1df61a9677b050627dfa9678c42",
         "type": "github"
       },
       "original": {
-        "owner": "yetone",
+        "owner": "vhsconnect",
         "repo": "avante.nvim",
         "type": "github"
       }

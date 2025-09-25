@@ -24,6 +24,10 @@ function OpenCheatSheet()
 		"  <leader>htn', gs.toggle_numhl)                        ",
 		"  <leader>htl', gs.toggle_linehl)                       ",
 		"  <leader>htw', gs.toggle_word_diff)",
+
+
+
+		"  <leader>V', Shift window",
 	}
 
 	-- Create a scratch buffer
