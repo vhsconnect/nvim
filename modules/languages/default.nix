@@ -14,6 +14,7 @@ in
     ./angular.nix
     ./bash.nix
     ./clang.nix
+    ./clojure.nix
     ./css.nix
     ./fish.nix
     ./gleam.nix

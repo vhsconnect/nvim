@@ -465,6 +465,13 @@
                 format.enable = true;
                 format.type = "nixfmt";
               };
+              clojure = {
+                enable = true;
+                treesitter.enable = true;
+                format.enable = true;
+                extraDiagnostics.enable = true;
+                lsp.enable = true;
+              };
               markdown.enable = false;
               html.enable = false;
               html.treesitter.enable = true;
