@@ -282,6 +282,13 @@ vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true
 
 vim.g.loaded_matchparen = 1
 
+-----------
+--- Conjure
+------------
+-- vim.g["conjure#mapping#enable_defaults"] = false
+vim.g["conjure#mapping#prefix"] = "<leader>c"
+vim.g["conjure#mapping#doc_word"] = false
+
 ----------------
 -- Debugging
 ---------------

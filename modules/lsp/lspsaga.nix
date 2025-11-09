@@ -18,20 +18,19 @@ in
       tnoremap = {
         "<silent><C-q>" = "<cmd>Lspsaga term_toggle<cr>";
       };
-      nnoremap =
-        {
-          "<silent><leader>ca" = "<cmd>Lspsaga code_action<cr>";
-          "<silent><leader>lf" = "<cmd>Lspsaga finder<cr>";
-          "<silent><C-q>" = "<cmd>Lspsaga term_toggle<cr>";
-          "<silent><leader>li" = "<cmd>Lspsaga incomming_calls<cr>";
-          "<silent><leader>lo>" = "<cmd>Lspsaga outgoing_calls<cr>";
-        }
-        // (
-          if (!cfg.lspSignature.enable) then
-            { "<silent><leader>ls" = "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>"; }
-          else
-            { }
-        );
+      nnoremap = {
+        # "<silent><leader>ca" = "<cmd>Lspsaga code_action<cr>";
+        "<silent><leader>lf" = "<cmd>Lspsaga finder<cr>";
+        "<silent><C-q>" = "<cmd>Lspsaga term_toggle<cr>";
+        "<silent><leader>li" = "<cmd>Lspsaga incomming_calls<cr>";
+        "<silent><leader>lo>" = "<cmd>Lspsaga outgoing_calls<cr>";
+      }
+      // (
+        if (!cfg.lspSignature.enable) then
+          { "<silent><leader>ls" = "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>"; }
+        else
+          { }
+      );
 
       luaConfigRC.lspsage =
         nvim.dag.entryAnywhere # lua

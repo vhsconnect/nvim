@@ -334,6 +334,9 @@
       url = "github:vhsconnect/scope-gutter.nvim";
       flake = false;
     };
+
+    conjure.url = "github:Olical/conjure";
+    conjure.flake = false;
   };
 
   outputs =
@@ -427,6 +430,9 @@
               };
               scope-gutter = {
                 src = inputs.scope-gutter;
+              };
+              conjure = {
+                src = inputs.conjure;
               };
             };
           }
@@ -635,6 +641,7 @@
                 "dadbod-completion"
                 "vim-prettier"
                 "scope-gutter"
+                "conjure"
               ];
               vim.optPlugins = [ "codeium" ];
             }

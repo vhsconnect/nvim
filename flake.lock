@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "conjure": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1762097144,
+        "narHash": "sha256-LL0ZaBDQgwu2OV+X5t9BhdFHWMc6GgOQCJxc/XUFQ2U=",
+        "owner": "Olical",
+        "repo": "conjure",
+        "rev": "dab027e0cb710beb070424a117b9065279f6083d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Olical",
+        "repo": "conjure",
+        "type": "github"
+      }
+    },
     "dadbod": {
       "flake": false,
       "locked": {
@@ -1582,6 +1598,7 @@
     "root": {
       "inputs": {
         "colorschemes": "colorschemes",
+        "conjure": "conjure",
         "dadbod": "dadbod",
         "dadbod-completion": "dadbod-completion",
         "dadbod-ui": "dadbod-ui",

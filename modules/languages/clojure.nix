@@ -29,8 +29,22 @@ let
     };
   };
 
-  defaultFormat = "zprint";
+  defaultFormat = "cljfmt";
   formats = {
+    cljfmt = {
+      package = [
+        "cljfmt"
+      ];
+      nullConfig = # lua
+        ''
+          table.insert(
+            ls_sources,
+            null_ls.builtins.formatting.cljfmt.with({
+               command = "${nvim.languages.commandOptToCmd cfg.format.package "cljfmt"}",
+            })
+          )
+        '';
+    };
     zprint = {
       package = [
         "zprint"
