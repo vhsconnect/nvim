@@ -24,8 +24,11 @@ function OpenCheatSheet()
 		"  <leader>htn', gs.toggle_numhl)                        ",
 		"  <leader>htl', gs.toggle_linehl)                       ",
 		"  <leader>htw', gs.toggle_word_diff)",
-
-
+		"  <leader>cc', conjure eval under cursor",
+		"  <leader>cE', V-mode - conjure eval highlighted",
+		"  <leader>cf', conjure eval entire buffer",
+		"  <leader>cmf', conjure mark variable",
+		"  <leader>cemf', conjure eval marked variable",
 
 		"  <leader>V', Shift window",
 	}

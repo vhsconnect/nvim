@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     master.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
@@ -366,7 +366,7 @@
         configModule = {
           build = {
             viAlias = true;
-            vimAlias = true;
+            vimAlias = false;
             rawPlugins = {
               oil = {
                 src = inputs.oil;
@@ -510,7 +510,7 @@
               ts = {
                 enable = true;
                 treesitter.enable = true;
-                format.type = "eslint_d";
+                format.type = "eslint";
                 format.enable = true;
                 extraDiagnostics.enable = true;
               };
@@ -518,8 +518,8 @@
               rust.lsp.enable = true;
               css.enable = false;
               css.lsp.enable = true;
-              tailwindcss.enable = false;
-              tailwindcss.lsp.enable = false;
+              tailwindcss.enable = true;
+              tailwindcss.lsp.enable = true;
               haskell = {
                 enable = false;
                 lsp.enable = true;
