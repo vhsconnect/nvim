@@ -6,7 +6,6 @@
     nil.url = "github:oxalica/nil";
     nil.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
     ## Plugins (must begin with plugin-)
 
     # 3rd party LLM Plugins
@@ -58,8 +57,8 @@
     plugin-sqls-nvim.url = "github:nanotee/sqls.nvim";
     plugin-sqls-nvim.flake = false;
 
-    plugin-rust-tools.url = "github:simrat39/rust-tools.nvim";
-    plugin-rust-tools.flake = false;
+    plugin-rustaceanvim.url = "github:mrcjkb/rustaceanvim";
+    plugin-rustaceanvim.flake = true;
 
     # Not primary repo, waiting on PR
     plugin-ccls-nvim.url = "github:MCGHH/ccls.nvim";
@@ -334,10 +333,6 @@
       url = "github:vhsconnect/scope-gutter.nvim";
       flake = false;
     };
-    elin = {
-      url = "github:liquidz/vim-iced";
-      flake = false;
-    };
 
     conjure.url = "github:Olical/conjure";
     conjure.flake = false;
@@ -438,9 +433,6 @@
               conjure = {
                 src = inputs.conjure;
               };
-              elin = {
-                src = inputs.elin;
-              };
             };
           }
           // (if useNightly then { package = nightly; } else { });
@@ -527,6 +519,8 @@
               };
               rust.enable = true;
               rust.lsp.enable = true;
+              # rust.formatRsx.enable = true;
+              rust.format.enable = true;
               css.enable = false;
               css.lsp.enable = true;
               tailwindcss.enable = true;
@@ -653,7 +647,6 @@
                 "vim-prettier"
                 "scope-gutter"
                 "conjure"
-                "elin"
               ];
               vim.optPlugins = [ "codeium" ];
             }

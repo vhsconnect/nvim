@@ -14,9 +14,9 @@ in
     enable = mkEnableOption "Rust language support";
 
     packages = {
-      rustc = mkPackageOption pkgs [ "Rustc package to use" ] { default = [ "rustc" ]; };
+      rustc = mkPackageOption pkgs "Rustc package to use" { default = [ "rustc" ]; };
 
-      cargo = mkPackageOption pkgs [ "Cargo package to use" ] { default = [ "cargo" ]; };
+      cargo = mkPackageOption pkgs "Cargo package to use" { default = [ "cargo" ]; };
     };
 
     treesitter = {
@@ -34,6 +34,21 @@ in
         description = "Enable code actions through null-ls";
         type = types.bool;
         default = true;
+      };
+    };
+    formatRsx = {
+      enable = mkOption {
+        description = "Enable Dioxus RSX formatting";
+        type = types.bool;
+        default = config.vim.languages.enableFormat;
+      };
+    };
+
+    format = {
+      enable = mkOption {
+        description = "Enable Rust formatting";
+        type = types.bool;
+        default = config.vim.languages.enableFormat;
       };
     };
 
@@ -91,54 +106,58 @@ in
       vim.treesitter.enable = true;
       vim.treesitter.grammars = [ cfg.treesitter.package ];
     })
-    (mkIf cfg.lsp.enable {
-      vim.startPlugins = [ "rust-tools" ];
+    (mkIf cfg.format.enable {
+      vim.lsp.null-ls.enable = true;
+      vim.lsp.null-ls.sources.rust-format = # lua
+        ''
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format()
+            end
+            })
+        '';
+    })
 
+    (mkIf cfg.formatRsx.enable {
+      vim.lsp.null-ls.enable = true;
+      vim.lsp.null-ls.sources.rust-format-rsx = ''
+        table.insert(
+          ls_sources,
+          null_ls.builtins.formatting.dxfmt.with({
+            command = "${pkgs.dioxus-cli}/bin/dx",
+          })
+        )
+      '';
+    })
+    (mkIf cfg.lsp.enable {
+      vim.startPlugins = [ "rustaceanvim" ];
       vim.lsp.lspconfig.enable = true;
+      # TODO configure - type hints ?
       vim.lsp.lspconfig.sources.rust-lsp = # lua
         ''
-          local rt = require('rust-tools')
-
-          rust_on_attach = function(client, bufnr)
-            default_on_attach(client, bufnr)
-            local opts = { noremap=true, silent=true, buffer = bufnr }
-            vim.keymap.set("n", "<leader>ris", rt.inlay_hints.set, opts)
-            vim.keymap.set("n", "<leader>riu", rt.inlay_hints.unset, opts)
-            vim.keymap.set("n", "<leader>rr", rt.runnables.runnables, opts)
-            vim.keymap.set("n", "<leader>rd", rt.debuggables.debuggables, opts)
-            vim.keymap.set("n", "<leader>rp", rt.parent_module.parent_module, opts)
-            vim.keymap.set("n", "<leader>rm", rt.expand_macro.expand_macro, opts)
-            vim.keymap.set("n", "<leader>rc", rt.open_cargo_toml.open_cargo_toml, opts)
-            vim.keymap.set("n", "<leader>rg", function() rt.crate_graph.view_crate_graph("x11", nil) end, opts)
-          end
-
-          local rustopts = {
+          vim.g.rustaceanvim = {
+            -- Plugin configuration
             tools = {
-              autoSetHints = true,
-              hover_with_actions = false,
-              inlay_hints = {
-                only_current_line = false,
-              }
+            runnables = { use_telescope = true },
+            debuggables = { use_telescope = true }
             },
             server = {
-              capabilities = capabilities,
-              on_attach = rust_on_attach,
-              cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "rust-analyzer"}"},
-              settings = {
-                ${cfg.lsp.opts}
-              }
+              default_settings = {
+                -- rust-analyzer language server configuration
+                ['rust-analyzer'] = {
+                },
+              },
             },
+            -- DAP configuration
             dap = {
-              adapter = false,
-            }
+            },
           }
-
-          rt.setup(rustopts)
+                
         '';
     })
     (mkIf cfg.debugger.enable {
-      vim.startPlugins = [ "rust-tools" ];
-
+      vim.startPlugins = [ "rustaceanvim" ];
       vim.debugger.enable = true;
     })
   ]);
