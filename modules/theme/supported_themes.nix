@@ -37,7 +37,7 @@ in
   config.vim.theme.supportedThemes = {
 
     # oxocarbon = {
-    #   setup = '' 
+    #   setup = ''
     #   -- Oxocarbon theme
     #  -- vim.opt.background = ${cfg.style}
     #   vim.o.background = "${cfg.style}"

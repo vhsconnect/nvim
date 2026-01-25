@@ -114,15 +114,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins =
-      [
-        "nvim-cmp"
-        "cmp-buffer"
-        "cmp-vsnip"
-        "cmp-path"
-      ]
-      ++ (if cfg.enableCmdline then [ "cmp-cmdline" ] else [ ])
-      ++ optional debuggerEnabled "cmp-dap";
+    vim.startPlugins = [
+      "nvim-cmp"
+      "cmp-buffer"
+      "cmp-vsnip"
+      "cmp-path"
+    ]
+    ++ (if cfg.enableCmdline then [ "cmp-cmdline" ] else [ ])
+    ++ optional debuggerEnabled "cmp-dap";
 
     # vim.autocomplete.sources = {
     #   "nvim-cmp" = null;

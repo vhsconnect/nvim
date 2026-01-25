@@ -17,7 +17,8 @@ let
     specialArgs = {
       modulesPath = builtins.toString ./.;
       currentModules = modules;
-    } // extraSpecialArgs;
+    }
+    // extraSpecialArgs;
   };
 in
 module.config.built.package

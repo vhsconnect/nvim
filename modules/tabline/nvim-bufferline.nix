@@ -40,7 +40,8 @@ in
         "<silent><leader>bc" = ":BufferLinePick<CR>";
         "<silent><leader>bse" = ":BufferLineSortByExtension<CR>";
         "<silent><leader>bsd" = ":BufferLineSortByDirectory<CR>";
-        "<silent><leader>bsi" = ":lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>";
+        "<silent><leader>bsi" =
+          ":lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>";
         "<silent><leader>bmn" = ":BufferLineMoveNext<CR>";
         "<silent><leader>bmp" = ":BufferLineMovePrev<CR>";
         "<silent><leader>b1" = "<Cmd>BufferLineGoToBuffer 1<CR>";
