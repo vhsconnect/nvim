@@ -519,7 +519,7 @@
               };
               rust.enable = true;
               rust.lsp.enable = true;
-              # rust.formatRsx.enable = true;
+              rust.formatRsx.enable = true;
               rust.format.enable = true;
               css.enable = false;
               css.lsp.enable = true;

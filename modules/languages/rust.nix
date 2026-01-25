@@ -111,6 +111,7 @@ in
       vim.lsp.null-ls.sources.rust-format = # lua
         ''
           vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = {'*.rs'},
             buffer = bufnr,
             callback = function()
               vim.lsp.buf.format()

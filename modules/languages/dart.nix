@@ -107,7 +107,16 @@ in
 
     (mkIf cfg.format.enable {
       vim.lsp.null-ls.enable = true;
-      vim.lsp.null-ls.sources.dart-format = formats.${cfg.format.type}.nullConfig;
+      vim.lsp.null-ls.sources.dart-format = # lua
+        ''
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = {'*.dart'},
+            buffer = bufnr,
+            callback = function()
+              vim.lsp.buf.format()
+            end
+            })
+        '';
     })
 
   ]);
