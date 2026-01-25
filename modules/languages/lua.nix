@@ -15,7 +15,7 @@ let
       package = [ "lua-language-server" ];
       lspConfig = # lua
         ''
-          require'lspconfig'.lua_ls.setup {
+          vim.lsp.enable("lua_ls", {
             on_init = function(client)
               if client.workspace_folders then
                 local path = client.workspace_folders[1].name
@@ -44,7 +44,7 @@ let
             settings = {
               Lua = {}
             },
-          }
+          })
 
           vim.api.nvim_create_autocmd("FileType", {
               pattern = "lua",

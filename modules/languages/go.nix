@@ -13,13 +13,14 @@ let
   servers = {
     gopls = {
       package = [ "gopls" ];
-      lspConfig = ''
-        lspconfig.gopls.setup {
-          capabilities = capabilities;
-          on_attach = default_on_attach;
-          cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "gopls"}", "serve"};
-        }
-      '';
+      lspConfig = # lua
+        ''
+            vim.lsp.enable("gopls",  {
+              capabilities = capabilities;
+              on_attach = default_on_attach;
+              cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "gopls"}", "serve"};
+          }
+        '';
     };
   };
 in

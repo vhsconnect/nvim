@@ -16,11 +16,11 @@ let
 
       lspConfig = # lua
         ''
-          lspconfig.gleam.setup{
+          vim.lsp.enable("gleam", {
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "gleam"}", "lsp"};
-          }
+          })
         '';
     };
   };

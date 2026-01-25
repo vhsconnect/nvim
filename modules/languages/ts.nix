@@ -17,7 +17,7 @@ let
       ];
       lspConfig = # lua
         ''
-          lspconfig.oxlint.setup {
+          vim.lsp.enable("oxlint",  {
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "oxc_language_server"}" },
@@ -31,11 +31,11 @@ let
       ];
       lspConfig = # lua
         ''
-          lspconfig.ts_ls.setup {
+          vim.lsp.enable("ts_ls",{
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "typescript-language-server"}", "--stdio"},
-          }
+          })
         '';
     };
   };

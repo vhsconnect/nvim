@@ -281,7 +281,7 @@ end
 vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true })
 
 -----------
---- Conjure
+--- Clojure / Conjure
 ------------
 vim.g["conjure#mapping#enable_defaults"] = true
 vim.g["conjure#mapping#doc_word"] = false
@@ -290,6 +290,12 @@ vim.g["conjure#mapping#eval_current_form"] = "c"
 vim.g["conjure#mapping#eval_buf"] = "f"
 -- vim.g["conjure#mapping#log_split"] = "s"
 -- vim.g["conjure#mapping#log_vsplit"] = "v"
+--
+vim.filetype.add({
+	extension = {
+		cljd = "clojure",
+	},
+})
 
 ----------------
 -- Debugging

@@ -20,7 +20,7 @@ let
       lspConfig =
         # lua
         ''
-          lspconfig.nil_ls.setup{
+          vim.lsp.enable("nil_ls", {
             capabilities = capabilities,
           ${if cfg.format.enable then useFormat else noFormat},
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "nil"}"},
@@ -46,7 +46,7 @@ let
               },
             };
           ''}
-          }
+          })
         '';
     };
   };

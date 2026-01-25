@@ -15,11 +15,11 @@ let
       package = [ "pyright" ];
       lspConfig = # lua
         ''
-          lspconfig.pyright.setup{
+          vim.lsp.enable("pyright", {
             capabilities = capabilities;
             on_attach = default_on_attach;
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "pyright-langserver"}", "--stdio"};
-          }
+          })
         '';
     };
   };

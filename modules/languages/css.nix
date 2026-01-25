@@ -20,11 +20,12 @@ let
         ''
           local capabilities = vim.lsp.protocol.make_client_capabilities()
           capabilities.textDocument.completion.completionItem.snippetSupport = true
-          lspconfig.cssls.setup{
+
+          vim.lsp.enable("cssls", {
             capabilities = capabilities;
             on_attach = default_on_attach;
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "vscode-css-language-server"}", "--stdio"};
-          }
+          })
         '';
     };
   };

@@ -16,9 +16,9 @@ let
 
       lspConfig = # lua
         ''
-          lspconfig.tailwindcss.setup{
+          vim.lsp.enable("tailwindcss", {
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "tailwindcss-language-server"}", "--stdio"};
-          }
+          })
         '';
     };
   };

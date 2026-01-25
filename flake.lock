@@ -96,6 +96,22 @@
         "type": "github"
       }
     },
+    "elin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740348288,
+        "narHash": "sha256-Q4b7v0NIFInDVCE8cHBj10WkGl946TwRHoK8gVMhRoE=",
+        "owner": "liquidz",
+        "repo": "vim-iced",
+        "rev": "a41e244ba19abaee44c4484b7413e8189e0e35fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "liquidz",
+        "repo": "vim-iced",
+        "type": "github"
+      }
+    },
     "emmet": {
       "flake": false,
       "locked": {
@@ -1479,6 +1495,7 @@
         "dadbod-completion": "dadbod-completion",
         "dadbod-ui": "dadbod-ui",
         "diffview": "diffview",
+        "elin": "elin",
         "emmet": "emmet",
         "flake-utils": "flake-utils",
         "gen": "gen",

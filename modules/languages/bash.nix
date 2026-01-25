@@ -18,11 +18,11 @@ let
       ];
       lspConfig = # lua
         ''
-          lspconfig.bashls.setup{
+          vim.lsp.enable("bashls", {
             capabilities = capabilities;
             on_attach = default_on_attach;
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "bash-language-server"}", "start"};
-          }
+          })
         '';
     };
   };

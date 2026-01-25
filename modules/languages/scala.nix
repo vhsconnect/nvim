@@ -53,13 +53,11 @@ in
         ''
           vim.opt_global.shortmess:remove("F")
            local cmd = {"${cfg.lsp.package}/bin/metals"}
-           require'lspconfig'.metals.setup {
+
+          vim.lsp.enable("metals", {
            cmd = cmd,
            on_attach = default_on_attach
-           }
-
-
-
+           })
         '';
     })
   ]);

@@ -14,7 +14,7 @@ let
     hls = {
       package = [ "haskell-language-server" ];
       lspConfig = ''
-        lspconfig.hls.setup {}
+        vim.lsp.config('hls')
       '';
     };
   };

@@ -334,6 +334,10 @@
       url = "github:vhsconnect/scope-gutter.nvim";
       flake = false;
     };
+    elin = {
+      url = "github:liquidz/vim-iced";
+      flake = false;
+    };
 
     conjure.url = "github:Olical/conjure";
     conjure.flake = false;
@@ -434,6 +438,9 @@
               conjure = {
                 src = inputs.conjure;
               };
+              elin = {
+                src = inputs.elin;
+              };
             };
           }
           // (if useNightly then { package = nightly; } else { });
@@ -477,6 +484,10 @@
                 format.enable = true;
                 extraDiagnostics.enable = true;
                 lsp.enable = true;
+              };
+              dart = {
+                enable = true;
+                format.enable = true;
               };
               markdown.enable = false;
               html.enable = false;
@@ -642,6 +653,7 @@
                 "vim-prettier"
                 "scope-gutter"
                 "conjure"
+                "elin"
               ];
               vim.optPlugins = [ "codeium" ];
             }
