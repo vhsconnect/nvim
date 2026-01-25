@@ -34,7 +34,8 @@ let
           table.insert(
             ls_sources,
             null_ls.builtins.formatting.dart_format.with({
-              command = "${nvim.languages.commandOptToCmd cfg.format.package "dart"} format",
+              command = "${nvim.languages.commandOptToCmd cfg.format.package "dart"}",
+              args = { "format" },
             })
           )
         '';

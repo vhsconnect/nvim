@@ -278,7 +278,7 @@
       flake = false;
     };
     leap-nvim = {
-      url = "github:ggandor/leap.nvim";
+      url = "git+https://codeberg.org/andyg/leap.nvim.git";
       flake = false;
     };
     colorschemes = {
