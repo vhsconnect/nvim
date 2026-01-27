@@ -20,14 +20,14 @@ let
       lspConfig =
         # lua
         ''
-          vim.lsp.enable("nil_ls", {
+           require('lspconfig').nil_ls.setup({
             capabilities = capabilities,
           ${if cfg.format.enable then useFormat else noFormat},
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "nil"}"},
           ${optionalString cfg.format.enable ''
             settings = {
               ["nil"] = {
-              nix = { flake = { autoArchive = false }},
+              nix = { flake = { autoArchive = true, nixpkgsInputName = "nixpkgs" }},
             ${optionalString (cfg.format.type == "alejandra") ''
               formatting = {
                 command = {"${cfg.format.package}/bin/alejandra", "--quiet"},
@@ -43,6 +43,7 @@ let
                 command = {"${cfg.format.package}/bin/nixfmt"},
               },
             ''}
+
               },
             };
           ''}
@@ -71,7 +72,7 @@ let
       # Never need to use null-ls for nixpkgs-fmt
     };
     nixfmt = {
-      package = [ "nixfmt-rfc-style" ];
+      package = [ "nixfmt" ];
     };
   };
 
