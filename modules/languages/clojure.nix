@@ -41,6 +41,7 @@ let
             ls_sources,
             null_ls.builtins.formatting.cljfmt.with({
                command = "${nvim.languages.commandOptToCmd cfg.format.package "cljfmt"}",
+               extra_filetypes = { "bb", "babashka" }
             })
           )
         '';

@@ -657,7 +657,7 @@
         packages.neovim = extended;
         devShells.default = pkgs.mkShell {
           buildInputs = [ packages.neovim ];
-          shellHook = '''';
+          shellHook = "";
         };
       }
     );

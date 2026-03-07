@@ -18,6 +18,7 @@ in
     ./css.nix
     ./dart.nix
     ./fish.nix
+    ./fennel.nix
     ./gleam.nix
     ./go.nix
     ./haskell.nix

@@ -27,6 +27,7 @@ function OpenCheatSheet()
 		"  <leader>cc', conjure eval under cursor",
 		"  <leader>cE', V-mode - conjure eval highlighted",
 		"  <leader>cf', conjure eval entire buffer",
+		"  <leader>clv', conjure log split vertical",
 		"  <leader>cmf', conjure mark variable",
 		"  <leader>cemf', conjure eval marked variable",
 
