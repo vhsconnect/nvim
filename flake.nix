@@ -235,7 +235,14 @@
     plugin-render-markdown.flake = false;
 
     plugin-avante-nvim.url = "github:vhsconnect/avante.nvim";
+    #plugin-avante-nvim.url = "git+file:/home/vhs/Repos/avante/avante-old.nvim/avante.nvim";
     plugin-avante-nvim.flake = false;
+
+    # plugin-avante-rust.url = "github:yetone/avante.nvim";
+    # plugin-avante-rust.flake = false;
+
+    plugin-fzf-lua.url = "github:ibhagwan/fzf-lua";
+    plugin-fzf-lua.flake = false;
 
     plugin-noice.url = "github:folke/noice.nvim";
     plugin-noice.flake = false;
@@ -554,6 +561,7 @@
               name = "oxocarbon";
             };
             avante.enable = true;
+            avante.model = "deepseek/deepseek-v3.2";
             copilot.enable = false;
             noice.enable = true;
             autopairs.enable = true;

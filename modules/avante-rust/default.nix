@@ -12,15 +12,10 @@ in
 {
   options.vim.avante = {
     enable = mkEnableOption "Enable avante.nvim";
-    provider = mkOption {
-      description = "avante.nvim provider";
-      type = types.str;
-      default = "openrouter";
-    };
-    model = mkOption {
-      description = "avante.nvim model";
-      type = with types; str;
-      default = "claude-sonnet-4-20250514";
+    config = mkOption {
+      description = "avante.nvim configuration";
+      type = with types; nullOr lines;
+      default = "";
     };
   };
 
@@ -29,7 +24,8 @@ in
       "nui-nvim"
       "dressing"
       "render-markdown"
-      "avante-nvim"
+      "avante-rust"
+      "fzf-lua"
     ];
     vim.optPlugins = [ ];
     vim.luaConfigRC.avante =
@@ -42,8 +38,16 @@ in
               ft = { "markdown", "Avante" },
             })
             require('avante').setup ({
-              provider = "${cfg.provider}",
-              openrouter = { model = "${cfg.model}" },
+             -- provider = "claude",
+              provider = "glm",
+              mode = "legacy",
+              -- claude = {
+              --   endpoint = "https://api.anthropic.com",
+               --  model = "claude-3-5-sonnet-20241022",
+             --  model = "claude-sonnet-4-20250514",
+              --  temperature = 0,
+              --  max_tokens = 4096,
+              -- },
               mappings = {
                 diff = {
                   ours = "co",
@@ -85,6 +89,7 @@ in
                 ---@type string | fun(): any
                 list_opener = "copen",
               },
+
            })
 
         '';

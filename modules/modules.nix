@@ -7,6 +7,7 @@ let
   modules = [
     ./autopairs
     ./avante
+    #./avante-rust
     ./diffview
     ./basic
     ./build

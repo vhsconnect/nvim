@@ -119,6 +119,15 @@ in
           patches = [ ./patches/codeium.patch ];
         };
 
+      buildPlugAvanteRust =
+        name:
+        pkgs.vimUtils.buildVimPlugin rec {
+          pname = name;
+          version = "master";
+          src = cfgBuild.rawPlugins.${pname}.src;
+          patches = [ ./patches/codeium.patch ];
+        };
+
       # User provided grammars & override the bundled grammars with nvim-treesitter compatible ones
       # Override rather than overriding `treesitter-parsers` and rebuilding neovim-unwrapped
       # https://github.com/NixOS/nixpkgs/pull/227159
@@ -133,6 +142,8 @@ in
                 treeSitterPlug
               else if (plug == "codeium") then
                 buildPlugCodeium "codeium"
+              else if (plug == "avante-rust") then
+                pkgs.vimPlugins.avante-nvim
               else
                 buildPlug plug
             )

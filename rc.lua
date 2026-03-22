@@ -312,6 +312,12 @@ vim.filetype.add({
 })
 
 ----------------
+-- Avante
+---------------
+
+vim.keymap.set("n", "<leader>am", "<cmd>AvanteSetModel<CR>", { noremap = true, silent = true })
+
+----------------
 -- Debugging
 ---------------
 

@@ -45,14 +45,16 @@ function OpenCheatSheet()
 	vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
 
 	-- Calculate window size and position
-	local width = 40
+	local width = math.floor(vim.o.columns * 0.8) -- 80% of screen width
 	local height = #content
+	local row = math.floor((vim.o.lines - height) / 2) -- Center vertically
+	local col = math.floor((vim.o.columns - width) / 2) -- Center horizontally
 	local win_opts = {
 		relative = "editor",
 		width = width,
 		height = height,
-		row = 1,
-		col = vim.o.columns - width - 1,
+		row = row,
+		col = col,
 		style = "minimal",
 		border = "rounded",
 	}
