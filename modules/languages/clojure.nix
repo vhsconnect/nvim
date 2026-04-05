@@ -162,6 +162,20 @@ in
     (mkIf cfg.treesitter.enable {
       vim.treesitter.enable = true;
       vim.treesitter.grammars = [ cfg.treesitter.package ];
+      vim.luaConfigRC.clojure-sql-injections = nvim.dag.entryAfter [ "globalsScript" ] ''
+        vim.opt.runtimepath:append("${pkgs.writeTextDir "queries/clojure/injections.scm" ''
+          ;; extends
+          (
+            (str_lit) @injection.content
+            (#match? @injection.content
+              "^\"(SET|TRUNCATE|SELECT|CREATE|DELETE|ALTER|UPDATE|DROP|INSERT|WITH)")
+            (#offset! @injection.content 0 1 0 -1)
+            (#set! injection.language "sql")
+          )
+
+        ''}")
+
+      '';
     })
     (mkIf cfg.lsp.enable {
       vim.lsp.lspconfig.enable = true;
