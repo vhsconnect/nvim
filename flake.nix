@@ -616,6 +616,16 @@
             luaConfigRC = {
               a = "${builtins.readFile ./rc.lua}";
               b = "${builtins.readFile ./cheat_sheet.lua}";
+              c =
+                let
+                  luaFolder = ./extra;
+                in
+                # lua
+                ''
+                  vim.opt.runtimepath:append("${toString luaFolder}")
+                  require ("flutter").setup()
+
+                '';
             };
           };
         };
