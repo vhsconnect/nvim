@@ -618,13 +618,14 @@
               b = "${builtins.readFile ./cheat_sheet.lua}";
               c =
                 let
-                  luaFolder = ./extra;
+                  luaFolder = builtins.path {
+                    path = ./extra;
+                    name = "extra-lua";
+                  };
                 in
-                # lua
                 ''
-                  vim.opt.runtimepath:append("${toString luaFolder}")
+                  vim.opt.runtimepath:append("${luaFolder}")
                   require ("flutter").setup()
-
                 '';
             };
           };
@@ -646,9 +647,7 @@
                 "leap-nvim"
                 "colorschemes"
                 "tcomment"
-                #"gitgutter"
                 "themed-tabs"
-                #  "diffview"
                 "nvim-surround"
                 "gen"
                 "tmux-nav"

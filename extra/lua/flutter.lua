@@ -102,7 +102,24 @@ local function find_flutter_root()
 	return nil
 end
 
--- rest of file unchanged ...
+local function resolve_flutter_pid(shell_pid)
+	local handle = io.popen(string.format("pgrep -P %d 2>/dev/null", shell_pid))
+	if not handle then
+		return nil
+	end
+	local child_pid = tonumber(handle:read("*l"))
+	handle:close()
+	if not child_pid then
+		return nil
+	end
+	local grandchild = resolve_flutter_pid(child_pid)
+	return grandchild or child_pid
+end
+
+local function is_pid_alive(pid)
+	return pcall(vim.loop.kill, pid, 0)
+end
+
 function M.run(device_id)
 	if flutter_job then
 		notify("Flutter is already running", vim.log.levels.WARN)
@@ -138,28 +155,57 @@ function M.run(device_id)
 		end),
 	})
 	flutter_job:start()
+		vim.defer_fn(function()
+			if flutter_job and flutter_job.pid then
+				flutter_job.real_pid = resolve_flutter_pid(flutter_job.pid)
+				if flutter_job.real_pid then
+					logger:info("Resolved real flutter PID: " .. tostring(flutter_job.real_pid))
+					notify("Flutter running with PID: " .. tostring(flutter_job.real_pid))
+				end
+			end
+		end, 2000)
 	notify("Running on device: " .. (device_id or "default"))
 end
 function M.reload()
-	if flutter_job then
-		flutter_job:send("r")
-		logger:info("Hot reload triggered")
+	if not flutter_job then
+		return
 	end
+	local real_pid = flutter_job.real_pid or flutter_job.pid
+	if real_pid and not is_pid_alive(real_pid) then
+		logger:warn("Flutter process is dead, clearing stale job")
+		flutter_job = nil
+		notify("Flutter process died - run :FlutterRun to restart", vim.log.levels.WARN)
+		return
+	end
+	flutter_job:send("r")
+	logger:info("Hot reload triggered")
 end
 function M.restart()
-	if flutter_job then
-		flutter_job:send("R")
-		logger:info("Hot restart triggered")
+	if not flutter_job then
+		return
 	end
+	local real_pid = flutter_job.real_pid or flutter_job.pid
+	if real_pid and not is_pid_alive(real_pid) then
+		logger:warn("Flutter process is dead, clearing stale job")
+		flutter_job = nil
+		notify("Flutter process died - run :FlutterRun to restart", vim.log.levels.WARN)
+		return
+	end
+	flutter_job:send("R")
+	logger:info("Hot restart triggered")
 end
 function M.quit()
 	if flutter_job then
-		local pid = flutter_job.pid
-		if pid then
-			vim.loop.kill(pid, "sigterm")
-			logger:info("Sent SIGTERM to flutter process " .. pid)
-		else
-			notify("Could not get Flutter process PID", vim.log.levels.WARN)
+		local pids = {}
+		if flutter_job.real_pid then
+			table.insert(pids, flutter_job.real_pid)
+		end
+		if flutter_job.pid then
+			table.insert(pids, flutter_job.pid)
+		end
+		for _, pid in ipairs(pids) do
+			pcall(vim.loop.kill, pid, "sigterm")
+			logger:info("Sent SIGTERM to PID " .. pid)
 		end
 		flutter_job = nil
 	else
