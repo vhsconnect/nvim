@@ -75,7 +75,7 @@
     plugin-nvim-dap-virtual-text.flake = false;
 
     # Copying/Registers
-    plugin-registers.url = "github:tversteeg/registers.nvim";
+    plugin-registers.url = "git+https://codeberg.org/fosk/registers.nvim.git";
     plugin-registers.flake = false;
 
     plugin-nvim-neoclip.url = "github:AckslD/nvim-neoclip.lua";
@@ -521,7 +521,7 @@
                 treesitter.enable = true;
               };
               gleam = {
-                enable = true;
+                enable = false;
                 format.enable = true;
                 treesitter.enable = true;
               };
@@ -624,13 +624,15 @@
             luaConfigRC = {
               a = "${builtins.readFile ./rc.lua}";
               b = "${builtins.readFile ./cheat_sheet.lua}";
-              c =
+              c = "${builtins.readFile ./dynamic_path.lua}";
+              d =
                 let
                   luaFolder = builtins.path {
                     path = ./extra;
                     name = "extra-lua";
                   };
                 in
+                # lua
                 ''
                   vim.opt.runtimepath:append("${luaFolder}")
                   require ("flutter").setup()
