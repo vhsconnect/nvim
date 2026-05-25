@@ -1,0 +1,17 @@
+{
+  "println": {
+    "prefix": "pl",
+    "body": ["println!(\"${1}\");"],
+    "description": "println!"
+  },
+  "dbg": {
+    "prefix": "dbg",
+    "body": ["dbg!(&${1});"],
+    "description": "dbg! macro"
+  },
+  "derive": {
+    "prefix": "der",
+    "body": ["#[derive(${1:Debug})]"],
+    "description": "#[derive(...)]"
+  }
+}

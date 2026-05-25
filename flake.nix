@@ -561,8 +561,8 @@
               name = "oxocarbon";
             };
             avante.enable = true;
-            avante.model = "deepseek/deepseek-v3.2";
-            copilot.enable = false;
+            avante.openrouterDefaultModel = "deepseek/deepseek-v3.2";
+            copilot.enable = true;
             noice.enable = true;
             autopairs.enable = true;
             autocomplete = {
@@ -585,11 +585,11 @@
                   priority = "50";
                   format = "[Buffer]";
                 }
-                # {
-                #   name = "vsnip";
-                #   priority = "50";
-                #   format = "[Vsnip]";
-                # }
+                {
+                  name = "vsnip";
+                  priority = "50";
+                  format = "[Vsnip]";
+                }
               ];
             };
             filetree.nvimTreeLua.enable = true;
@@ -626,6 +626,16 @@
                 ''
                   vim.opt.runtimepath:append("${luaFolder}")
                   require ("flutter").setup()
+                '';
+              d =
+                let
+                  snippetsFolder = builtins.path {
+                    path = ./snippets;
+                    name = "nvim-snippets";
+                  };
+                in
+                ''
+                  vim.g.vsnip_snippet_dir = "${snippetsFolder}"
                 '';
             };
           };

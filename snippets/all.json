@@ -1,0 +1,12 @@
+{
+  "TODO comment": {
+    "prefix": "todo",
+    "body": ["TODO: $1"],
+    "description": "TODO comment"
+  },
+  "FIXME comment": {
+    "prefix": "fixme",
+    "body": ["FIXME: $1"],
+    "description": "FIXME comment"
+  }
+}

@@ -347,7 +347,7 @@ in
         "<leader>fw" = "<cmd> Telescope lsp_workspace_symbols<CR>";
         "<leader>fd" = "<cmd> Telescope diagnostics<CR>";
 
-        # "<leader>flr" = "<cmd> Telescope lsp_references<CR>";
+        "<leader>flf" = "<cmd> Telescope lsp_references<CR>";
         # "<leader>fli" = "<cmd> Telescope lsp_implementations<CR>";
         # "<leader>flD" = "<cmd> Telescope lsp_definitions<CR>";
         # "<leader>flt" = "<cmd> Telescope lsp_type_definitions<CR>";

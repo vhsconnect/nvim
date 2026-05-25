@@ -1,0 +1,22 @@
+{
+  "console.log": {
+    "prefix": "cl",
+    "body": ["console.log($1)"],
+    "description": "console.log"
+  },
+  "console.log variable": {
+    "prefix": "clv",
+    "body": ["console.log('${1:label}', ${1:label})"],
+    "description": "console.log with label"
+  },
+  "Arrow function": {
+    "prefix": "af",
+    "body": ["const ${1:name} = (${2:args}) => {", "\t$0", "}"],
+    "description": "Arrow function"
+  },
+  "Async arrow function": {
+    "prefix": "aaf",
+    "body": ["const ${1:name} = async (${2:args}) => {", "\t$0", "}"],
+    "description": "Async arrow function"
+  }
+}
