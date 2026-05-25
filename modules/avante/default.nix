@@ -17,7 +17,7 @@ in
       type = types.str;
       default = "openrouter";
     };
-    model = mkOption {
+    openrouterDefaultModel = mkOption {
       description = "avante.nvim model";
       type = with types; str;
       default = "claude-sonnet-4-20250514";
@@ -43,7 +43,14 @@ in
             })
             require('avante').setup ({
               provider = "${cfg.provider}",
-              openrouter = { model = "${cfg.model}" },
+              openrouter = { model = "${cfg.openrouterDefaultModel}" },
+              -- claude = {
+              --   endpoint = "https://api.anthropic.com",
+              --   model = "claude-sonnet-4-20250514",
+              --   temperature = 0,
+              --   max_tokens = 4096,
+              -- },
+
               mappings = {
                 diff = {
                   ours = "co",
