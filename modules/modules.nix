@@ -23,6 +23,7 @@ let
     ./languages
     ./lsp
     ./noice
+    ./nfnl
     ./snippets
     ./statusline
     ./tabline
