@@ -25,10 +25,7 @@ let
         '';
     };
     ts_ls = {
-      package = [
-        "nodePackages"
-        "typescript-language-server"
-      ];
+      package = "typescript-language-server";
       lspConfig = # lua
         ''
           vim.lsp.enable("ts_ls",{
@@ -44,10 +41,7 @@ let
   defaultFormat = "prettier";
   formats = {
     prettier = {
-      package = [
-        "nodePackages"
-        "prettier"
-      ];
+      package = "prettier";
       nullConfig = # lua
         ''
           table.insert(

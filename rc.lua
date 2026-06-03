@@ -138,9 +138,9 @@ require("themed-tabs").setup({
 	},
 })
 
-require("scope-gutter").setup({
-	enabled = true,
-})
+-- require("scope-gutter").setup({
+-- 	enabled = true,
+-- })
 
 require("nvim-surround").setup()
 

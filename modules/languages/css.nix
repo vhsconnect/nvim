@@ -12,10 +12,7 @@ let
   defaultServer = "vscode-langservers-extracted";
   servers = {
     vscode-langservers-extracted = {
-      package = [
-        "nodePackages"
-        "vscode-langservers-extracted"
-      ];
+      package = "vscode-langservers-extracted";
       lspConfig = # lua
         ''
           local capabilities = vim.lsp.protocol.make_client_capabilities()

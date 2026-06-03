@@ -20,7 +20,7 @@ in
 
     vim.luaConfigRC.treesitter-textobjects = nvim.dag.entryAfter [ "nvim-treesitter" ] ''
        
-      require'nvim-treesitter.configs'.setup {
+      require'nvim-treesitter.config'.setup {
         textobjects = {
           move = {
             enable = true,
