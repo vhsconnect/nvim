@@ -30,6 +30,7 @@ function OpenCheatSheet()
 		"  <leader>clv', conjure log split vertical",
 		"  <leader>cmf', conjure mark variable",
 		"  <leader>cemf', conjure eval marked variable",
+		"  <C-J>, copilot accept",
 
 		"  <leader>V', Shift window",
 	}
