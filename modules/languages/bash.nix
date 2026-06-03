@@ -12,10 +12,7 @@ let
   defaultServer = "bashls";
   servers = {
     bashls = {
-      package = [
-        "nodePackages"
-        "bash-language-server"
-      ];
+      package = "bash-language-server";
       lspConfig = # lua
         ''
           vim.lsp.enable("bashls", {

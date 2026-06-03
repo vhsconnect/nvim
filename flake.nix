@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     master.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
@@ -202,6 +202,10 @@
     # Key binding help
     plugin-which-key.url = "github:folke/which-key.nvim";
     plugin-which-key.flake = false;
+
+    # Fennel
+    plugin-nfnl.url = "github:Olical/nfnl";
+    plugin-nfnl.flake = false;
 
     # Markdown
     plugin-glow-nvim.url = "github:ellisonleao/glow.nvim";
@@ -492,6 +496,11 @@
                 extraDiagnostics.enable = true;
                 lsp.enable = true;
               };
+              fennel = {
+                enable = true;
+                treesitter.enable = true;
+                lsp.enable = true;
+              };
               dart = {
                 enable = true;
                 format.enable = true;
@@ -521,7 +530,7 @@
                 treesitter.enable = true;
               };
               gleam = {
-                enable = false;
+                enable = true;
                 format.enable = true;
                 treesitter.enable = true;
               };
@@ -572,6 +581,7 @@
             avante.openrouterDefaultModel = "deepseek/deepseek-v3.2";
             copilot.enable = true;
             noice.enable = true;
+            nfnl.enable = true;
             autopairs.enable = true;
             autocomplete = {
               enable = true;
@@ -683,7 +693,7 @@
                 "dadbod-ui"
                 "dadbod-completion"
                 "vim-prettier"
-                "scope-gutter"
+                #"scope-gutter"
                 "conjure"
               ];
               vim.optPlugins = [ "codeium" ];

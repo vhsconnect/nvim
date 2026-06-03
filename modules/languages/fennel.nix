@@ -24,6 +24,18 @@ let
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "fennel-ls"}" },
+            settings = {
+              fennel = {
+                workspace = {
+                  -- This tells the LSP to include Neovim's runtime files for completion/globals
+                  library = vim.api.nvim_get_runtime_file("", true),
+                  checkThirdParty = false,
+                },
+                diagnostics = {
+                  globals = {"vim"},
+                },
+              },
+            },
           })
         '';
     };

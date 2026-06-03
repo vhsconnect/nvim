@@ -50,7 +50,7 @@ in
       luaConfigRC.treesitter =
         nvim.dag.entryAnywhere # lua
           ''
-            require'nvim-treesitter.configs'.setup {
+            require'nvim-treesitter.config'.setup {
               highlight = {
                 enable = ${if cfg.highlight then "true" else "false"},
                 disable = {},
