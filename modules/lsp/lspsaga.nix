@@ -19,7 +19,7 @@ in
         "<silent><C-q>" = "<cmd>Lspsaga term_toggle<cr>";
       };
       nnoremap = {
-        # "<silent><leader>ca" = "<cmd>Lspsaga code_action<cr>";
+        "<silent><leader>ca" = "<cmd>Lspsaga code_action<cr>";
         "<silent><leader>lf" = "<cmd>Lspsaga finder<cr>";
         "<silent><C-q>" = "<cmd>Lspsaga term_toggle<cr>";
         "<silent><leader>li" = "<cmd>Lspsaga incomming_calls<cr>";
