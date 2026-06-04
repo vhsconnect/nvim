@@ -119,7 +119,7 @@ in
               buffer = bufnr,
               callback = function()
                 if vim.g.formatsave then
-                  if client.supports_method("textDocument/formatting") then
+                  if client:supports_method("textDocument/formatting") then
                     local params = require'vim.lsp.util'.make_formatting_params({})
                     client.request('textDocument/formatting', params, nil, bufnr)
                   end
