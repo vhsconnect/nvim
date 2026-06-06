@@ -16,8 +16,29 @@ let
 
       lspConfig = # lua
         ''
-          vim.lsp.enable("tailwindcss", {
-            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "tailwindcss-language-server"}", "--stdio"};
+          vim.lsp.config('tailwindcss', {
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "tailwindcss-language-server"}", "--stdio"},
+            filetypes = {
+              "aspnetcorerazor", "astro", "astro-markdown", "blade", "clojure",
+              "django-html", "htmldjango", "edge", "eelixir", "elixir", "ejs",
+              "erb", "eruby", "gohtml", "gohtmltmpl", "haml", "handlebars", "hbs",
+              "html", "html-eex", "heex", "jade", "leaf", "liquid", "markdown",
+              "mdx", "mustache", "njk", "nunjucks", "php", "razor", "slim",
+              "twig", "css", "less", "sass", "scss", "stylus", "sugarss",
+              "javascript", "javascriptreact", "typescript", "typescriptreact",
+              "vue", "svelte",
+            },
+            root_markers = { "tailwind.config.js", "tailwind.config.cjs", "tailwind.config.mjs", "tailwind.config.ts", "postcss.config.js", "postcss.config.cjs", "postcss.config.mjs", "postcss.config.ts", ".git" },
+          })
+
+          vim.lsp.enable('tailwindcss')
+
+          vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if client.name ~= 'tailwindcss' then return end
+              default_on_attach(client, args.buf)
+            end,
           })
         '';
     };
