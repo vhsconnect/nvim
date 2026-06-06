@@ -15,13 +15,30 @@ let
       package = "vscode-langservers-extracted";
       lspConfig = # lua
         ''
-          local capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities.textDocument.completion.completionItem.snippetSupport = true
+          vim.lsp.config('cssls', {
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "vscode-css-language-server"}", "--stdio"},
+            capabilities = vim.tbl_deep_extend('force',
+              capabilities,
+              {
+                textDocument = {
+                  completion = {
+                    completionItem = {
+                      snippetSupport = true,
+                    },
+                  },
+                },
+              }
+            ),
+          })
 
-          vim.lsp.enable("cssls", {
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "vscode-css-language-server"}", "--stdio"};
+          vim.lsp.enable('cssls')
+
+          vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if client.name ~= 'cssls' then return end
+              default_on_attach(client, args.buf)
+            end,
           })
         '';
     };
