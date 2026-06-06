@@ -16,7 +16,11 @@ in
 
     fold = mkEnableOption "fold with treesitter";
 
-    highlight = mkEnableOption "highlight with treesitter";
+    highlight = mkOption {
+      description = "Enable treesitter highlighting via vim.treesitter.start";
+      type = types.bool;
+      default = true;
+    };
 
     grammars = mkOption {
       type = with types; listOf package;
@@ -38,28 +42,29 @@ in
         #}
       ];
 
-      # For some reason treesitter highlighting does not work on start if this is set before syntax on
       configRC.treesitter-fold = mkIf cfg.fold (
         nvim.dag.entryBefore [ "basic" ] ''
           set foldmethod=expr
-          set foldexpr=nvim_treesitter#foldexpr()
+          set foldexpr=v:lua.vim.treesitter.foldexpr()
           set nofoldenable
         ''
       );
 
-      luaConfigRC.treesitter =
+      luaConfigRC.treesitter-highlight = mkIf cfg.highlight (
         nvim.dag.entryAnywhere # lua
           ''
-            require'nvim-treesitter.config'.setup {
-              highlight = {
-                enable = ${if cfg.highlight then "true" else "false"},
-                disable = {},
-              },
+            vim.api.nvim_create_autocmd("FileType", {
+              callback = function()
+                pcall(vim.treesitter.start)
+              end,
+            })
+          ''
+      );
 
-              auto_install = false,
-              ignore_install = {"all"},
-              ensure_installed = {},
-
+      luaConfigRC.treesitter-selection =
+        nvim.dag.entryAfter [ "treesitter-highlight" ] # lua
+          ''
+            require('nvim-treesitter').setup {
               incremental_selection = {
                 enable = true,
                 keymaps = {
@@ -68,10 +73,6 @@ in
                   scope_incremental = "<leader><leader>]",
                   node_decremental = "<leader>[",
                 },
-              },
-
-              injection = {
-                enable = true,
               },
             }
           '';
