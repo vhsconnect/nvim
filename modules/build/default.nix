@@ -162,12 +162,6 @@ in
           optional = true;
         }));
 
-      neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
-        inherit (cfgBuild) viAlias vimAlias;
-        plugins = normalizedPlugins;
-        customRC = cfgBuilt.configRC;
-      };
-
       failedAssertions = map (x: x.message) (filter (x: !x.assertion) config.assertions);
 
       baseSystemAssertWarn =
@@ -197,7 +191,12 @@ in
         optPlugins = buildConfigPlugins cfgVim.optPlugins;
 
         package =
-          (pkgs.wrapNeovimUnstable cfgBuild.package (neovimConfig // { wrapRc = true; })).overrideAttrs
+          (pkgs.wrapNeovimUnstable cfgBuild.package {
+            inherit (cfgBuild) viAlias vimAlias;
+            plugins = normalizedPlugins;
+            neovimRcContent = cfgBuilt.configRC;
+            wrapRc = true;
+          }).overrideAttrs
             (oldAttrs: {
               passthru = oldAttrs.passthru // {
                 extendConfiguration =
