@@ -9,9 +9,6 @@ with builtins;
 let
   cfg = config.vim.languages.nix;
 
-  useFormat = "on_attach = default_on_attach";
-  noFormat = "on_attach = attach_keymaps";
-
   defaultServer = "nil";
   servers = {
     nil = {
@@ -20,14 +17,12 @@ let
       lspConfig =
         # lua
         ''
-          vim.lsp.enable("nil_ls", {
-            capabilities = capabilities,
-          ${if cfg.format.enable then useFormat else noFormat},
+          vim.lsp.config('nil_ls', {
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "nil"}"},
           ${optionalString cfg.format.enable ''
-            settings = {
-              ["nil"] = {
-              nix = { flake = { autoArchive = true, nixpkgsInputName = "nixpkgs" }},
+              settings = {
+                ["nil"] = {
+                  nix = { flake = { autoArchive = true, nixpkgsInputName = "nixpkgs" }},
             ${optionalString (cfg.format.type == "alejandra") ''
               formatting = {
                 command = {"${cfg.format.package}/bin/alejandra", "--quiet"},
@@ -43,13 +38,25 @@ let
                 command = {"${cfg.format.package}/bin/nixfmt"},
               },
             ''}
-
                 },
-              };
+              },
           ''}
           })
 
+          vim.lsp.enable('nil_ls')
 
+          vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if client.name ~= 'nil_ls' then return end
+              ${
+                if cfg.format.enable then
+                  "default_on_attach(client, args.buf)"
+                else
+                  "attach_keymaps(client, args.buf)"
+              }
+            end,
+          })
         '';
     };
   };
