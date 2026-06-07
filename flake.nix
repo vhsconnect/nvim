@@ -19,9 +19,6 @@
     plugin-sqlite.flake = false;
 
     # tresitter plugins
-    plugin-nvim-treesitter-context.url = "github:nvim-treesitter/nvim-treesitter-context";
-    plugin-nvim-treesitter-context.flake = false;
-
     plugin-nvim-treesitter-textobjects.url = "github:nvim-treesitter/nvim-treesitter-textobjects";
     plugin-nvim-treesitter-textobjects.flake = false;
 
@@ -545,7 +542,7 @@
               rust.lsp.enable = true;
               rust.formatRsx.enable = true;
               rust.format.enable = true;
-              css.enable = false;
+              css.enable = true;
               css.lsp.enable = true;
               tailwindcss.enable = true;
               tailwindcss.lsp.enable = true;
@@ -613,7 +610,6 @@
             filetree.nvimTreeLua.enable = true;
             treesitter = {
               enable = true;
-              context.enable = false;
               textobjects.enable = true;
               highlight = true;
             };

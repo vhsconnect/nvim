@@ -75,7 +75,7 @@ let
             })
           )
         '';
-    };
+      };
     nixpkgs-fmt = {
       package = [ "nixpkgs-fmt" ];
       # Never need to use null-ls for nixpkgs-fmt
