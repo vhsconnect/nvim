@@ -12,7 +12,7 @@ let
 in
 {
   options.vim.treesitter.textobjects = {
-    enable = mkEnableOption "context of current buffer contents [nvim-treesitter-context] ";
+    enable = mkEnableOption "treesitter textobjects";
   };
 
   config = mkIf (treesitter.enable && cfg.enable) {

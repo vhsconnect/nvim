@@ -7,7 +7,6 @@
 {
   imports = [
     ./treesitter.nix
-    ./context.nix
     ./textobjects.nix
   ];
 }
