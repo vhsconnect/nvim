@@ -120,7 +120,7 @@ in
               callback = function()
                 if vim.g.formatsave then
                   if client:supports_method("textDocument/formatting") then
-                    vim.lsp.buf.format({ bufnr = bufnr, filter = function(c) return c.id == client.id end })
+                    vim.lsp.buf.format({ async = true, bufnr = bufnr, filter = function(c) return c.id == client.id end })
                   end
                 end
               end
