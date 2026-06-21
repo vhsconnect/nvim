@@ -49,6 +49,7 @@ in
           ''
             require('null-ls').setup({
               diagnostics_format = "[#{m}] #{s} (#{c})",
+              debug = true,
               debounce = 250,
               default_timeout = 5000,
               sources = ls_sources,
