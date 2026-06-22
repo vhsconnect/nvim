@@ -255,6 +255,11 @@
       flake = false;
     };
 
+    teide = {
+      url = "github:serhez/teide.nvim";
+      flake = false;
+    };
+
     oxocarbon = {
       url = "github:nyoom-engineering/oxocarbon.nvim";
       flake = false;
@@ -376,6 +381,9 @@
             rawPlugins = {
               oil = {
                 src = inputs.oil;
+              };
+              teide = {
+                src = inputs.teide;
               };
               oxocarbon = {
                 src = inputs.oxocarbon;
@@ -665,6 +673,7 @@
                 "emmet"
                 "tshjkl"
                 "oxocarbon"
+                "teide"
                 "oil"
                 "tokyonight"
                 "vim-terraform"

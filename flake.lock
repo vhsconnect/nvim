@@ -1817,6 +1817,7 @@
         "plugin-which-key": "plugin-which-key",
         "scope-gutter": "scope-gutter",
         "tcomment": "tcomment",
+        "teide": "teide",
         "themed-tabs": "themed-tabs",
         "tmux-nav": "tmux-nav",
         "tokyonight": "tokyonight",
@@ -1869,6 +1870,22 @@
       "original": {
         "owner": "tomtom",
         "repo": "tcomment_vim",
+        "type": "github"
+      }
+    },
+    "teide": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768179653,
+        "narHash": "sha256-+rp+HermR7hbCmH+aqe7z8yy+csUKfDIvQnQSpwRDGA=",
+        "owner": "serhez",
+        "repo": "teide.nvim",
+        "rev": "95041d1d78e786bd88be64bca3e1771f7b6236df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "serhez",
+        "repo": "teide.nvim",
         "type": "github"
       }
     },
