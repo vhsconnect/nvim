@@ -29,7 +29,7 @@ in
           vim.g.copilot_enabled = false
           require("CopilotChat").setup{}
 
-          vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+          vim.keymap.set('i', '<C-k>', 'copilot#Accept("\\<CR>")', {
             expr = true,
             replace_keycodes = false
           })
