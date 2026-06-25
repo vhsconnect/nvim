@@ -1,0 +1,12 @@
+{
+  "name": "nvim-snippets",
+  "engines": { "vscode": "^1.11.0" },
+  "contributes": {
+    "snippets": [
+      { "language": ["typescript", "typescriptreact"], "path": "./typescript.json" },
+      { "language": "rust", "path": "./rust.json" },
+      { "language": "gitcommit", "path": "./gitcommit.json" },
+      { "language": "all", "path": "./all.json" }
+    ]
+  }
+}

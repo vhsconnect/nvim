@@ -5,5 +5,5 @@
   ...
 }:
 {
-  imports = [ ./vsnip.nix ];
+  imports = [ ./vsnip.nix ./luasnip.nix ];
 }

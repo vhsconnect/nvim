@@ -1063,6 +1063,22 @@
         "type": "github"
       }
     },
+    "plugin-luasnip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779224266,
+        "narHash": "sha256-5Dm5maKjGcduew/cUZTWeyyVEgpZ0OpoVdMRYEw8Li0=",
+        "owner": "L3MON4D3",
+        "repo": "LuaSnip",
+        "rev": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24",
+        "type": "github"
+      },
+      "original": {
+        "owner": "L3MON4D3",
+        "repo": "LuaSnip",
+        "type": "github"
+      }
+    },
     "plugin-neogit": {
       "flake": false,
       "locked": {
@@ -1663,6 +1679,22 @@
         "type": "github"
       }
     },
+    "plugin-telescope-luasnip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734145237,
+        "narHash": "sha256-9XsV2hPjt05q+y5FiSbKYYXnznDKYOsDwsVmfskYd3M=",
+        "owner": "benfowler",
+        "repo": "telescope-luasnip.nvim",
+        "rev": "07a2a2936a7557404c782dba021ac0a03165b343",
+        "type": "github"
+      },
+      "original": {
+        "owner": "benfowler",
+        "repo": "telescope-luasnip.nvim",
+        "type": "github"
+      }
+    },
     "plugin-todo-comments": {
       "flake": false,
       "locked": {
@@ -1778,6 +1810,7 @@
         "plugin-lspkind": "plugin-lspkind",
         "plugin-lspsaga": "plugin-lspsaga",
         "plugin-lualine": "plugin-lualine",
+        "plugin-luasnip": "plugin-luasnip",
         "plugin-neogit": "plugin-neogit",
         "plugin-nfnl": "plugin-nfnl",
         "plugin-noice": "plugin-noice",
@@ -1815,6 +1848,7 @@
         "plugin-telescope-cmdline": "plugin-telescope-cmdline",
         "plugin-telescope-file-browser": "plugin-telescope-file-browser",
         "plugin-telescope-live-grep-args": "plugin-telescope-live-grep-args",
+        "plugin-telescope-luasnip": "plugin-telescope-luasnip",
         "plugin-todo-comments": "plugin-todo-comments",
         "plugin-trouble": "plugin-trouble",
         "plugin-vim-vsnip": "plugin-vim-vsnip",

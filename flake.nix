@@ -95,6 +95,9 @@
     plugin-telescope-cmdline.url = "github:jonarrien/telescope-cmdline.nvim";
     plugin-telescope-cmdline.flake = false;
 
+    plugin-telescope-luasnip.url = "github:benfowler/telescope-luasnip.nvim";
+    plugin-telescope-luasnip.flake = false;
+
     # Filetrees
     plugin-nvim-tree-lua.url = "github:kyazdani42/nvim-tree.lua";
     plugin-nvim-tree-lua.flake = false;
@@ -135,6 +138,9 @@
     # snippets
     plugin-vim-vsnip.url = "github:hrsh7th/vim-vsnip";
     plugin-vim-vsnip.flake = false;
+
+    plugin-luasnip.url = "github:L3MON4D3/LuaSnip";
+    plugin-luasnip.flake = false;
 
     # Autopairs
     plugin-nvim-autopairs.url = "github:windwp/nvim-autopairs";
@@ -371,6 +377,13 @@
         sys.x86_64-linux
       ];
       useNightly = false;
+
+      snippetsFolder = builtins.path {
+        path = ./snippets;
+        name = "nvim-snippets";
+
+      };
+
     in
     flake-utils.lib.eachSystem systems (
       system:
@@ -580,6 +593,9 @@
             copilot.enable = true;
             noice.enable = true;
             nfnl.enable = true;
+            snippets.luasnip.enable = true;
+            snippets.luasnip.nixPath = snippetsFolder;
+            snippets.luasnip.runtimePath = "/home/common/Folder/iqs";
             autopairs.enable = true;
             autocomplete = {
               enable = true;
@@ -597,14 +613,14 @@
                   format = "[LSP]";
                 }
                 {
-                  name = "buffer";
-                  priority = "50";
-                  format = "[Buffer]";
-                }
-                {
                   name = "vsnip";
                   priority = "50";
                   format = "[Vsnip]";
+                }
+                {
+                  name = "buffer";
+                  priority = "30";
+                  format = "[Buffer]";
                 }
               ];
             };
@@ -644,16 +660,9 @@
                   vim.opt.runtimepath:append("${luaFolder}")
                   require ("flutter").setup()
                 '';
-              d =
-                let
-                  snippetsFolder = builtins.path {
-                    path = ./snippets;
-                    name = "nvim-snippets";
-                  };
-                in
-                ''
-                  vim.g.vsnip_snippet_dir = "${snippetsFolder}"
-                '';
+              e = ''
+                vim.g.vsnip_snippet_dir = "${snippetsFolder}"
+              '';
             };
           };
         };
