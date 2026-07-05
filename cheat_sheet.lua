@@ -34,6 +34,7 @@ function OpenCheatSheet()
 		"  <C-j>, luasnip snippet picker",
 
 		"  <leader>V', Shift window",
+		"  <leader>o', Oil",
 	}
 
 	-- Create a scratch buffer

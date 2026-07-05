@@ -326,3 +326,56 @@ vim.keymap.set("n", "<leader>am", "<cmd>AvanteSetModel<CR>", { noremap = true, s
 --    profile func *
 --    profile file *
 --  ]])
+--
+--
+--
+----------------
+-- Paredit
+---------------
+local paredit = require("nvim-paredit")
+
+local function wrap(open, close)
+	return function()
+		paredit.wrap.wrap_element_under_cursor(open, close)
+	end
+end
+
+paredit.setup({
+	-- Change some keys
+	use_default_keys = false,
+	keys = {
+		["<localleader>o"] = false,
+		["<localleader>r"] = false,
+		["<localleader>vsf"] = { paredit.api.slup_forwards, "Slurp forwards" },
+		["<localleader>vsb"] = { paredit.api.slurp_backwards, "Slurp backwards" },
+		["<localleader>vbf"] = { paredit.api.barf_forwards, "Barf forwards" },
+		["<localleader>vbb"] = { paredit.api.barf_backwards, "Barf backwards" },
+		["<localleader>vrf"] = { paredit.api.raise_form, "Raise form" },
+		["<localleader>vre"] = { paredit.api.raise_element, "Raise element" },
+
+		-- splice / unwrap
+		["<localleader>vu"] = { paredit.unwrap.unwrap_form_under_cursor, "Splice form" },
+
+		-- wrap element in a matched pair (mnemonic: the delimiter you want)
+		["<localleader>vv"] = { wrap("(", ")"), "Wrap element in ()" },
+		-- ["<localleader>v["] = { wrap("[", "]"),   "Wrap element in []" },
+		-- ["<localleader>v{"] = { wrap("{", "}"),   "Wrap element in {}" },
+
+		-- drag element (reorder args) -- uses > / < like vim's shift operators
+		["<localleader>vl"] = { paredit.api.drag_element_forwards, "Drag element forwards" },
+		["<localleader>vh"] = { paredit.api.drag_element_backwards, "Drag element backwards" },
+	},
+})
+
+----------------
+-- Pi-nvim
+---------------
+require("pi-nvim").setup({
+	set_default_keymaps = false,
+})
+
+vim.keymap.set("n", "<leader>pp", ":PiSend<CR>")
+vim.keymap.set("v", "<leader>pp", ":PiSendSelection<CR>")
+vim.keymap.set("n", "<leader>pf", ":PiSendFile<CR>")
+vim.keymap.set("n", "<leader>pb", ":PiSendBuffer<CR>")
+vim.keymap.set("n", "<leader>ping", ":PiPing<CR>")

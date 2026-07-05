@@ -243,7 +243,6 @@
     plugin-render-markdown.flake = false;
 
     plugin-avante-nvim.url = "github:vhsconnect/avante.nvim";
-    #plugin-avante-nvim.url = "git+file:/home/vhs/Repos/avante/avante-old.nvim/avante.nvim";
     plugin-avante-nvim.flake = false;
 
     # plugin-avante-rust.url = "github:yetone/avante.nvim";
@@ -356,6 +355,13 @@
 
     conjure.url = "github:Olical/conjure";
     conjure.flake = false;
+
+    paraedit.url = "github:julienvincent/nvim-paredit";
+    paraedit.flake = false;
+
+    pi-nvim.url = "github:carderne/pi-nvim";
+    pi-nvim.flake = false;
+
   };
 
   outputs =
@@ -462,6 +468,12 @@
               };
               conjure = {
                 src = inputs.conjure;
+              };
+              paraedit = {
+                src = inputs.paraedit;
+              };
+              pi-nvim = {
+                src = inputs.pi-nvim;
               };
             };
           }
@@ -705,6 +717,8 @@
                 "vim-prettier"
                 #"scope-gutter"
                 "conjure"
+                "paraedit"
+                "pi-nvim"
               ];
               vim.optPlugins = [ "codeium" ];
             }
