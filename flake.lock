@@ -634,11 +634,11 @@
     "plugin-avante-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1774187033,
-        "narHash": "sha256-ZZaJtzBaNNODI2dw7X4GE9EN6htWPTVfAiWdo7YY96E=",
+        "lastModified": 1783265342,
+        "narHash": "sha256-WQfSXkmVda8UdsPJiMvut79e5hi2vBljNXHyKSzIPe4=",
         "owner": "vhsconnect",
         "repo": "avante.nvim",
-        "rev": "a9fc5293c20b6417d7cfbd51b4f79a3f8c579c8e",
+        "rev": "d65f4409f7585bcd31084db29079fb979cc8730c",
         "type": "github"
       },
       "original": {
