@@ -267,6 +267,16 @@
       flake = false;
     };
 
+    melange = {
+      url = "github:savq/melange-nvim";
+      flake = false;
+    };
+
+    bamboo = {
+      url = "github:ribru17/bamboo.nvim";
+      flake = false;
+    };
+
     oxocarbon = {
       url = "github:nyoom-engineering/oxocarbon.nvim";
       flake = false;
@@ -331,7 +341,6 @@
       url = "github:sindrets/diffview.nvim";
       flake = false;
     };
-
     dadbod = {
       url = "github:tpope/vim-dadbod";
       flake = false;
@@ -405,6 +414,12 @@
               };
               teide = {
                 src = inputs.teide;
+              };
+              melange = {
+                src = inputs.melange;
+              };
+              bamboo = {
+                src = inputs.bamboo;
               };
               oxocarbon = {
                 src = inputs.oxocarbon;
@@ -708,6 +723,8 @@
                 "tshjkl"
                 "oxocarbon"
                 "teide"
+                "bamboo"
+                "melange"
                 "oil"
                 "tokyonight"
                 "vim-terraform"

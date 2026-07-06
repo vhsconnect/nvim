@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "bamboo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764046535,
+        "narHash": "sha256-X9KrQg8TlhWGeeg2Loxv4OUBw/3Wt7XFVorDd/75CwA=",
+        "owner": "ribru17",
+        "repo": "bamboo.nvim",
+        "rev": "1309bc88bffcf1bedc3e84e7fa9004de93da774a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ribru17",
+        "repo": "bamboo.nvim",
+        "type": "github"
+      }
+    },
     "colorschemes": {
       "flake": false,
       "locked": {
@@ -358,6 +374,22 @@
       "original": {
         "owner": "nixos",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "melange": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750104459,
+        "narHash": "sha256-4WeIgkbc9RxGB8NqLc/Z12OxtK+v8qbQ03T1pjJ3HAE=",
+        "owner": "savq",
+        "repo": "melange-nvim",
+        "rev": "ce42f6b629beeaa00591ba73a77d3eeac4cf28ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "savq",
+        "repo": "melange-nvim",
         "type": "github"
       }
     },
@@ -1793,6 +1825,7 @@
     },
     "root": {
       "inputs": {
+        "bamboo": "bamboo",
         "colorschemes": "colorschemes",
         "conjure": "conjure",
         "dadbod": "dadbod",
@@ -1805,6 +1838,7 @@
         "gitgutter": "gitgutter",
         "leap-nvim": "leap-nvim",
         "master": "master",
+        "melange": "melange",
         "mustache": "mustache",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nil": "nil",
