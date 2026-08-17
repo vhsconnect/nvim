@@ -1,1 +1,1 @@
-  (def hi "hi")
+{:verbose true}

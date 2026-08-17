@@ -1929,6 +1929,7 @@
         "tmux-nav": "tmux-nav",
         "tokyonight": "tokyonight",
         "tshjkl": "tshjkl",
+        "varubrev": "varubrev",
         "vim-prettier": "vim-prettier",
         "vim-terraform": "vim-terraform"
       }
@@ -2073,6 +2074,22 @@
       "original": {
         "owner": "gsuuon",
         "repo": "tshjkl.nvim",
+        "type": "github"
+      }
+    },
+    "varubrev": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787003620,
+        "narHash": "sha256-qAp6X+5Dvx+7yYj6RN62vCiVyafBRAVTkxGIgvtXQyA=",
+        "owner": "vhsconnect",
+        "repo": "varubrev.nvim",
+        "rev": "b2b4eff0fab5075d97b23f76884b2ef148a030e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vhsconnect",
+        "repo": "varubrev.nvim",
         "type": "github"
       }
     },

@@ -379,3 +379,13 @@ vim.keymap.set("v", "<leader>pp", ":PiSendSelection<CR>")
 vim.keymap.set("n", "<leader>pf", ":PiSendFile<CR>")
 vim.keymap.set("n", "<leader>pb", ":PiSendBuffer<CR>")
 vim.keymap.set("n", "<leader>ping", ":PiPing<CR>")
+
+----------------
+-- compis-nvim
+---------------
+
+require("varubrev").setup({
+	send = "<leader>cs",
+	send_visual = "<leader>cs",
+	pane = "<leader>cp",
+})

@@ -30,6 +30,7 @@ in
       "dressing"
       "render-markdown"
       "avante-nvim"
+      "fzf-lua"
     ];
     vim.optPlugins = [ ];
     vim.luaConfigRC.avante =
