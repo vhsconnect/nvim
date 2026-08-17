@@ -1925,6 +1925,7 @@
         "tcomment": "tcomment",
         "teide": "teide",
         "themed-tabs": "themed-tabs",
+        "thorn": "thorn",
         "tmux-nav": "tmux-nav",
         "tokyonight": "tokyonight",
         "tshjkl": "tshjkl",
@@ -2008,6 +2009,22 @@
       "original": {
         "owner": "vhsconnect",
         "repo": "themed-tabs.nvim",
+        "type": "github"
+      }
+    },
+    "thorn": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779057282,
+        "narHash": "sha256-3/OrgUrzNZkfCtX3OrLH669gpJcSGq+8rd6vnz/Xb5s=",
+        "owner": "jpwol",
+        "repo": "thorn.nvim",
+        "rev": "3653d1508e605fe87ec174e8c2ad0f36ce9844f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jpwol",
+        "repo": "thorn.nvim",
         "type": "github"
       }
     },

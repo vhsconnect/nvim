@@ -261,42 +261,42 @@
       url = "github:stevearc/oil.nvim";
       flake = false;
     };
-
     teide = {
       url = "github:serhez/teide.nvim";
       flake = false;
     };
-
     melange = {
       url = "github:savq/melange-nvim";
       flake = false;
     };
-
     bamboo = {
       url = "github:ribru17/bamboo.nvim";
       flake = false;
     };
-
+    thorn = {
+      url = "github:jpwol/thorn.nvim";
+      flake = false;
+    };
+    tokyonight = {
+      url = "github:folke/tokyonight.nvim";
+      flake = false;
+    };
     oxocarbon = {
       url = "github:nyoom-engineering/oxocarbon.nvim";
       flake = false;
     };
-
     tshjkl = {
       url = "github:gsuuon/tshjkl.nvim";
       flake = false;
     };
-
     emmet = {
       url = "github:mattn/emmet-vim";
       flake = false;
     };
-
     mustache = {
       url = "github:mustache/vim-mustache-handlebars";
       flake = false;
     };
-
     tmux-nav = {
       url = "github:christoomey/vim-tmux-navigator";
       flake = false;
@@ -329,10 +329,6 @@
       url = "github:kylechui/nvim-surround";
       flake = false;
     };
-    tokyonight = {
-      url = "github:folke/tokyonight.nvim";
-      flake = false;
-    };
     vim-terraform = {
       url = "github:hashivim/vim-terraform";
       flake = false;
@@ -361,13 +357,10 @@
       url = "github:vhsconnect/scope-gutter.nvim";
       flake = false;
     };
-
     conjure.url = "github:Olical/conjure";
     conjure.flake = false;
-
     paraedit.url = "github:julienvincent/nvim-paredit";
     paraedit.flake = false;
-
     pi-nvim.url = "github:carderne/pi-nvim";
     pi-nvim.flake = false;
 
@@ -420,6 +413,9 @@
               };
               bamboo = {
                 src = inputs.bamboo;
+              };
+              thorn = {
+                src = inputs.thorn;
               };
               oxocarbon = {
                 src = inputs.oxocarbon;
@@ -724,9 +720,10 @@
                 "oxocarbon"
                 "teide"
                 "bamboo"
+                "thorn"
                 "melange"
-                "oil"
                 "tokyonight"
+                "oil"
                 "vim-terraform"
                 "dadbod"
                 "dadbod-ui"
