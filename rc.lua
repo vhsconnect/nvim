@@ -346,18 +346,18 @@ paredit.setup({
 	keys = {
 		["<localleader>o"] = false,
 		["<localleader>r"] = false,
-		["<localleader>vsf"] = { paredit.api.slup_forwards, "Slurp forwards" },
-		["<localleader>vsb"] = { paredit.api.slurp_backwards, "Slurp backwards" },
-		["<localleader>vbf"] = { paredit.api.barf_forwards, "Barf forwards" },
-		["<localleader>vbb"] = { paredit.api.barf_backwards, "Barf backwards" },
-		["<localleader>vrf"] = { paredit.api.raise_form, "Raise form" },
-		["<localleader>vre"] = { paredit.api.raise_element, "Raise element" },
+		["<localleader>vsl"] = { paredit.api.slurp_forwards, "Slurp forwards" },
+		["<localleader>vsh"] = { paredit.api.slurp_backwards, "Slurp backwards" },
+		["<localleader>vbl"] = { paredit.api.barf_forwards, "Barf forwards" },
+		["<localleader>vbh"] = { paredit.api.barf_backwards, "Barf backwards" },
+		-- ["<localleader>vrf"] = { paredit.api.raise_form, "Raise form" },
+		-- ["<localleader>vre"] = { paredit.api.raise_element, "Raise element" },
 
 		-- splice / unwrap
-		["<localleader>vu"] = { paredit.unwrap.unwrap_form_under_cursor, "Splice form" },
+		["<localleader>vj"] = { paredit.unwrap.unwrap_form_under_cursor, "Splice form" },
 
 		-- wrap element in a matched pair (mnemonic: the delimiter you want)
-		["<localleader>vv"] = { wrap("(", ")"), "Wrap element in ()" },
+		["<localleader>vk"] = { wrap("(", ")"), "Wrap element in ()" },
 		-- ["<localleader>v["] = { wrap("[", "]"),   "Wrap element in []" },
 		-- ["<localleader>v{"] = { wrap("{", "}"),   "Wrap element in {}" },
 

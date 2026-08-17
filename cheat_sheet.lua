@@ -35,6 +35,14 @@ function OpenCheatSheet()
 
 		"  <leader>V', Shift window",
 		"  <leader>o', Oil",
+		"  vsl - Slurp forwards",
+		"  vsh - Slurp backwards",
+		"  vbl - Barf forwards",
+		"  vbh - Barf backwards",
+		"  vj - Splice form",
+		"  vk - Wrap element in ()",
+		"  vl - Drag element forwards",
+		"  vh - Drag element backwards",
 	}
 
 	-- Create a scratch buffer
