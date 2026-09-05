@@ -363,9 +363,8 @@
     paraedit.flake = false;
     pi-nvim.url = "github:carderne/pi-nvim";
     pi-nvim.flake = false;
-    varubrev.url = "github:vhsconnect/varubrev.nvim";
-    varubrev.flake = false;
-
+    codeboomer.url = "github:vhsconnect/codeboomer.nvim";
+    codeboomer.flake = false;
   };
 
   outputs =
@@ -488,8 +487,8 @@
               pi-nvim = {
                 src = inputs.pi-nvim;
               };
-              varubrev = {
-                src = inputs.varubrev;
+              codeboomer = {
+                src = inputs.codeboomer;
               };
             };
           }
@@ -738,7 +737,7 @@
                 "conjure"
                 "paraedit"
                 "pi-nvim"
-                "varubrev"
+                "codeboomer"
               ];
               vim.optPlugins = [ "codeium" ];
             }

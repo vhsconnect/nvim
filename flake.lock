@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "codeboomer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788090413,
+        "narHash": "sha256-Qd8PEnc9ddmbQkeewv2kG1ANGioh1hGV7sQrg/Y69S0=",
+        "owner": "vhsconnect",
+        "repo": "codeboomer.nvim",
+        "rev": "f2d37bccbdcee093d40732a378d1ad42821bb473",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vhsconnect",
+        "repo": "codeboomer.nvim",
+        "type": "github"
+      }
+    },
     "colorschemes": {
       "flake": false,
       "locked": {
@@ -1826,6 +1842,7 @@
     "root": {
       "inputs": {
         "bamboo": "bamboo",
+        "codeboomer": "codeboomer",
         "colorschemes": "colorschemes",
         "conjure": "conjure",
         "dadbod": "dadbod",
@@ -1929,7 +1946,6 @@
         "tmux-nav": "tmux-nav",
         "tokyonight": "tokyonight",
         "tshjkl": "tshjkl",
-        "varubrev": "varubrev",
         "vim-prettier": "vim-prettier",
         "vim-terraform": "vim-terraform"
       }
@@ -2074,22 +2090,6 @@
       "original": {
         "owner": "gsuuon",
         "repo": "tshjkl.nvim",
-        "type": "github"
-      }
-    },
-    "varubrev": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1787003620,
-        "narHash": "sha256-qAp6X+5Dvx+7yYj6RN62vCiVyafBRAVTkxGIgvtXQyA=",
-        "owner": "vhsconnect",
-        "repo": "varubrev.nvim",
-        "rev": "b2b4eff0fab5075d97b23f76884b2ef148a030e6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vhsconnect",
-        "repo": "varubrev.nvim",
         "type": "github"
       }
     },

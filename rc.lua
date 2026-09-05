@@ -131,10 +131,11 @@ require("leap").setup({
 
 require("themed-tabs").setup({
 	colorschemes = {
-		"horseradish256",
+		"melange",
+		"bamboo",
 		"oxocarbon",
+		"teide",
 		"PaperColor",
-		"tokyonight",
 	},
 })
 
@@ -381,11 +382,30 @@ vim.keymap.set("n", "<leader>pb", ":PiSendBuffer<CR>")
 vim.keymap.set("n", "<leader>ping", ":PiPing<CR>")
 
 ----------------
--- compis-nvim
+-- codeboomer-nvim
 ---------------
 
-require("varubrev").setup({
-	send = "<leader>cs",
-	send_visual = "<leader>cs",
-	pane = "<leader>cp",
+require("codeboomer").setup({
+	keybindings = {
+		send_prompt = "<leader>cs",
+		send_selection = "<leader>cr",
+		ask_one_off = "<leader>cc",
+		flush_with_directive = "<leader>cd",
+		pane = "<leader>cp",
+		annotate = "<leader>ca",
+	},
+	prompting = {
+		directives = { label = "vanilla", text = "Review my comments, pushback if you need to" },
+		one_off_command = {
+			"nix",
+			"run",
+			"github:numtide/llm-agents.nix#claude-code",
+			"--",
+			"-p",
+			"--output-format",
+			"json",
+			"--permission-mode",
+			"acceptEdits",
+		},
+	},
 })

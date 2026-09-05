@@ -6,7 +6,7 @@
       { "language": ["typescript", "typescriptreact"], "path": "./typescript.json" },
       { "language": "rust", "path": "./rust.json" },
       { "language": "gitcommit", "path": "./gitcommit.json" },
-      { "language": "all", "path": "./all.json" }
+      { "language": "global", "path": "./all.json" }
     ]
   }
 }

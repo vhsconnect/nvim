@@ -8,5 +8,10 @@
     "prefix": "fixme",
     "body": ["FIXME: $1"],
     "description": "FIXME comment"
+  },
+  "Text Heading": {
+    "prefix": "heading",
+    "body": ["################", "### $1 ###", "################" ],
+    "description": "Heading"
   }
 }
