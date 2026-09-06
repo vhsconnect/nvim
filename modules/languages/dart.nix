@@ -106,17 +106,11 @@ in
     })
 
     (mkIf cfg.format.enable {
+      # Formatting is handled by the single global synchronous format-on-save
+      # autocmd (dartls supports textDocument/formatting). Do NOT add extra
+      # BufWritePre autocmds here: stacked format-on-save autocmds caused
+      # duplicated/missing text.
       vim.lsp.null-ls.enable = true;
-      vim.lsp.null-ls.sources.dart-format = # lua
-        ''
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = {'*.dart'},
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.buf.format()
-            end
-            })
-        '';
     })
 
   ]);

@@ -107,17 +107,11 @@ in
       vim.treesitter.grammars = [ cfg.treesitter.package ];
     })
     (mkIf cfg.format.enable {
+      # Formatting is handled by the single global synchronous format-on-save
+      # autocmd (rust-analyzer). dxfmt is added as a null-ls source below when
+      # formatRsx is enabled. Do NOT add extra BufWritePre autocmds here:
+      # stacked format-on-save autocmds caused duplicated/missing text.
       vim.lsp.null-ls.enable = true;
-      vim.lsp.null-ls.sources.rust-format = # lua
-        ''
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = {'*.rs'},
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.buf.format()
-            end
-            })
-        '';
     })
 
     (mkIf cfg.formatRsx.enable {

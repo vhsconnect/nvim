@@ -113,23 +113,40 @@ in
           end
 
           -- Enable formatting
-          format_callback = function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
-              buffer = bufnr,
-              callback = function()
-                if vim.g.formatsave then
-                  if client:supports_method("textDocument/formatting") then
-                    vim.lsp.buf.format({ async = true, bufnr = bufnr, filter = function(c) return c.id == client.id end })
-                  end
-                end
+          -- Single global, SYNCHRONOUS format-on-save autocmd.
+          -- NOTE: this used to be one autocmd per attached client, each doing
+          -- async formatting. Multiple async formatters applied TextEdits
+          -- computed against stale buffer states after the file was already
+          -- written, which produced duplicated/missing text. Formatting now
+          -- blocks in BufWritePre so edits land before the write.
+          local format_onsave = vim.api.nvim_create_augroup("lsp_format_onsave", { clear = true })
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = format_onsave,
+            callback = function(args)
+              if not vim.g.formatsave then
+                return
               end
-            })
-          end
+              if vim.bo[args.buf].buftype ~= "" then
+                return
+              end
+              -- only format when at least one attached client can format
+              local clients = vim.lsp.get_clients({
+                bufnr = args.buf,
+                method = "textDocument/formatting",
+              })
+              if #clients == 0 then
+                return
+              end
+              vim.lsp.buf.format({
+                bufnr = args.buf,
+                async = false,
+                timeout_ms = 3000,
+              })
+            end,
+          })
 
           default_on_attach = function(client, bufnr)
             attach_keymaps(client, bufnr)
-            format_callback(client, bufnr)
           end
 
           local capabilities = vim.lsp.protocol.make_client_capabilities()
