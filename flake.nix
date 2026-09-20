@@ -253,6 +253,9 @@
     plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
     plugin-nvim-notify.flake = false;
 
+    plugin-codeboomer.url = "github:vhsconnect/codeboomer.nvim/review-threads-cut";
+    plugin-codeboomer.flake = false;
+
     oil = {
       url = "github:stevearc/oil.nvim";
       flake = false;
@@ -359,8 +362,6 @@
     paraedit.flake = false;
     pi-nvim.url = "github:carderne/pi-nvim";
     pi-nvim.flake = false;
-    codeboomer.url = "github:vhsconnect/codeboomer.nvim";
-    codeboomer.flake = false;
   };
 
   outputs =
