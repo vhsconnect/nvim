@@ -15,10 +15,6 @@
       flake = false;
     };
 
-    # utility plugins
-    plugin-sqlite.url = "github:kkharji/sqlite.lua";
-    plugin-sqlite.flake = false;
-
     # tresitter plugins
     plugin-nvim-treesitter-textobjects.url = "github:nvim-treesitter/nvim-treesitter-textobjects";
     plugin-nvim-treesitter-textobjects.flake = false;
@@ -487,9 +483,6 @@
               pi-nvim = {
                 src = inputs.pi-nvim;
               };
-              codeboomer = {
-                src = inputs.codeboomer;
-              };
             };
           }
           // (if useNightly then { package = nightly; } else { });
@@ -503,6 +496,7 @@
             useSystemClipboard = true;
             showSignColumn = true;
             codeium.enable = false;
+            codeboomer.enable = true;
             lsp = {
               enable = true;
               lspkind.enable = true;
@@ -617,7 +611,7 @@
             };
             avante.enable = true;
             avante.openrouterDefaultModel = "deepseek/deepseek-v3.2";
-            copilot.enable = true;
+            copilot.enable = false;
             noice.enable = true;
             nfnl.enable = true;
             snippets.luasnip.enable = true;
@@ -662,7 +656,7 @@
               whichKey.enable = true;
             };
             telescope.enable = true;
-            telescope.recency-bias.enable = true;
+            telescope.recency-bias.enable = false;
             telescope.cmdline.enable = true;
             telescope.liveGrepArgs.enable = true;
             telescope.advanced-git-search.enable = true;
@@ -737,7 +731,6 @@
                 "conjure"
                 "paraedit"
                 "pi-nvim"
-                "codeboomer"
               ];
               vim.optPlugins = [ "codeium" ];
             }

@@ -53,36 +53,36 @@ vim.keymap.set("n", "<space>u", ":tabdo e<CR>", { noremap = true })
 -- vim.keymap.set('n', '<space><space>q', ':cclose<CR>', {noremap = true})
 
 function interop(str)
-	local outer_env = _ENV
-	return (
-		str:gsub("%b{}", function(block)
-			local code = block:match("{(.*)}")
-			local exp_env = {}
-			setmetatable(exp_env, {
-				__index = function(_, k)
-					local stack_level = 5
-					while debug.getinfo(stack_level, "") ~= nil do
-						local i = 1
-						repeat
-							local name, value = debug.getlocal(stack_level, i)
-							if name == k then
-								return value
-							end
-							i = i + 1
-						until name == nil
-						stack_level = stack_level + 1
-					end
-					return rawget(outer_env, k)
-				end,
-			})
-			local fn, err = load("return " .. code, "expression `" .. code .. "`", "t", exp_env)
-			if fn then
-				return tostring(fn())
-			else
-				error(err, 0)
-			end
-		end)
-	)
+    local outer_env = _ENV
+    return (
+        str:gsub("%b{}", function(block)
+            local code = block:match("{(.*)}")
+            local exp_env = {}
+            setmetatable(exp_env, {
+                __index = function(_, k)
+                    local stack_level = 5
+                    while debug.getinfo(stack_level, "") ~= nil do
+                        local i = 1
+                        repeat
+                            local name, value = debug.getlocal(stack_level, i)
+                            if name == k then
+                                return value
+                            end
+                            i = i + 1
+                        until name == nil
+                        stack_level = stack_level + 1
+                    end
+                    return rawget(outer_env, k)
+                end,
+            })
+            local fn, err = load("return " .. code, "expression `" .. code .. "`", "t", exp_env)
+            if fn then
+                return tostring(fn())
+            else
+                error(err, 0)
+            end
+        end)
+    )
 end
 
 ------------------
@@ -122,7 +122,7 @@ vim.keymap.set("n", "<C-H>", ":TmuxNavigateLeft<CR>", { noremap = true })
 ------------------
 
 require("leap").setup({
-	case_insensitive = true,
+    case_insensitive = true,
 })
 
 ----------------
@@ -130,13 +130,13 @@ require("leap").setup({
 ----------------
 
 require("themed-tabs").setup({
-	colorschemes = {
-		"melange",
-		"bamboo",
-		"oxocarbon",
-		"teide",
-		"PaperColor",
-	},
+    colorschemes = {
+        "melange",
+        "bamboo",
+        "oxocarbon",
+        "teide",
+        "PaperColor",
+    },
 })
 
 -- require("scope-gutter").setup({
@@ -172,16 +172,16 @@ vim.keymap.set("n", "<space>r", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], { 
 ------------------
 
 require("tshjkl").setup({
-	keymaps = {
-		toggle = "<C-w>",
-		toggle_outer = "<S-C-w>",
+    keymaps = {
+        toggle = "<C-w>",
+        toggle_outer = "<S-C-w>",
 
-		parent = "h",
-		next = "j",
-		prev = "k",
-		child = "l",
-		toggle_named = "<S-M-n>", -- named mode skips unnamed nodes
-	},
+        parent = "h",
+        next = "j",
+        prev = "k",
+        child = "l",
+        toggle_named = "<S-M-n>", -- named mode skips unnamed nodes
+    },
 })
 
 ----------------
@@ -189,7 +189,7 @@ require("tshjkl").setup({
 ---------------
 require("oil").setup()
 vim.keymap.set("n", "<leader>o", function()
-	require("oil").open(vim.fn.expand("%:p:h"))
+    require("oil").open(vim.fn.expand("%:p:h"))
 end, { desc = "Open Oil at current buffer's directory" })
 
 ----------------
@@ -204,20 +204,20 @@ vim.g.db_ui_use_nerd_fonts = 1
 vim.g.db_ui_save_location = "/home/common/Folder/db_queries"
 -- TODO this belongs in completion module
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "sql", "mysql", "plsql" },
-	callback = function()
-		require("cmp").setup.buffer({
-			sources = { {
-				name = "vim-dadbod-completion",
-			} },
-		})
-	end,
+    pattern = { "sql", "mysql", "plsql" },
+    callback = function()
+        require("cmp").setup.buffer({
+            sources = { {
+                name = "vim-dadbod-completion",
+            } },
+        })
+    end,
 })
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "dbout",
-	callback = function()
-		vim.opt_local.foldenable = false
-	end,
+    pattern = "dbout",
+    callback = function()
+        vim.opt_local.foldenable = false
+    end,
 })
 
 ----------------
@@ -229,18 +229,18 @@ vim.g["prettier#exec_cmd_path"] = "/etc/profiles/per-user/vhs/bin/prettierd"
 -- Link to Github
 ---------------
 function GetGitHubLineLink(useMaster)
-	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
-	if remote_url:match("^git@github.com:") then
-		remote_url = remote_url:gsub("^git@github.com:", "https://github.com/")
-		remote_url = remote_url:gsub("%.git$", "")
-	end
-	local file_path = vim.fn.system("git ls-files --full-name " .. vim.fn.expand("%:p")):gsub("\n", "")
-	local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
-	local line_number = vim.fn.line(".")
-	local github_link = string.format("%s/blob/%s/%s#L%d", remote_url, branch, file_path, line_number)
+    local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
+    if remote_url:match("^git@github.com:") then
+        remote_url = remote_url:gsub("^git@github.com:", "https://github.com/")
+        remote_url = remote_url:gsub("%.git$", "")
+    end
+    local file_path = vim.fn.system("git ls-files --full-name " .. vim.fn.expand("%:p")):gsub("\n", "")
+    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
+    local line_number = vim.fn.line(".")
+    local github_link = string.format("%s/blob/%s/%s#L%d", remote_url, branch, file_path, line_number)
 
-	vim.fn.setreg("+", github_link)
-	print("GitHub link copied: " .. github_link)
+    vim.fn.setreg("+", github_link)
+    print("GitHub link copied: " .. github_link)
 end
 
 vim.api.nvim_set_keymap("n", "<leader>gL", ":lua GetGitHubLineLink()<CR>", { noremap = true, silent = true })
@@ -249,34 +249,34 @@ vim.api.nvim_set_keymap("n", "<leader>gL", ":lua GetGitHubLineLink()<CR>", { nor
 -- Shift windows
 ---------------
 function Rotate_windows()
-	local wins = vim.fn.winnr("$")
-	if wins <= 1 then
-		return
-	end
+    local wins = vim.fn.winnr("$")
+    if wins <= 1 then
+        return
+    end
 
-	local current_win = vim.fn.winnr()
+    local current_win = vim.fn.winnr()
 
-	local buffers = {}
-	for i = 1, wins do
-		vim.cmd(i .. "wincmd w")
-		buffers[i] = vim.fn.bufnr("%")
-	end
+    local buffers = {}
+    for i = 1, wins do
+        vim.cmd(i .. "wincmd w")
+        buffers[i] = vim.fn.bufnr("%")
+    end
 
-	local temp = buffers[1]
-	for i = 1, wins - 1 do
-		vim.cmd(i .. "wincmd w")
-		vim.cmd("buffer " .. buffers[i + 1])
-	end
+    local temp = buffers[1]
+    for i = 1, wins - 1 do
+        vim.cmd(i .. "wincmd w")
+        vim.cmd("buffer " .. buffers[i + 1])
+    end
 
-	vim.cmd(wins .. "wincmd w")
-	vim.cmd("buffer " .. temp)
+    vim.cmd(wins .. "wincmd w")
+    vim.cmd("buffer " .. temp)
 
-	local new_win = current_win - 1
-	if new_win < 1 then
-		new_win = wins -- Wrap around to the last window
-	end
+    local new_win = current_win - 1
+    if new_win < 1 then
+        new_win = wins -- Wrap around to the last window
+    end
 
-	vim.cmd(new_win .. "wincmd w")
+    vim.cmd(new_win .. "wincmd w")
 end
 
 vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true })
@@ -293,23 +293,23 @@ vim.g["conjure#mapping#eval_buf"] = "f"
 -- vim.g["conjure#mapping#log_vsplit"] = "v"
 --
 vim.filetype.add({
-	extension = {
-		cljd = "clojure",
-	},
+    extension = {
+        cljd = "clojure",
+    },
 })
 
 vim.filetype.add({
-	pattern = {
-		[".*"] = {
-			function(path, bufnr)
-				local first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
+    pattern = {
+        [".*"] = {
+            function(path, bufnr)
+                local first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
 
-				if first_line:match("^#!.*bb") then
-					return "clojure"
-				end
-			end,
-		},
-	},
+                if first_line:match("^#!.*bb") then
+                    return "clojure"
+                end
+            end,
+        },
+    },
 })
 
 ----------------
@@ -336,76 +336,47 @@ vim.keymap.set("n", "<leader>am", "<cmd>AvanteSetModel<CR>", { noremap = true, s
 local paredit = require("nvim-paredit")
 
 local function wrap(open, close)
-	return function()
-		paredit.wrap.wrap_element_under_cursor(open, close)
-	end
+    return function()
+        paredit.wrap.wrap_element_under_cursor(open, close)
+    end
 end
 
 paredit.setup({
-	-- Change some keys
-	use_default_keys = false,
-	keys = {
-		["<localleader>o"] = false,
-		["<localleader>r"] = false,
-		["<localleader>vsl"] = { paredit.api.slurp_forwards, "Slurp forwards" },
-		["<localleader>vsh"] = { paredit.api.slurp_backwards, "Slurp backwards" },
-		["<localleader>vbl"] = { paredit.api.barf_forwards, "Barf forwards" },
-		["<localleader>vbh"] = { paredit.api.barf_backwards, "Barf backwards" },
-		-- ["<localleader>vrf"] = { paredit.api.raise_form, "Raise form" },
-		-- ["<localleader>vre"] = { paredit.api.raise_element, "Raise element" },
+    -- Change some keys
+    use_default_keys = false,
+    keys = {
+        ["<localleader>o"] = false,
+        ["<localleader>r"] = false,
+        ["<localleader>vsl"] = { paredit.api.slurp_forwards, "Slurp forwards" },
+        ["<localleader>vsh"] = { paredit.api.slurp_backwards, "Slurp backwards" },
+        ["<localleader>vbl"] = { paredit.api.barf_forwards, "Barf forwards" },
+        ["<localleader>vbh"] = { paredit.api.barf_backwards, "Barf backwards" },
+        -- ["<localleader>vrf"] = { paredit.api.raise_form, "Raise form" },
+        -- ["<localleader>vre"] = { paredit.api.raise_element, "Raise element" },
 
-		-- splice / unwrap
-		["<localleader>vj"] = { paredit.unwrap.unwrap_form_under_cursor, "Splice form" },
+        -- splice / unwrap
+        ["<localleader>vj"] = { paredit.unwrap.unwrap_form_under_cursor, "Splice form" },
 
-		-- wrap element in a matched pair (mnemonic: the delimiter you want)
-		["<localleader>vk"] = { wrap("(", ")"), "Wrap element in ()" },
-		-- ["<localleader>v["] = { wrap("[", "]"),   "Wrap element in []" },
-		-- ["<localleader>v{"] = { wrap("{", "}"),   "Wrap element in {}" },
+        -- wrap element in a matched pair (mnemonic: the delimiter you want)
+        ["<localleader>vk"] = { wrap("(", ")"), "Wrap element in ()" },
+        -- ["<localleader>v["] = { wrap("[", "]"),   "Wrap element in []" },
+        -- ["<localleader>v{"] = { wrap("{", "}"),   "Wrap element in {}" },
 
-		-- drag element (reorder args) -- uses > / < like vim's shift operators
-		["<localleader>vl"] = { paredit.api.drag_element_forwards, "Drag element forwards" },
-		["<localleader>vh"] = { paredit.api.drag_element_backwards, "Drag element backwards" },
-	},
+        -- drag element (reorder args) -- uses > / < like vim's shift operators
+        ["<localleader>vl"] = { paredit.api.drag_element_forwards, "Drag element forwards" },
+        ["<localleader>vh"] = { paredit.api.drag_element_backwards, "Drag element backwards" },
+    },
 })
 
-----------------
--- Pi-nvim
----------------
-require("pi-nvim").setup({
-	set_default_keymaps = false,
-})
-
-vim.keymap.set("n", "<leader>pp", ":PiSend<CR>")
-vim.keymap.set("v", "<leader>pp", ":PiSendSelection<CR>")
-vim.keymap.set("n", "<leader>pf", ":PiSendFile<CR>")
-vim.keymap.set("n", "<leader>pb", ":PiSendBuffer<CR>")
-vim.keymap.set("n", "<leader>ping", ":PiPing<CR>")
-
-----------------
--- codeboomer-nvim
----------------
-
-require("codeboomer").setup({
-	keybindings = {
-		send_prompt = "<leader>cs",
-		send_selection = "<leader>cr",
-		ask_one_off = "<leader>cc",
-		flush_with_directive = "<leader>cd",
-		pane = "<leader>cp",
-		annotate = "<leader>ca",
-	},
-	prompting = {
-		directives = { label = "vanilla", text = "Review my comments, pushback if you need to" },
-		one_off_command = {
-			"nix",
-			"run",
-			"github:numtide/llm-agents.nix#claude-code",
-			"--",
-			"-p",
-			"--output-format",
-			"json",
-			"--permission-mode",
-			"acceptEdits",
-		},
-	},
-})
+-- ----------------
+-- -- Pi-nvim
+-- ---------------
+-- require("pi-nvim").setup({
+--     set_default_keymaps = false,
+-- })
+--
+-- vim.keymap.set("n", "<leader>pp", ":PiSend<CR>")
+-- vim.keymap.set("v", "<leader>pp", ":PiSendSelection<CR>")
+-- vim.keymap.set("n", "<leader>pf", ":PiSendFile<CR>")
+-- vim.keymap.set("n", "<leader>pb", ":PiSendBuffer<CR>")
+-- vim.keymap.set("n", "<leader>ping", ":PiPing<CR>")

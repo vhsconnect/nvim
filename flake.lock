@@ -16,22 +16,6 @@
         "type": "github"
       }
     },
-    "codeboomer": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1788090413,
-        "narHash": "sha256-Qd8PEnc9ddmbQkeewv2kG1ANGioh1hGV7sQrg/Y69S0=",
-        "owner": "vhsconnect",
-        "repo": "codeboomer.nvim",
-        "rev": "f2d37bccbdcee093d40732a378d1ad42821bb473",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vhsconnect",
-        "repo": "codeboomer.nvim",
-        "type": "github"
-      }
-    },
     "colorschemes": {
       "flake": false,
       "locked": {
@@ -871,6 +855,22 @@
         "type": "github"
       }
     },
+    "plugin-codeboomer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789855617,
+        "narHash": "sha256-jEbZThEgGMU+hjotpKxrOgMI3tQghDfiuh3Ky+J4TEE=",
+        "ref": "refs/heads/review-threads-cut",
+        "rev": "0cd8c942cebe81ded310dd34bf89a6704bbf5d75",
+        "revCount": 54,
+        "type": "git",
+        "url": "file:///home/vhs/Repos/codeboomer.nvim"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/vhs/Repos/codeboomer.nvim"
+      }
+    },
     "plugin-codeium": {
       "flake": false,
       "locked": {
@@ -1647,22 +1647,6 @@
         "type": "github"
       }
     },
-    "plugin-sqlite": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741959551,
-        "narHash": "sha256-u6Mo+3hg3miqR4EmsoGZhajxiIk24+y5N+YdNW36/JQ=",
-        "owner": "kkharji",
-        "repo": "sqlite.lua",
-        "rev": "50092d60feb242602d7578398c6eb53b4a8ffe7b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kkharji",
-        "repo": "sqlite.lua",
-        "type": "github"
-      }
-    },
     "plugin-sqls-nvim": {
       "flake": false,
       "locked": {
@@ -1842,7 +1826,6 @@
     "root": {
       "inputs": {
         "bamboo": "bamboo",
-        "codeboomer": "codeboomer",
         "colorschemes": "colorschemes",
         "conjure": "conjure",
         "dadbod": "dadbod",
@@ -1878,6 +1861,7 @@
         "plugin-cmp-path": "plugin-cmp-path",
         "plugin-cmp-treesitter": "plugin-cmp-treesitter",
         "plugin-cmp-vsnip": "plugin-cmp-vsnip",
+        "plugin-codeboomer": "plugin-codeboomer",
         "plugin-codeium": "plugin-codeium",
         "plugin-copilot-chat-nvim": "plugin-copilot-chat-nvim",
         "plugin-copilot-vim": "plugin-copilot-vim",
@@ -1926,7 +1910,6 @@
         "plugin-render-markdown": "plugin-render-markdown",
         "plugin-rustaceanvim": "plugin-rustaceanvim",
         "plugin-scnvim": "plugin-scnvim",
-        "plugin-sqlite": "plugin-sqlite",
         "plugin-sqls-nvim": "plugin-sqls-nvim",
         "plugin-telescope": "plugin-telescope",
         "plugin-telescope-all-recent": "plugin-telescope-all-recent",

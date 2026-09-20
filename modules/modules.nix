@@ -12,6 +12,7 @@ let
     ./basic
     ./build
     ./chatgpt
+    ./codeboomer
     ./codeium
     ./copilot
     ./completion

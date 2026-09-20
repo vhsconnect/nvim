@@ -20,6 +20,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    build.nixpkgsPlugins.avante-rust = "avante-nvim";
+
     vim.startPlugins = [
       "nui-nvim"
       "dressing"

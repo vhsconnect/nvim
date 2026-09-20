@@ -65,6 +65,19 @@ in
         default = { };
       };
 
+      nixpkgsPlugins = mkOption {
+        description = ''
+          Plugins sourced straight from nixpkgs' `vimPlugins` instead of a
+          `plugin-*` flake input. Keyed by the name used in `vim.startPlugins`
+          / `vim.optPlugins`, valued by the attribute name under
+          `pkgs.vimPlugins`. Modules that want to use a nixpkgs-provided
+          plugin should add an entry here instead of special-casing the name
+          in `built.startPlugins`/`built.optPlugins`.
+        '';
+        type = with types; attrsOf str;
+        default = { };
+      };
+
       package = mkOption {
         description = "Neovim to use for neovim-flake";
         type = types.package;
@@ -119,15 +132,6 @@ in
           patches = [ ./patches/codeium.patch ];
         };
 
-      buildPlugAvanteRust =
-        name:
-        pkgs.vimUtils.buildVimPlugin rec {
-          pname = name;
-          version = "master";
-          src = cfgBuild.rawPlugins.${pname}.src;
-          patches = [ ./patches/codeium.patch ];
-        };
-
       # User provided grammars & override the bundled grammars with nvim-treesitter compatible ones
       # Override rather than overriding `treesitter-parsers` and rebuilding neovim-unwrapped
       # https://github.com/NixOS/nixpkgs/pull/227159
@@ -142,8 +146,8 @@ in
                 treeSitterPlug
               else if (plug == "codeium") then
                 buildPlugCodeium "codeium"
-              else if (plug == "avante-rust") then
-                pkgs.vimPlugins.avante-nvim
+              else if (cfgBuild.nixpkgsPlugins ? ${plug}) then
+                pkgs.vimPlugins.${cfgBuild.nixpkgsPlugins.${plug}}
               else
                 buildPlug plug
             )

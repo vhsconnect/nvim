@@ -41,12 +41,14 @@ in
 
     startPlugins = nvim.options.mkPluginsOption {
       rawPlugins = config.build.rawPlugins;
+      nixpkgsPlugins = config.build.nixpkgsPlugins;
       default = [ ];
       description = "List of plugins to startup.";
     };
 
     optPlugins = nvim.options.mkPluginsOption {
       rawPlugins = config.build.rawPlugins;
+      nixpkgsPlugins = config.build.nixpkgsPlugins;
       default = [ ];
       description = "List of plugins to optionally load";
     };

@@ -180,6 +180,8 @@ in
 
     })
     (mkIf cfg.recency-bias.enable {
+      build.nixpkgsPlugins.sqlite = "sqlite-lua";
+
       vim.startPlugins = [
         "telescope-all-recent"
         "sqlite"
