@@ -683,7 +683,7 @@
                   require ("flutter").setup()
                 '';
               e = ''
-                vim.g.vsnip_snippet_dir = "${snippetsFolder}"
+                vim.opt.runtimepath:append("${snippetsFolder}")
               '';
             };
           };
@@ -728,7 +728,7 @@
                 "dadbod-ui"
                 "dadbod-completion"
                 "vim-prettier"
-                #"scope-gutter"
+                "scope-gutter"
                 "conjure"
                 "paraedit"
                 "pi-nvim"

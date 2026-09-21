@@ -1937,11 +1937,11 @@
     "scope-gutter": {
       "flake": false,
       "locked": {
-        "lastModified": 1757002015,
-        "narHash": "sha256-ILi61YtdvJX3ntiliAd+hEc9S+So6RnpsKZVyZmJY5I=",
+        "lastModified": 1790012855,
+        "narHash": "sha256-YM3gTRYQYgOAaK87ZFwLTki0wlNZg+VdbDr91ITbbcA=",
         "owner": "vhsconnect",
         "repo": "scope-gutter.nvim",
-        "rev": "5aa912d2df30224141744a1a0a12ca8798f4a1c4",
+        "rev": "a43ca3bb4270942534ae0dbe40ece316eb4b16ae",
         "type": "github"
       },
       "original": {
