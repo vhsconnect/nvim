@@ -16,105 +16,12 @@ in
     neogit = {
       enable = mkEnableOption "neogit";
     };
-
-    gitsigns = {
-      enable = mkEnableOption "gitsigns";
-
-      codeActions = mkEnableOption "gitsigns codeactions through null-ls";
-    };
   };
 
   config = mkIf cfg.enable (mkMerge [
-    (mkIf cfg.gitsigns.enable (mkMerge [
-      {
-        vim.startPlugins = [ "gitsigns-nvim" ];
-        vim.luaConfigRC.gitsigns =
-          nvim.dag.entryAnywhere # lua
-            ''
-              require('gitsigns').setup {
-                signs = {
-                  add          = { text = '' },
-                  change       = { text = '' },
-                  delete       = { text = '' },
-                  topdelete    = { text = '' },
-                  changedelete = { text = '' },
-                  untracked    = { text = '' },
-                },
-                signs_staged = {
-                  add          = { text = '' },
-                  change       = { text = '' },
-                  delete       = { text = '' },
-                  topdelete    = { text = '' },
-                  changedelete = { text = '' },
-                  untracked    = { text = '' },
-                },
-                sign_priority = 6,
-                update_debounce = 500,
-                on_attach = function(bufnr)
-                  local gs = package.loaded.gitsigns
-
-                  local function map(mode, l, r, opts)
-                    opts = opts or {}
-                    opts.buffer = bufnr
-                    vim.keymap.set(mode, l, r, opts)
-                  end
-
-                  -- navigation
-                  map('n', ']c', function()
-                      gs.nav_hunk('next')
-                  end)
-
-                  map('n', '[c', function()
-                      gs.nav_hunk('prev')
-                  end)
-
-                  -- actions
-                  map('n', '<leader>hs', gs.stage_hunk)
-                  map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-
-                  map('n', '<leader>hu', gs.reset_hunk)
-                  map('v', '<leader>hu', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-
-                  map('n', '<leader>hp', gs.preview_hunk)
-                  map('n', '<leader>hp', gs.undo_stage_hunk)
-
-                  map('n', '<leader>hS', gs.stage_buffer)
-                  map('n', '<leader>hR', gs.reset_buffer)
-
-                  map('n', '<leader>hd', gs.diffthis)
-                  map('n', '<leader>hD', function() gs.diffthis('~') end)
-
-                  map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-
-                  -- Toggles
-                  map('n', '<leader>htd', gs.toggle_deleted)
-                  map('n', '<leader>htb', gs.toggle_current_line_blame)
-                  map('n', '<leader>hts', gs.toggle_signs)
-                  map('n', '<leader>htn', gs.toggle_numhl)
-                  map('n', '<leader>htl', gs.toggle_linehl)
-                  map('n', '<leader>htw', gs.toggle_word_diff)
-
-                  -- Text objects
-                  map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-                end
-              }
-            '';
-      }
-
-      (mkIf cfg.gitsigns.codeActions {
-        vim.lsp.null-ls.enable = true;
-        vim.lsp.null-ls.sources.gitsigns-ca = ''
-          table.insert(
-            ls_sources,
-            null_ls.builtins.code_actions.gitsigns
-          )
-        '';
-      })
-    ]))
-
     (mkIf cfg.neogit.enable {
       vim.startPlugins = [ "neogit" ];
-      vim.luaConfigRC.gitsigns =
+      vim.luaConfigRC.neogit =
         nvim.dag.entryAfter [ "diffview" ] # lua
           ''
             local neogit = require("neogit")

@@ -20,6 +20,7 @@ let
     ./debugger
     ./filetree
     ./git
+    ./gitsigns
     ./keys
     ./languages
     ./lsp
