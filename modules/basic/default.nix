@@ -170,6 +170,24 @@ in
 
     vim.nnoremap = mkIf cfg.mapLeaderSpace { "<space>" = "<nop>"; };
 
+    vim.luaConfigRC.clipboard = mkIf cfg.useSystemClipboard (
+      nvim.dag.entryAnywhere # lua
+        ''
+          -- Most terminals refuse (or prompt on) OSC 52 reads, so paste falls back to the unnamed register
+          if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+            local osc52 = require('vim.ui.clipboard.osc52')
+            local function paste_unnamed()
+              return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+            end
+            vim.g.clipboard = {
+              name = 'OSC 52',
+              copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*') },
+              paste = { ['+'] = paste_unnamed, ['*'] = paste_unnamed },
+            }
+          end
+        ''
+    );
+
     vim.configRC.basic = nvim.dag.entryAfter [ "globalsScript" ] ''
       " Settings that are set for everything
       set encoding=utf-8
