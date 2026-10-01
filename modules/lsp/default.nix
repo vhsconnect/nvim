@@ -120,6 +120,10 @@ in
           -- written, which produced duplicated/missing text. Formatting now
           -- blocks in BufWritePre so edits land before the write.
           local format_onsave = vim.api.nvim_create_augroup("lsp_format_onsave", { clear = true })
+          local allowed_formatters = { "null-ls", "rust-analyzer", "dartls", "cssls" }
+          local function should_format(client)
+            return vim.tbl_contains(allowed_formatters, client.name)
+          end
           vim.api.nvim_create_autocmd("BufWritePre", {
             group = format_onsave,
             callback = function(args)
@@ -128,10 +132,6 @@ in
               end
               if vim.bo[args.buf].buftype ~= "" then
                 return
-              end
-              -- ts_ls ignores the project's prettier/eslint config and reindents from buffer options
-              local function should_format(client)
-                return client.name ~= "ts_ls"
               end
               local clients = vim.tbl_filter(should_format, vim.lsp.get_clients({
                 bufnr = args.buf,
