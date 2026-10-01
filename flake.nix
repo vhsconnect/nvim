@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-2511.url = "github:nixos/nixpkgs/nixos-25.11";
     master.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nil.url = "github:oxalica/nil";
@@ -580,7 +579,6 @@
               ts = {
                 enable = true;
                 treesitter.enable = true;
-                format.type = "eslint";
                 format.enable = true;
                 extraDiagnostics.enable = true;
               };
@@ -699,11 +697,7 @@
           };
         };
 
-        pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [
-          (final: prev: {
-            inherit (inputs.nixpkgs-2511.legacyPackages.${system}) eslint eslint_d;
-          })
-        ];
+        pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [ ];
 
         neovim = (import ./neovim.nix) { inherit inputs; };
 
