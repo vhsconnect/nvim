@@ -129,11 +129,14 @@ in
               if vim.bo[args.buf].buftype ~= "" then
                 return
               end
-              -- only format when at least one attached client can format
-              local clients = vim.lsp.get_clients({
+              -- ts_ls ignores the project's prettier/eslint config and reindents from buffer options
+              local function should_format(client)
+                return client.name ~= "ts_ls"
+              end
+              local clients = vim.tbl_filter(should_format, vim.lsp.get_clients({
                 bufnr = args.buf,
                 method = "textDocument/formatting",
-              })
+              }))
               if #clients == 0 then
                 return
               end
@@ -141,6 +144,7 @@ in
                 bufnr = args.buf,
                 async = false,
                 timeout_ms = 3000,
+                filter = should_format,
               })
             end,
           })

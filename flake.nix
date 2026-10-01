@@ -253,7 +253,7 @@
     plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
     plugin-nvim-notify.flake = false;
 
-    # plugin-codeboomer.url = "github:vhsconnect/codeboomer.nvim/review-threads-cut";
+    #plugin-codeboomer.url = "github:vhsconnect/codeboomer.nvim/review-threads-cut";
     plugin-codeboomer.url = "git+file:///home/vhs/Repos/codeboomer.nvim";
 
     plugin-codeboomer.flake = false;
@@ -284,6 +284,10 @@
     };
     oxocarbon = {
       url = "github:nyoom-engineering/oxocarbon.nvim";
+      flake = false;
+    };
+    baitong = {
+      url = "github:vhsconnect/baitong.nvim";
       flake = false;
     };
     tshjkl = {
@@ -420,6 +424,9 @@
               oxocarbon = {
                 src = inputs.oxocarbon;
               };
+              baitong = {
+                src = inputs.baitong;
+              };
               tshjkl = {
                 src = inputs.tshjkl;
               };
@@ -500,6 +507,7 @@
             showSignColumn = true;
             codeium.enable = false;
             codeboomer.enable = true;
+            fzf.enable = true;
             lsp = {
               enable = true;
               lspkind.enable = true;
@@ -719,6 +727,7 @@
                 "emmet"
                 "tshjkl"
                 "oxocarbon"
+                "baitong"
                 "teide"
                 "bamboo"
                 "thorn"
