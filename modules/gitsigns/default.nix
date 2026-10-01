@@ -119,18 +119,34 @@ in
               local opts = { cwd = vim.fs.root(0, '.git') or vim.uv.cwd() }
               opts.entry_maker = make_entry.gen_from_git_commits(opts)
 
+              local function changes_since_to_quickfix(base)
+                local files = vim.fn.systemlist({ 'git', '-C', opts.cwd, 'diff', base, '--name-only' })
+                if vim.v.shell_error ~= 0 then
+                  vim.notify(table.concat(files, '\n'), vim.log.levels.ERROR)
+                  return
+                end
+                vim.fn.setqflist({}, ' ', {
+                  title = 'Changes since ' .. base,
+                  items = vim.tbl_map(function(f)
+                    return { filename = vim.fs.joinpath(opts.cwd, f), lnum = 1 }
+                  end, files),
+                })
+                vim.cmd.copen()
+              end
+
               local function set_base(prompt_bufnr, suffix)
                 local entry = action_state.get_selected_entry()
                 actions.close(prompt_bufnr)
                 if entry then
                   local base = entry.value .. suffix
-                  require('gitsigns').change_base(base, true, function(err)
+                  require('gitsigns').change_base(base, true, vim.schedule_wrap(function(err)
                     if err then
                       vim.notify('gitsigns base ' .. base .. ': ' .. err, vim.log.levels.ERROR)
                     else
                       vim.notify('gitsigns base: ' .. base)
+                      changes_since_to_quickfix(base)
                     end
-                  end)
+                  end))
                 end
               end
 

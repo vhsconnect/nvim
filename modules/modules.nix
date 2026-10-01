@@ -19,6 +19,7 @@ let
     ./core
     ./debugger
     ./filetree
+    ./fzf
     ./git
     ./gitsigns
     ./keys
