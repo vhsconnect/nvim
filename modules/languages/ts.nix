@@ -38,7 +38,7 @@ let
   };
 
   # TODO: specify packages
-  defaultFormat = "prettier";
+  defaultFormat = "eslint_d";
   formats = {
     prettier = {
       package = "prettier";

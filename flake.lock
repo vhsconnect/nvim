@@ -513,22 +513,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-2511": {
-      "locked": {
-        "lastModified": 1782847189,
-        "narHash": "sha256-twXPFqFsrrY5r28Zh7Homgcp2gUMBgQ6WDS98Q/3xFI=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "b6018f87da91d19d0ab4cf979885689b469cdd41",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1788057806,
@@ -851,11 +835,11 @@
     "plugin-codeboomer": {
       "flake": false,
       "locked": {
-        "lastModified": 1790860564,
-        "narHash": "sha256-C9VNP+cAEUwnGQqNYzRyqeJX9mzHd9RJPpTKdw9vzOY=",
-        "ref": "refs/heads/jump-first3",
-        "rev": "f7ee89bd43647c75ca91b7da6de286a74d315c07",
-        "revCount": 75,
+        "lastModified": 1790883895,
+        "narHash": "sha256-vsnpv0RgwGawgPQhYy8rdOrmFT8oMzmJ0TnOYxgq6H8=",
+        "ref": "refs/heads/jump-first4",
+        "rev": "d97840d5459a0baf67563fe60e759fb8cb1982e5",
+        "revCount": 76,
         "type": "git",
         "url": "file:///home/vhs/Repos/codeboomer.nvim"
       },
@@ -1837,7 +1821,6 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nil": "nil",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-2511": "nixpkgs-2511",
         "nvim-surround": "nvim-surround",
         "oil": "oil",
         "oxocarbon": "oxocarbon",
