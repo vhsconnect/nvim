@@ -97,6 +97,9 @@
     plugin-nvim-tree-lua.url = "github:kyazdani42/nvim-tree.lua";
     plugin-nvim-tree-lua.flake = false;
 
+    plugin-oil.url = "github:stevearc/oil.nvim";
+    plugin-oil.flake = false;
+
     # Tablines
     plugin-nvim-bufferline-lua.url = "github:akinsho/nvim-bufferline.lua?ref=v4.3.0";
     plugin-nvim-bufferline-lua.flake = false;
@@ -206,6 +209,10 @@
     plugin-nfnl.url = "github:Olical/nfnl";
     plugin-nfnl.flake = false;
 
+    # Clojure
+    plugin-paraedit.url = "github:julienvincent/nvim-paredit";
+    plugin-paraedit.flake = false;
+
     # Markdown
     plugin-glow-nvim.url = "github:ellisonleao/glow.nvim";
     plugin-glow-nvim.flake = false;
@@ -230,6 +237,9 @@
     # git
     plugin-neogit.url = "github:NeogitOrg/neogit";
     plugin-neogit.flake = false;
+
+    plugin-diffview.url = "github:sindrets/diffview.nvim";
+    plugin-diffview.flake = false;
 
     plugin-dressing.url = "github:stevearc/dressing.nvim";
     plugin-dressing.flake = false;
@@ -257,10 +267,6 @@
 
     plugin-codeboomer.flake = false;
 
-    oil = {
-      url = "github:stevearc/oil.nvim";
-      flake = false;
-    };
     teide = {
       url = "github:serhez/teide.nvim";
       flake = false;
@@ -305,10 +311,6 @@
       url = "github:christoomey/vim-tmux-navigator";
       flake = false;
     };
-    gen = {
-      url = "github:David-Kunz/gen.nvim";
-      flake = false;
-    };
     leap-nvim = {
       url = "git+https://codeberg.org/andyg/leap.nvim.git";
       flake = false;
@@ -337,10 +339,6 @@
       url = "github:hashivim/vim-terraform";
       flake = false;
     };
-    diffview = {
-      url = "github:sindrets/diffview.nvim";
-      flake = false;
-    };
     dadbod = {
       url = "github:tpope/vim-dadbod";
       flake = false;
@@ -363,8 +361,6 @@
     };
     conjure.url = "github:Olical/conjure";
     conjure.flake = false;
-    paraedit.url = "github:julienvincent/nvim-paredit";
-    paraedit.flake = false;
     pi-nvim.url = "github:carderne/pi-nvim";
     pi-nvim.flake = false;
   };
@@ -405,9 +401,6 @@
             viAlias = true;
             vimAlias = false;
             rawPlugins = {
-              oil = {
-                src = inputs.oil;
-              };
               teide = {
                 src = inputs.teide;
               };
@@ -438,9 +431,6 @@
               tmux-nav = {
                 src = inputs.tmux-nav;
               };
-              gen = {
-                src = inputs.gen;
-              };
               leap-nvim = {
                 src = inputs.leap-nvim;
               };
@@ -465,9 +455,6 @@
               vim-terraform = {
                 src = inputs.vim-terraform;
               };
-              diffview = {
-                src = inputs.diffview;
-              };
               dadbod = {
                 src = inputs.dadbod;
               };
@@ -485,9 +472,6 @@
               };
               conjure = {
                 src = inputs.conjure;
-              };
-              paraedit = {
-                src = inputs.paraedit;
               };
               pi-nvim = {
                 src = inputs.pi-nvim;
@@ -618,7 +602,7 @@
               enable = false;
               name = "oxocarbon";
             };
-            avante.enable = true;
+            avante.enable = false;
             avante.openrouterDefaultModel = "deepseek/deepseek-v3.2";
             copilot.enable = false;
             noice.enable = true;
@@ -627,6 +611,8 @@
             snippets.luasnip.nixPath = snippetsFolder;
             snippets.luasnip.runtimePath = "/home/common/Folder/iqs";
             autopairs.enable = true;
+            paraedit.enable = true;
+            oil.enable = true;
             autocomplete = {
               enable = true;
               type = "nvim-cmp";
@@ -715,11 +701,7 @@
                 "tcomment"
                 "themed-tabs"
                 "nvim-surround"
-                "gen"
                 "tmux-nav"
-                "mustache"
-                "emmet"
-                "tshjkl"
                 "oxocarbon"
                 "baitong"
                 "teide"
@@ -727,7 +709,6 @@
                 "thorn"
                 "melange"
                 "tokyonight"
-                "oil"
                 "vim-terraform"
                 "dadbod"
                 "dadbod-ui"
@@ -735,10 +716,14 @@
                 "vim-prettier"
                 "scope-gutter"
                 "conjure"
-                "paraedit"
-                "pi-nvim"
               ];
-              vim.optPlugins = [ "codeium" ];
+              vim.optPlugins = [
+                "codeium"
+                "tshjkl"
+                "mustache"
+                "pi-nvim"
+                "emmet"
+              ];
             }
           ];
         };

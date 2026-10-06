@@ -7,7 +7,6 @@ vim.keymap.set("n", "<space>'", ":b#<CR>", { noremap = true })
 vim.keymap.set("n", "<space>gl", ":PrettierAsync<CR>", { noremap = true })
 vim.keymap.set("v", "<space>gl", ":PrettierFragment<CR>", { noremap = true })
 vim.keymap.set("n", "<space><space>", ":e #<CR>", { noremap = true })
-vim.keymap.set("n", "<space>g<space>", ":Gen<CR>", { noremap = true })
 
 vim.keymap.set("n", "K", "5k", { noremap = true })
 vim.keymap.set("n", "J", "5j", { noremap = true })
@@ -192,14 +191,6 @@ require("tshjkl").setup({
 })
 
 ----------------
--- Oil
----------------
-require("oil").setup()
-vim.keymap.set("n", "<leader>o", function()
-	require("oil").open(vim.fn.expand("%:p:h"))
-end, { desc = "Open Oil at current buffer's directory" })
-
-----------------
 -- Theme
 ---------------
 vim.cmd("colorscheme " .. os.getenv("VIM_THEME"))
@@ -337,44 +328,6 @@ vim.keymap.set("n", "<leader>am", "<cmd>AvanteSetModel<CR>", { noremap = true, s
 --
 --
 --
-----------------
--- Paredit
----------------
-local paredit = require("nvim-paredit")
-
-local function wrap(open, close)
-	return function()
-		paredit.wrap.wrap_element_under_cursor(open, close)
-	end
-end
-
-paredit.setup({
-	-- Change some keys
-	use_default_keys = false,
-	keys = {
-		["<localleader>o"] = false,
-		["<localleader>r"] = false,
-		["<localleader>vsl"] = { paredit.api.slurp_forwards, "Slurp forwards" },
-		["<localleader>vsh"] = { paredit.api.slurp_backwards, "Slurp backwards" },
-		["<localleader>vbl"] = { paredit.api.barf_forwards, "Barf forwards" },
-		["<localleader>vbh"] = { paredit.api.barf_backwards, "Barf backwards" },
-		-- ["<localleader>vrf"] = { paredit.api.raise_form, "Raise form" },
-		-- ["<localleader>vre"] = { paredit.api.raise_element, "Raise element" },
-
-		-- splice / unwrap
-		["<localleader>vj"] = { paredit.unwrap.unwrap_form_under_cursor, "Splice form" },
-
-		-- wrap element in a matched pair (mnemonic: the delimiter you want)
-		["<localleader>vk"] = { wrap("(", ")"), "Wrap element in ()" },
-		-- ["<localleader>v["] = { wrap("[", "]"),   "Wrap element in []" },
-		-- ["<localleader>v{"] = { wrap("{", "}"),   "Wrap element in {}" },
-
-		-- drag element (reorder args) -- uses > / < like vim's shift operators
-		["<localleader>vl"] = { paredit.api.drag_element_forwards, "Drag element forwards" },
-		["<localleader>vh"] = { paredit.api.drag_element_backwards, "Drag element backwards" },
-	},
-})
-
 -- ----------------
 -- -- Pi-nvim
 -- ---------------

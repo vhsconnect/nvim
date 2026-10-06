@@ -27,6 +27,8 @@ let
     ./lsp
     ./noice
     ./nfnl
+    ./oil
+    ./paraedit
     ./snippets
     ./statusline
     ./tabline

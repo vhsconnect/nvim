@@ -22,6 +22,11 @@ in
     ];
     vim.optPlugins = [ ];
     vim.luaConfigRC.noice = nvim.dag.entryAfter [ "lsp-setup" ] ''
+      require("notify").setup({
+        stages = "static", -- disable animation
+        timeout = 2000, -- auto-dismiss after 2s
+        render = "wrapped-compact", -- compact layout, wrapped message
+      })
       require("noice").setup({
         messages = {
           enabled = true, -- enables the Noice messages UI
