@@ -145,6 +145,33 @@ in
   };
 
   config = mkIf cfg.enable (mkMerge [
+    {
+      vim.luaConfigRC.clojure-filetypes =
+        nvim.dag.entryAnywhere # lua
+          ''
+            vim.filetype.add({
+              extension = {
+                cljd = "clojure",
+              },
+            })
+
+            -- babashka scripts have no extension, detect them from the shebang
+            vim.filetype.add({
+              pattern = {
+                [".*"] = {
+                  function(path, bufnr)
+                    local first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
+
+                    if first_line:match("^#!.*bb") then
+                      return "clojure"
+                    end
+                  end,
+                },
+              },
+            })
+          '';
+    }
+
     (mkIf cfg.extraDiagnostics.enable {
       vim.lsp.null-ls.enable = true;
       vim.lsp.null-ls.sources = lib.nvim.languages.diagnosticsToLua {

@@ -296,29 +296,6 @@ end
 
 vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true })
 
------------
---- Clojure
-------------
-vim.filetype.add({
-	extension = {
-		cljd = "clojure",
-	},
-})
-
-vim.filetype.add({
-	pattern = {
-		[".*"] = {
-			function(path, bufnr)
-				local first_line = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
-
-				if first_line:match("^#!.*bb") then
-					return "clojure"
-				end
-			end,
-		},
-	},
-})
-
 ----------------
 -- Avante
 ---------------

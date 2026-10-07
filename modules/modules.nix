@@ -23,6 +23,7 @@ let
     ./fzf
     ./git
     ./gitsigns
+    ./guess-indent
     ./keys
     ./languages
     ./lsp
