@@ -39,6 +39,13 @@ in
             local null_helpers = require("null-ls.helpers")
             local null_methods = require("null-ls.methods")
             local ls_sources = {}
+
+            local null_ls_root_has = function(markers)
+              local find_root = require("null-ls.utils").root_pattern(unpack(markers))
+              return null_helpers.cache.by_bufnr(function(params)
+                return find_root(params.bufname) ~= nil
+              end)
+            end
           '';
       vim.luaConfigRC.null_ls =
         nvim.dag.entryAfter

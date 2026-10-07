@@ -17,69 +17,149 @@ let
       ];
       lspConfig = # lua
         ''
-          vim.lsp.enable("oxlint",  {
-            capabilities = capabilities;
-            on_attach = attach_keymaps,
-            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "oxc_language_server"}" },
-          }
+          local oxlint_on_attach = vim.lsp.config.oxlint.on_attach
+          vim.lsp.config("oxlint", {
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+              attach_keymaps(client, bufnr)
+              oxlint_on_attach(client, bufnr)
+            end,
+            cmd = { "${nvim.languages.commandOptToCmd cfg.lsp.package "oxlint"}", "--lsp" },
+            -- lspconfig's root_dir calls on_dir(nil) without a marker, which attaches everywhere
+            root_dir = function(bufnr, on_dir)
+              local root = vim.fs.root(bufnr, { ${concatMapStringsSep ", " (m: ''"${m}"'') rootMarkers.oxlint} })
+              if root then
+                on_dir(root)
+              end
+            end,
+          })
+          vim.lsp.enable("oxlint")
         '';
     };
     ts_ls = {
       package = "typescript-language-server";
       lspConfig = # lua
         ''
-          vim.lsp.enable("ts_ls",{
-            capabilities = capabilities;
-            on_attach = attach_keymaps,
-            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "typescript-language-server"}", "--stdio"},
+          local ts_ls_on_attach = vim.lsp.config.ts_ls.on_attach
+          vim.lsp.config("ts_ls", {
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+              attach_keymaps(client, bufnr)
+              ts_ls_on_attach(client, bufnr)
+            end,
+            cmd = { "${nvim.languages.commandOptToCmd cfg.lsp.package "typescript-language-server"}", "--stdio" },
           })
+          vim.lsp.enable("ts_ls")
         '';
     };
   };
 
-  # TODO: specify packages
-  defaultFormat = "eslint_d";
+  rootMarkers = {
+    eslint = [
+      "eslint.config.js"
+      "eslint.config.mjs"
+      "eslint.config.cjs"
+      "eslint.config.ts"
+      "eslint.config.mts"
+      "eslint.config.cts"
+      ".eslintrc"
+      ".eslintrc.js"
+      ".eslintrc.cjs"
+      ".eslintrc.json"
+      ".eslintrc.yaml"
+      ".eslintrc.yml"
+    ];
+    prettier = [
+      ".prettierrc"
+      ".prettierrc.json"
+      ".prettierrc.json5"
+      ".prettierrc.yaml"
+      ".prettierrc.yml"
+      ".prettierrc.toml"
+      ".prettierrc.js"
+      ".prettierrc.cjs"
+      ".prettierrc.mjs"
+      "prettier.config.js"
+      "prettier.config.cjs"
+      "prettier.config.mjs"
+    ];
+    oxlint = [
+      ".oxlintrc.json"
+      ".oxlintrc.jsonc"
+    ];
+    oxfmt = [
+      ".oxfmtrc.json"
+      ".oxfmtrc.jsonc"
+    ];
+  };
+
+  defaultFormats = [
+    "eslint_d"
+    "oxfmt"
+  ];
   formats = {
     prettier = {
-      package = "prettier";
-      nullConfig = # lua
+      package = pkgs.prettier;
+      nullConfig =
+        pkg: # lua
         ''
           table.insert(
             ls_sources,
             null_ls.builtins.formatting.prettier.with({
-              command = "${nvim.languages.commandOptToCmd cfg.format.package "prettier"}",
+              command = "${pkg}/bin/prettier",
+              runtime_condition = ${nvim.languages.rootCondition rootMarkers.prettier},
             })
           )
         '';
     };
     eslint_d = {
-      package = [ "eslint_d" ];
-      nullConfig = # lua
+      package = pkgs.eslint_d;
+      nullConfig =
+        pkg: # lua
         ''
           table.insert(
             ls_sources,
             require("none-ls.formatting.eslint_d").with({
-               command = "${pkgs.eslint_d}/bin/eslint_d",
+              command = "${pkg}/bin/eslint_d",
+              runtime_condition = ${nvim.languages.rootCondition rootMarkers.eslint},
             })
           )
         '';
     };
     eslint = {
-      package = [ "eslint" ];
-      nullConfig = # lua
+      package = pkgs.eslint;
+      nullConfig =
+        pkg: # lua
         ''
           table.insert(
             ls_sources,
             require("none-ls.formatting.eslint").with({
-               command = "${pkgs.eslint}/bin/eslint",
+              command = "${pkg}/bin/eslint",
+              runtime_condition = ${nvim.languages.rootCondition rootMarkers.eslint},
+            })
+          )
+        '';
+    };
+    oxfmt = {
+      package = pkgs.oxfmt;
+      nullConfig =
+        pkg: # lua
+        ''
+          table.insert(
+            ls_sources,
+            require("none-ls.formatting.oxfmt").with({
+              command = "${pkg}/bin/oxfmt",
+              runtime_condition = ${nvim.languages.rootCondition rootMarkers.oxfmt},
             })
           )
         '';
     };
   };
 
-  # TODO: specify packages
-  defaultDiagnostics = [ "eslint_d" ];
+  defaultDiagnostics = [
+    "eslint_d"
+    "oxlint"
+  ];
   diagnostics = {
     eslint_d = {
       package = pkgs.eslint_d;
@@ -90,8 +170,9 @@ let
             ls_sources,
             require("none-ls.diagnostics.eslint_d").with({
               command = "${pkg}/bin/eslint_d",
+              runtime_condition = ${nvim.languages.rootCondition rootMarkers.eslint},
             })
-            )
+          )
         '';
     };
     eslint = {
@@ -103,8 +184,26 @@ let
             ls_sources,
             require("none-ls.diagnostics.eslint").with({
               command = "${pkg}/bin/eslint",
+              runtime_condition = ${nvim.languages.rootCondition rootMarkers.eslint},
             })
-            )
+          )
+        '';
+    };
+    oxlint = {
+      package = pkgs.oxlint;
+      nullConfig =
+        pkg: # lua
+        ''
+          table.insert(
+            ls_sources,
+            require("none-ls.diagnostics.oxlint").with({
+              command = "${pkg}/bin/oxlint",
+              prefer_local = "node_modules/.bin",
+              to_temp_file = false,
+              method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+              runtime_condition = ${nvim.languages.rootCondition rootMarkers.oxlint},
+            })
+          )
         '';
     };
   };
@@ -146,14 +245,10 @@ in
         type = types.bool;
         default = config.vim.languages.enableFormat;
       };
-      type = mkOption {
-        description = "Typescript/Javascript formatter to use";
-        type = with types; enum (attrNames formats);
-        default = defaultFormat;
-      };
-      package = nvim.options.mkCommandOption pkgs {
-        description = "Typescript/Javascript formatter";
-        inherit (formats.${cfg.format.type}) package;
+      types = nvim.options.mkFormatsOption {
+        langDesc = "Typescript/Javascript";
+        inherit formats;
+        inherit defaultFormats;
       };
     };
 
@@ -187,7 +282,11 @@ in
 
     (mkIf cfg.format.enable {
       vim.lsp.null-ls.enable = true;
-      vim.lsp.null-ls.sources.ts-format = formats.${cfg.format.type}.nullConfig;
+      vim.lsp.null-ls.sources = lib.nvim.languages.formatsToLua {
+        lang = "ts";
+        config = cfg.format.types;
+        inherit formats;
+      };
     })
 
     (mkIf cfg.extraDiagnostics.enable {

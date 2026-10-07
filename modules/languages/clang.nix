@@ -15,12 +15,17 @@ let
       package = [ "ccls" ];
       lspConfig = # lua
         ''
-          vim.lsp.enable("ccls", {
+          local ccls_on_attach = vim.lsp.config.ccls.on_attach
+          vim.lsp.config("ccls", {
             capabilities = capabilities;
-            on_attach=default_on_attach;
+            on_attach = function(client, bufnr)
+              default_on_attach(client, bufnr)
+              ccls_on_attach(client, bufnr)
+            end;
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "ccls"}"};
             ${optionalString (cfg.lsp.opts != null) "init_options = ${cfg.lsp.opts}"}
           })
+          vim.lsp.enable("ccls")
         '';
     };
 

@@ -15,11 +15,12 @@ let
       package = [ "gopls" ];
       lspConfig = # lua
         ''
-            vim.lsp.enable("gopls",  {
-              capabilities = capabilities;
-              on_attach = default_on_attach;
-              cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "gopls"}", "serve"};
-          }
+          vim.lsp.config("gopls", {
+            capabilities = capabilities;
+            on_attach = default_on_attach;
+            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "gopls"}", "serve"};
+          })
+          vim.lsp.enable("gopls")
         '';
     };
   };

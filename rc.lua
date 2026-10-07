@@ -13,15 +13,32 @@ vim.keymap.set("n", "J", "5j", { noremap = true })
 vim.keymap.set("n", "L", "10l", { noremap = true })
 vim.keymap.set("n", "H", "10h", { noremap = true })
 
-vim.keymap.set("n", "<Up>", ":resize +3<CR>", { noremap = true })
-vim.keymap.set("n", "<Down>", ":resize -3<CR>", { noremap = true })
-vim.keymap.set("n", "<Right>", ":vertical resize +3<CR>", { noremap = true })
-vim.keymap.set("n", "<Left>", ":vertical resize -3<CR>", { noremap = true })
+local resize_dirs = {
+	Up = { axis = "jk", cmd = "resize +3", tmux = "-U" },
+	Down = { axis = "jk", cmd = "resize -3", tmux = "-D" },
+	Right = { axis = "hl", cmd = "vertical resize +3", tmux = "-R" },
+	Left = { axis = "hl", cmd = "vertical resize -3", tmux = "-L" },
+}
 
-vim.keymap.set("i", "<Up>", "<C-o>:resize +3<CR>", { noremap = true })
-vim.keymap.set("i", "<Down>", "<C-o>:resize -3<CR>", { noremap = true })
-vim.keymap.set("i", "<Right>", "<C-o>:vertical resize +3<CR>", { noremap = true })
-vim.keymap.set("i", "<Left>", "<C-o>:vertical resize -3<CR>", { noremap = true })
+local function has_neighbour(axis)
+	local cur = vim.fn.winnr()
+	return vim.fn.winnr(axis:sub(1, 1)) ~= cur or vim.fn.winnr(axis:sub(2, 2)) ~= cur
+end
+
+local function resize(dir)
+	local r = resize_dirs[dir]
+	if vim.env.TMUX and not has_neighbour(r.axis) then
+		vim.fn.system({ "tmux", "resize-pane", r.tmux, "3" })
+	else
+		vim.cmd(r.cmd)
+	end
+end
+
+for dir in pairs(resize_dirs) do
+	vim.keymap.set({ "n", "i" }, "<" .. dir .. ">", function()
+		resize(dir)
+	end, { noremap = true })
+end
 
 -- move visual block up and down
 vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", { noremap = true })
@@ -280,16 +297,8 @@ end
 vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true })
 
 -----------
---- Clojure / Conjure
+--- Clojure
 ------------
-vim.g["conjure#mapping#enable_defaults"] = true
-vim.g["conjure#mapping#doc_word"] = false
-vim.g["conjure#mapping#prefix"] = "<leader>c"
-vim.g["conjure#mapping#eval_current_form"] = "c"
-vim.g["conjure#mapping#eval_buf"] = "f"
--- vim.g["conjure#mapping#log_split"] = "s"
--- vim.g["conjure#mapping#log_vsplit"] = "v"
---
 vim.filetype.add({
 	extension = {
 		cljd = "clojure",

@@ -15,11 +15,12 @@ let
       package = "dart";
       lspConfig = # lua
         ''
-          vim.lsp.enable("dartls", {
+          vim.lsp.config("dartls", {
             capabilities = capabilities,
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "dart"}", "language-server", "--protocol=lsp"},
-          }) 
+          })
+          vim.lsp.enable("dartls")
         '';
     };
   };

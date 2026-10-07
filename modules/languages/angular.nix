@@ -21,14 +21,10 @@ let
         ''
           local cmd = {"${cfg.lsp.package}/share/vscode/extensions/Angular.ng-template/server/bin/ngserver", "--stdio", "--tsProbeLocations", " ", "--ngProbeLocations", " "}
 
-          local on_new_config = function(new_config,new_root_dir) 
-              new_config.cmd = cmd
-          end
-
-          vim.lsp.enable("angularls", {
+          vim.lsp.config("angularls", {
             cmd = cmd,
-            on_new_config = on_new_config  
-            })
+          })
+          vim.lsp.enable("angularls")
         '';
     };
   };

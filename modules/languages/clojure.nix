@@ -20,11 +20,12 @@ let
       ];
       lspConfig = # lua
         ''
-          vim.lsp.enable("clojure_lsp", {
+          vim.lsp.config("clojure_lsp", {
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "clojure-lsp"}" },
           })
+          vim.lsp.enable("clojure_lsp")
         '';
     };
   };

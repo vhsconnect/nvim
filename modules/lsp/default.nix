@@ -120,7 +120,7 @@ in
           -- written, which produced duplicated/missing text. Formatting now
           -- blocks in BufWritePre so edits land before the write.
           local format_onsave = vim.api.nvim_create_augroup("lsp_format_onsave", { clear = true })
-          local allowed_formatters = { "null-ls", "rust-analyzer", "dartls", "cssls", "nil_ls" }
+          local allowed_formatters = { "null-ls", "rust-analyzer", "dartls", "cssls", "nil_ls", "lua_ls" }
           local function should_format(client)
             return vim.tbl_contains(allowed_formatters, client.name)
           end

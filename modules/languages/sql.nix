@@ -17,14 +17,15 @@ let
       lspConfig = # lua
         ''
 
-          vim.lsp.enable("sqls", {
+          vim.lsp.config("sqls", {
             on_attach = function(client, bufnr)
               client.server_capabilities.execute_command = true
-              on_attach_keymaps(client, bufnr)
+              attach_keymaps(client, bufnr)
               require'sqls'.on_attach(client, bufnr)
             end,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "sqls"}", "-config", string.format("%s/config.yml", vim.fn.getcwd()) }
           })
+          vim.lsp.enable("sqls")
         '';
     };
   };

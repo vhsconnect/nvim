@@ -27,17 +27,11 @@ in
         type = types.bool;
         default = config.vim.languages.enableLSP;
       };
-      # TODO: Fix the zls package styles
       package = mkOption {
         description = "Metals package";
         type = types.package;
         default = pkgs.metals;
       };
-      # zigPackage = mkOption {
-      #   description = "Zig package used by ZLS";
-      #   type = types.package;
-      #   default = pkgs.zig;
-      # };
     };
   };
 
@@ -54,10 +48,11 @@ in
           vim.opt_global.shortmess:remove("F")
            local cmd = {"${cfg.lsp.package}/bin/metals"}
 
-          vim.lsp.enable("metals", {
+          vim.lsp.config("metals", {
            cmd = cmd,
            on_attach = default_on_attach
            })
+          vim.lsp.enable("metals")
         '';
     })
   ]);

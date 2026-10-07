@@ -51,7 +51,7 @@ in
       vim.lsp.lspconfig.enable = true;
       vim.lsp.lspconfig.sources.zig-lsp = # lua
         ''
-          vim.lsp.enable("zls", {
+          vim.lsp.config("zls", {
             capabilities = capabilities,
             on_attach=default_on_attach,
             cmd = {"${cfg.lsp.package}/bin/zls"},
@@ -62,6 +62,7 @@ in
               }
             }
           })
+          vim.lsp.enable("zls")
         '';
     })
   ]);

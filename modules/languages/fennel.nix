@@ -20,7 +20,7 @@ let
       ];
       lspConfig = # lua
         ''
-          vim.lsp.enable("fennel_ls", {
+          vim.lsp.config("fennel_ls", {
             capabilities = capabilities;
             on_attach = attach_keymaps,
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "fennel-ls"}" },
@@ -37,6 +37,7 @@ let
               },
             },
           })
+          vim.lsp.enable("fennel_ls")
         '';
     };
   };

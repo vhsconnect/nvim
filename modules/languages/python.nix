@@ -15,11 +15,16 @@ let
       package = [ "pyright" ];
       lspConfig = # lua
         ''
-          vim.lsp.enable("pyright", {
+          local pyright_on_attach = vim.lsp.config.pyright.on_attach
+          vim.lsp.config("pyright", {
             capabilities = capabilities;
-            on_attach = default_on_attach;
+            on_attach = function(client, bufnr)
+              default_on_attach(client, bufnr)
+              pyright_on_attach(client, bufnr)
+            end;
             cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "pyright-langserver"}", "--stdio"};
           })
+          vim.lsp.enable("pyright")
         '';
     };
   };

@@ -5,5 +5,10 @@ let
 in
 {
   inherit (optionsPlugin) mkPluginsOption;
-  inherit (optionsLanguage) mkDiagnosticsOption mkGrammarOption mkCommandOption;
+  inherit (optionsLanguage)
+    mkDiagnosticsOption
+    mkFormatsOption
+    mkGrammarOption
+    mkCommandOption
+    ;
 }

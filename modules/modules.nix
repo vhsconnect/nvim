@@ -14,6 +14,7 @@ let
     ./chatgpt
     ./codeboomer
     ./codeium
+    ./conjure
     ./copilot
     ./completion
     ./core

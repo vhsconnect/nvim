@@ -1,19 +1,35 @@
 { lib }:
 with lib;
 let
-  diagnosticSubmodule =
+  sourceSubmodule =
+    { kind, sources }:
     { ... }:
     {
       options = {
         type = mkOption {
-          description = "Type of diagnostic to enable";
-          type = attrNames diagnostics;
+          description = "Type of ${kind} to enable";
+          type = types.enum (attrNames sources);
         };
         package = mkOption {
-          description = "Diagnostics package";
+          description = "${kind} package";
           type = types.package;
         };
       };
+    };
+
+  mkSourcesOption =
+    {
+      kind,
+      langDesc,
+      sources,
+      defaults,
+    }:
+    mkOption {
+      description = "List of ${langDesc} ${kind}s to enable";
+      type =
+        with types;
+        listOf (either (enum (attrNames sources)) (submodule (sourceSubmodule { inherit kind sources; })));
+      default = defaults;
     };
 in
 {
@@ -23,10 +39,24 @@ in
       diagnostics,
       defaultDiagnostics,
     }:
-    mkOption {
-      description = "List of ${langDesc} diagnostics to enable";
-      type = with types; listOf (either (enum (attrNames diagnostics)) (submodule diagnosticSubmodule));
-      default = defaultDiagnostics;
+    mkSourcesOption {
+      kind = "diagnostic";
+      inherit langDesc;
+      sources = diagnostics;
+      defaults = defaultDiagnostics;
+    };
+
+  mkFormatsOption =
+    {
+      langDesc,
+      formats,
+      defaultFormats,
+    }:
+    mkSourcesOption {
+      kind = "formatter";
+      inherit langDesc;
+      sources = formats;
+      defaults = defaultFormats;
     };
 
   mkGrammarOption =
