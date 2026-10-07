@@ -256,6 +256,9 @@
     plugin-fzf-lua.url = "github:ibhagwan/fzf-lua";
     plugin-fzf-lua.flake = false;
 
+    plugin-guess-indent.url = "github:NMAC427/guess-indent.nvim";
+    plugin-guess-indent.flake = false;
+
     plugin-noice.url = "github:folke/noice.nvim";
     plugin-noice.flake = false;
 
@@ -491,6 +494,7 @@
             codeium.enable = false;
             codeboomer.enable = true;
             fzf.enable = true;
+            guessIndent.enable = false;
             conjure.enable = true;
             lsp = {
               enable = true;
