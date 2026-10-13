@@ -5,5 +5,5 @@
   ...
 }:
 {
-  imports = [ ./vsnip.nix ./luasnip.nix ];
+  imports = [ ./vsnip.nix ./luasnip.nix ./query-saver.nix ];
 }

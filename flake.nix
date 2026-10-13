@@ -615,12 +615,13 @@
             };
             avante.enable = false;
             avante.openrouterDefaultModel = "deepseek/deepseek-v3.2";
-            copilot.enable = false;
+            copilot.enable = true;
             noice.enable = true;
             nfnl.enable = true;
             snippets.luasnip.enable = true;
             snippets.luasnip.nixPath = snippetsFolder;
             snippets.luasnip.runtimePath = "/home/common/Folder/iqs";
+            snippets.querySaver.enable = true;
             autopairs.enable = true;
             paraedit.enable = true;
             oil.enable = true;
