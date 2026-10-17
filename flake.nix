@@ -675,7 +675,6 @@
             };
             luaConfigRC = {
               a = "${builtins.readFile ./rc.lua}";
-              b = "${builtins.readFile ./cheat_sheet.lua}";
               c = "${builtins.readFile ./dynamic_path.lua}";
               d =
                 let
