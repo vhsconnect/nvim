@@ -622,6 +622,7 @@
             snippets.luasnip.nixPath = snippetsFolder;
             snippets.luasnip.runtimePath = "/home/common/Folder/iqs";
             snippets.querySaver.enable = true;
+            cheatsheet.enable = true;
             autopairs.enable = true;
             paraedit.enable = true;
             oil.enable = true;

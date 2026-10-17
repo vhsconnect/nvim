@@ -12,6 +12,7 @@ let
     ./basic
     ./build
     ./chatgpt
+    ./cheatsheet
     ./codeboomer
     ./codeium
     ./conjure
