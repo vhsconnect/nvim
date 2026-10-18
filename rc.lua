@@ -194,18 +194,18 @@ vim.keymap.set("n", "<space>r", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], { 
 -- tshjkl
 ------------------
 
-require("tshjkl").setup({
-	keymaps = {
-		toggle = "<C-w>",
-		toggle_outer = "<S-C-w>",
-
-		parent = "h",
-		next = "j",
-		prev = "k",
-		child = "l",
-		toggle_named = "<S-M-n>", -- named mode skips unnamed nodes
-	},
-})
+-- require("tshjkl").setup({
+-- 	keymaps = {
+-- 		toggle = "<C-w>",
+-- 		toggle_outer = "<S-C-w>",
+--
+-- 		parent = "h",
+-- 		next = "j",
+-- 		prev = "k",
+-- 		child = "l",
+-- 		toggle_named = "<S-M-n>", -- named mode skips unnamed nodes
+-- 	},
+-- })
 
 ----------------
 -- Theme

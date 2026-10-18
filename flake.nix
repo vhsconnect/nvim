@@ -565,6 +565,12 @@
                 format.enable = true;
                 treesitter.enable = true;
               };
+              elixir = {
+                enable = true;
+                lsp.enable = true;
+                format.enable = true;
+                treesitter.enable = true;
+              };
               ts = {
                 enable = true;
                 treesitter.enable = true;

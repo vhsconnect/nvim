@@ -17,6 +17,7 @@ in
     ./clojure.nix
     ./css.nix
     ./dart.nix
+    ./elixir.nix
     ./fish.nix
     ./fennel.nix
     ./gleam.nix
