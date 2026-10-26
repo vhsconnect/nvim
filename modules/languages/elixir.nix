@@ -18,7 +18,18 @@ let
           vim.lsp.config("elixirls", {
             capabilities = capabilities,
             on_attach = attach_keymaps,
-            cmd = {"${nvim.languages.commandOptToCmd cfg.lsp.package "elixir-ls"}"},
+            -- elixir-ls has to run on the project's Elixir/OTP version, so prefer the one on $PATH
+            -- (e.g. from a devShell) and fall back to the pinned build. Resolved on every spawn so
+            -- :LspRestart picks up a changed $PATH.
+            cmd = function(dispatchers, config)
+              local bin = vim.fn.executable("elixir-ls") == 1 and "elixir-ls"
+                or "${nvim.languages.commandOptToCmd cfg.lsp.package "elixir-ls"}"
+              return vim.lsp.rpc.start({ bin }, dispatchers, {
+                cwd = config.cmd_cwd,
+                env = config.cmd_env,
+                detached = config.detached,
+              })
+            end,
           })
           vim.lsp.enable("elixirls")
         '';

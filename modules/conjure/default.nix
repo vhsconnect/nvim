@@ -30,7 +30,6 @@ in
           -- conjure's default list minus javascript, typescript, lua, rust, python, ruby, sql and php
           vim.g["conjure#filetypes"] = {
             "clojure",
-            "elixir",
             "fennel",
             "janet",
             "hy",
