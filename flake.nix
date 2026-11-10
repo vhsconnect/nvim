@@ -265,7 +265,6 @@
     plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
     plugin-nvim-notify.flake = false;
 
-    #plugin-codeboomer.url = "github:vhsconnect/codeboomer.nvim/review-first-02";
     plugin-codeboomer.url = "git+file:///home/vhs/Repos/codeboomer.nvim";
 
     plugin-codeboomer.flake = false;
@@ -494,6 +493,7 @@
             codeium.enable = false;
             codeboomer.enable = true;
             fzf.enable = true;
+            quickfix.enable = true;
             guessIndent.enable = false;
             conjure.enable = true;
             lsp = {

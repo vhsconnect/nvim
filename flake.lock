@@ -771,11 +771,11 @@
     "plugin-codeboomer": {
       "flake": false,
       "locked": {
-        "lastModified": 1791583176,
-        "narHash": "sha256-5nhVe26dihYW5cI/A0FWxijK8qm7sFqRkHojT6Sozmk=",
-        "ref": "refs/heads/review-first-07",
-        "rev": "8d010ef88a11e328040dd0d8048fcedb111e3c2a",
-        "revCount": 101,
+        "lastModified": 1793143052,
+        "narHash": "sha256-DARq1vRfa0617V25AbKXj/jjJPdjvb6J7qOlo061r1Q=",
+        "ref": "refs/heads/rc-1",
+        "rev": "8f6e5356af14096381ec87defbe97561f3edce7c",
+        "revCount": 102,
         "type": "git",
         "url": "file:///home/vhs/Repos/codeboomer.nvim"
       },

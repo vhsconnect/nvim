@@ -32,6 +32,7 @@ let
     ./nfnl
     ./oil
     ./paraedit
+    ./quickfix
     ./snippets
     ./statusline
     ./tabline
