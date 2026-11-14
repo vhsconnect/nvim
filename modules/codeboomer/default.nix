@@ -16,47 +16,43 @@ in
       description = "Lua run at startup to configure codeboomer.nvim";
       type = with types; nullOr lines;
       default = ''
-      local function with(base, extra)
-        return vim.list_extend(vim.deepcopy(base), extra)
-      end
+        local function with(base, extra)
+          return vim.list_extend(vim.deepcopy(base), extra)
+        end
 
-      local claude = { "nix", "run", "github:numtide/llm-agents.nix#claude-code", "--" }
-      local pi = { "nix", "run", "github:numtide/llm-agents.nix#pi", "--" }
+        local claude = { "nix", "run", "github:numtide/llm-agents.nix#claude-code", "--" }
+        local pi = { "nix", "run", "github:numtide/llm-agents.nix#pi", "--" }
 
-      require("codeboomer").setup({
-        debug = false,
-        keybindings = {
-          send_prompt = "<leader>cs",
-          send_last_prompt = "<leader>cl",
-          send_selection = "<leader>cr",
-          ask_one_off = "<leader>cc",
-          flush_with_directive = "<leader>cd",
-          pane = "<leader>cp",
-          launch_reviewer = "<leader>cA",
-          reset_session = "<leader>cS",
-          review = "<leader>cR",
-          post_review = "<leader>cP",
-          pull_review = "<leader>cL",
-          annotate = "<leader>ca",
-        },
-        prompting = {
-          one_off_commands = {
-            {
-              label = "claude-code (llm-agents)",
-              argv = with(claude, {
-                "--model", "haiku",
-                "--output-format", "json",
-                "--permission-mode", "acceptEdits",
-                "-p",
-              }),
+        require("codeboomer").setup({
+          debug = false,
+          keybindings = {
+            send_prompt = "<leader>cs",
+            send_last_prompt = "<leader>cl",
+            send_selection = "<leader>cr",
+            flush_with_directive = "<leader>cd",
+            pane = "<leader>cp",
+            launch_reviewer = nil,
+            launch_process = "<leader>cc",
+            pane_toggle = "<leader>ct",
+            sidebar_toggle = "<leader>cb",
+            reset_session = "<leader>cS",
+            review = "<leader>cR",
+            post_review = "<leader>cP",
+            pull_review = "<leader>cL",
+            annotate = "<leader>ca",
+          },
+          prompting = {
+            review_agents = {
+              { label = "claude", argv = with(claude, { "--dangerously-skip-permissions" }) },
+              { label = "pi", argv = pi },
+            },
+            launch_processes = {
+              { label = "terminal", argv = { vim.o.shell } },
+              { label = "pi", argv = pi },
+              { label = "claude", argv = with(claude, { "--dangerously-skip-permissions" }) },
             },
           },
-          review_agents = {
-            { label = "claude", argv = with(claude, { "--dangerously-skip-permissions" }) },
-            { label = "pi", argv = pi },
-          },
-        },
-      })
+        })
       '';
     };
   };

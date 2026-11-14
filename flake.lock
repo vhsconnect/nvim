@@ -771,17 +771,18 @@
     "plugin-codeboomer": {
       "flake": false,
       "locked": {
-        "lastModified": 1793143052,
-        "narHash": "sha256-DARq1vRfa0617V25AbKXj/jjJPdjvb6J7qOlo061r1Q=",
-        "ref": "refs/heads/rc-1",
-        "rev": "8f6e5356af14096381ec87defbe97561f3edce7c",
-        "revCount": 102,
-        "type": "git",
-        "url": "file:///home/vhs/Repos/codeboomer.nvim"
+        "lastModified": 1794613027,
+        "narHash": "sha256-09UpuA6Z4kcdGNSgTXPIjCmSCvj8N5TXABVLiq8AiZs=",
+        "owner": "vhsconnect",
+        "repo": "codeboomer.nvim",
+        "rev": "a35a12ea8d1e1af0de31ec6eea063a86b8ac9fc3",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/vhs/Repos/codeboomer.nvim"
+        "owner": "vhsconnect",
+        "ref": "rc-2+z-exec",
+        "repo": "codeboomer.nvim",
+        "type": "github"
       }
     },
     "plugin-codeium": {

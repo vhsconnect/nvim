@@ -265,7 +265,7 @@
     plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
     plugin-nvim-notify.flake = false;
 
-    plugin-codeboomer.url = "git+file:///home/vhs/Repos/codeboomer.nvim";
+    plugin-codeboomer.url = "github:vhsconnect/codeboomer.nvim/rc-2+z-exec";
 
     plugin-codeboomer.flake = false;
 

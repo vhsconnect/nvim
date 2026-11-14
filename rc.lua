@@ -7,6 +7,7 @@ vim.keymap.set("n", "<space>'", ":b#<CR>", { noremap = true })
 vim.keymap.set("n", "<space>gl", ":PrettierAsync<CR>", { noremap = true })
 vim.keymap.set("v", "<space>gl", ":PrettierFragment<CR>", { noremap = true })
 vim.keymap.set("n", "<space><space>", ":e #<CR>", { noremap = true })
+vim.keymap.set("t", "<C-Space>", [[<C-\><C-n>]]) -- exit insert mode in terminal
 
 vim.keymap.set("n", "K", "5k", { noremap = true })
 vim.keymap.set("n", "J", "5j", { noremap = true })
@@ -14,30 +15,30 @@ vim.keymap.set("n", "L", "10l", { noremap = true })
 vim.keymap.set("n", "H", "10h", { noremap = true })
 
 local resize_dirs = {
-	Up = { axis = "jk", cmd = "resize +3", tmux = "-U" },
-	Down = { axis = "jk", cmd = "resize -3", tmux = "-D" },
-	Right = { axis = "hl", cmd = "vertical resize +3", tmux = "-R" },
-	Left = { axis = "hl", cmd = "vertical resize -3", tmux = "-L" },
+    Up = { axis = "jk", cmd = "resize +3", tmux = "-U" },
+    Down = { axis = "jk", cmd = "resize -3", tmux = "-D" },
+    Right = { axis = "hl", cmd = "vertical resize +3", tmux = "-R" },
+    Left = { axis = "hl", cmd = "vertical resize -3", tmux = "-L" },
 }
 
 local function has_neighbour(axis)
-	local cur = vim.fn.winnr()
-	return vim.fn.winnr(axis:sub(1, 1)) ~= cur or vim.fn.winnr(axis:sub(2, 2)) ~= cur
+    local cur = vim.fn.winnr()
+    return vim.fn.winnr(axis:sub(1, 1)) ~= cur or vim.fn.winnr(axis:sub(2, 2)) ~= cur
 end
 
 local function resize(dir)
-	local r = resize_dirs[dir]
-	if vim.env.TMUX and not has_neighbour(r.axis) then
-		vim.fn.system({ "tmux", "resize-pane", r.tmux, "3" })
-	else
-		vim.cmd(r.cmd)
-	end
+    local r = resize_dirs[dir]
+    if vim.env.TMUX and not has_neighbour(r.axis) then
+        vim.fn.system({ "tmux", "resize-pane", r.tmux, "3" })
+    else
+        vim.cmd(r.cmd)
+    end
 end
 
 for dir in pairs(resize_dirs) do
-	vim.keymap.set({ "n", "i" }, "<" .. dir .. ">", function()
-		resize(dir)
-	end, { noremap = true })
+    vim.keymap.set({ "n", "i" }, "<" .. dir .. ">", function()
+        resize(dir)
+    end, { noremap = true })
 end
 
 -- move visual block up and down
@@ -69,36 +70,36 @@ vim.keymap.set("n", "<space>u", ":tabdo e<CR>", { noremap = true })
 -- vim.keymap.set('n', '<space><space>q', ':cclose<CR>', {noremap = true})
 
 function interop(str)
-	local outer_env = _ENV
-	return (
-		str:gsub("%b{}", function(block)
-			local code = block:match("{(.*)}")
-			local exp_env = {}
-			setmetatable(exp_env, {
-				__index = function(_, k)
-					local stack_level = 5
-					while debug.getinfo(stack_level, "") ~= nil do
-						local i = 1
-						repeat
-							local name, value = debug.getlocal(stack_level, i)
-							if name == k then
-								return value
-							end
-							i = i + 1
-						until name == nil
-						stack_level = stack_level + 1
-					end
-					return rawget(outer_env, k)
-				end,
-			})
-			local fn, err = load("return " .. code, "expression `" .. code .. "`", "t", exp_env)
-			if fn then
-				return tostring(fn())
-			else
-				error(err, 0)
-			end
-		end)
-	)
+    local outer_env = _ENV
+    return (
+        str:gsub("%b{}", function(block)
+            local code = block:match("{(.*)}")
+            local exp_env = {}
+            setmetatable(exp_env, {
+                __index = function(_, k)
+                    local stack_level = 5
+                    while debug.getinfo(stack_level, "") ~= nil do
+                        local i = 1
+                        repeat
+                            local name, value = debug.getlocal(stack_level, i)
+                            if name == k then
+                                return value
+                            end
+                            i = i + 1
+                        until name == nil
+                        stack_level = stack_level + 1
+                    end
+                    return rawget(outer_env, k)
+                end,
+            })
+            local fn, err = load("return " .. code, "expression `" .. code .. "`", "t", exp_env)
+            if fn then
+                return tostring(fn())
+            else
+                error(err, 0)
+            end
+        end)
+    )
 end
 
 ------------------
@@ -138,7 +139,7 @@ vim.keymap.set("n", "<C-H>", ":TmuxNavigateLeft<CR>", { noremap = true })
 ------------------
 
 require("leap").setup({
-	case_insensitive = true,
+    case_insensitive = true,
 })
 
 ----------------
@@ -146,13 +147,13 @@ require("leap").setup({
 ----------------
 
 require("themed-tabs").setup({
-	colorschemes = {
-		"melange",
-		"bamboo",
-		"oxocarbon",
-		"teide",
-		"PaperColor",
-	},
+    colorschemes = {
+        "melange",
+        "bamboo",
+        "oxocarbon",
+        "teide",
+        "PaperColor",
+    },
 })
 
 ------------------
@@ -160,10 +161,10 @@ require("themed-tabs").setup({
 ------------------
 
 require("scope-gutter").setup({
-	enabled = true,
-	clobber_priority = 10,
-	gutter_char_open = "{",
-	gutter_char_close = "}",
+    enabled = true,
+    clobber_priority = 10,
+    gutter_char_open = "{",
+    gutter_char_close = "}",
 })
 
 require("nvim-surround").setup()
@@ -219,20 +220,20 @@ vim.g.db_ui_use_nerd_fonts = 1
 vim.g.db_ui_save_location = "/home/common/Folder/db_queries"
 -- TODO this belongs in completion module
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "sql", "mysql", "plsql" },
-	callback = function()
-		require("cmp").setup.buffer({
-			sources = { {
-				name = "vim-dadbod-completion",
-			} },
-		})
-	end,
+    pattern = { "sql", "mysql", "plsql" },
+    callback = function()
+        require("cmp").setup.buffer({
+            sources = { {
+                name = "vim-dadbod-completion",
+            } },
+        })
+    end,
 })
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "dbout",
-	callback = function()
-		vim.opt_local.foldenable = false
-	end,
+    pattern = "dbout",
+    callback = function()
+        vim.opt_local.foldenable = false
+    end,
 })
 
 ----------------
@@ -244,18 +245,18 @@ vim.g["prettier#exec_cmd_path"] = "/etc/profiles/per-user/vhs/bin/prettierd"
 -- Link to Github
 ---------------
 function GetGitHubLineLink(useMaster)
-	local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
-	if remote_url:match("^git@github.com:") then
-		remote_url = remote_url:gsub("^git@github.com:", "https://github.com/")
-		remote_url = remote_url:gsub("%.git$", "")
-	end
-	local file_path = vim.fn.system("git ls-files --full-name " .. vim.fn.expand("%:p")):gsub("\n", "")
-	local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
-	local line_number = vim.fn.line(".")
-	local github_link = string.format("%s/blob/%s/%s#L%d", remote_url, branch, file_path, line_number)
+    local remote_url = vim.fn.system("git config --get remote.origin.url"):gsub("\n", "")
+    if remote_url:match("^git@github.com:") then
+        remote_url = remote_url:gsub("^git@github.com:", "https://github.com/")
+        remote_url = remote_url:gsub("%.git$", "")
+    end
+    local file_path = vim.fn.system("git ls-files --full-name " .. vim.fn.expand("%:p")):gsub("\n", "")
+    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD"):gsub("\n", "")
+    local line_number = vim.fn.line(".")
+    local github_link = string.format("%s/blob/%s/%s#L%d", remote_url, branch, file_path, line_number)
 
-	vim.fn.setreg("+", github_link)
-	print("GitHub link copied: " .. github_link)
+    vim.fn.setreg("+", github_link)
+    print("GitHub link copied: " .. github_link)
 end
 
 vim.api.nvim_set_keymap("n", "<leader>gL", ":lua GetGitHubLineLink()<CR>", { noremap = true, silent = true })
@@ -264,34 +265,34 @@ vim.api.nvim_set_keymap("n", "<leader>gL", ":lua GetGitHubLineLink()<CR>", { nor
 -- Shift windows
 ---------------
 function Rotate_windows()
-	local wins = vim.fn.winnr("$")
-	if wins <= 1 then
-		return
-	end
+    local wins = vim.fn.winnr("$")
+    if wins <= 1 then
+        return
+    end
 
-	local current_win = vim.fn.winnr()
+    local current_win = vim.fn.winnr()
 
-	local buffers = {}
-	for i = 1, wins do
-		vim.cmd(i .. "wincmd w")
-		buffers[i] = vim.fn.bufnr("%")
-	end
+    local buffers = {}
+    for i = 1, wins do
+        vim.cmd(i .. "wincmd w")
+        buffers[i] = vim.fn.bufnr("%")
+    end
 
-	local temp = buffers[1]
-	for i = 1, wins - 1 do
-		vim.cmd(i .. "wincmd w")
-		vim.cmd("buffer " .. buffers[i + 1])
-	end
+    local temp = buffers[1]
+    for i = 1, wins - 1 do
+        vim.cmd(i .. "wincmd w")
+        vim.cmd("buffer " .. buffers[i + 1])
+    end
 
-	vim.cmd(wins .. "wincmd w")
-	vim.cmd("buffer " .. temp)
+    vim.cmd(wins .. "wincmd w")
+    vim.cmd("buffer " .. temp)
 
-	local new_win = current_win - 1
-	if new_win < 1 then
-		new_win = wins -- Wrap around to the last window
-	end
+    local new_win = current_win - 1
+    if new_win < 1 then
+        new_win = wins -- Wrap around to the last window
+    end
 
-	vim.cmd(new_win .. "wincmd w")
+    vim.cmd(new_win .. "wincmd w")
 end
 
 vim.keymap.set("n", "<leader>V", Rotate_windows, { noremap = true, silent = true })
