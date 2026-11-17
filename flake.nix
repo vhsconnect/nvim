@@ -259,14 +259,16 @@
     plugin-guess-indent.url = "github:NMAC427/guess-indent.nvim";
     plugin-guess-indent.flake = false;
 
+    plugin-winshift.url = "github:sindrets/winshift.nvim";
+    plugin-winshift.flake = false;
+
     plugin-noice.url = "github:folke/noice.nvim";
     plugin-noice.flake = false;
 
     plugin-nvim-notify.url = "github:rcarriga/nvim-notify";
     plugin-nvim-notify.flake = false;
 
-    plugin-codeboomer.url = "github:vhsconnect/codeboomer.nvim/rc-2+z-exec";
-
+    plugin-codeboomer.url = "github:vhsconnect/codeboomer.nvim";
     plugin-codeboomer.flake = false;
 
     teide = {
@@ -626,6 +628,7 @@
             autopairs.enable = true;
             paraedit.enable = true;
             oil.enable = true;
+            winshift.enable = true;
             autocomplete = {
               enable = true;
               type = "nvim-cmp";

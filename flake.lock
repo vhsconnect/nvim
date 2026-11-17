@@ -771,16 +771,16 @@
     "plugin-codeboomer": {
       "flake": false,
       "locked": {
-        "lastModified": 1794613027,
-        "narHash": "sha256-09UpuA6Z4kcdGNSgTXPIjCmSCvj8N5TXABVLiq8AiZs=",
+        "lastModified": 1794955373,
+        "narHash": "sha256-zkJ9++0GCP+7PaAUdDdbjWAD2cYptwMvzz4getuqhwQ=",
         "owner": "vhsconnect",
         "repo": "codeboomer.nvim",
-        "rev": "a35a12ea8d1e1af0de31ec6eea063a86b8ac9fc3",
+        "rev": "9c18d8ac059f08bb3b5d70a50870c5a0d8cd0640",
         "type": "github"
       },
       "original": {
         "owner": "vhsconnect",
-        "ref": "rc-2+z-exec",
+        "ref": "rc-2-1",
         "repo": "codeboomer.nvim",
         "type": "github"
       }
@@ -1801,6 +1801,22 @@
         "type": "github"
       }
     },
+    "plugin-winshift": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662472840,
+        "narHash": "sha256-mW3kaducHWRlDx18WcwcbWDlNnAyHgELS3XjpeFFCgs=",
+        "owner": "sindrets",
+        "repo": "winshift.nvim",
+        "rev": "37468ed6f385dfb50402368669766504c0e15583",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sindrets",
+        "repo": "winshift.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "baitong": "baitong",
@@ -1899,6 +1915,7 @@
         "plugin-trouble": "plugin-trouble",
         "plugin-vim-vsnip": "plugin-vim-vsnip",
         "plugin-which-key": "plugin-which-key",
+        "plugin-winshift": "plugin-winshift",
         "scope-gutter": "scope-gutter",
         "tcomment": "tcomment",
         "teide": "teide",

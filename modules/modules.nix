@@ -40,6 +40,7 @@ let
     ./theme
     ./treesitter
     ./visuals
+    ./winshift
   ];
 
   pkgsModule =
